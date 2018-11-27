@@ -51,15 +51,16 @@ dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords",
 dataset.augment_train_dataset()
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
-#model = models.model_first2(inputs)
+model = models.model_first2(inputs)
 #model = models.model_first(inputs)
-model = models.model3(inputs)
+#model = models.model3(inputs)
 
 
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
 
-model.compile(optimizer='adagrad',
+model.compile(optimizer=keras.optimizers.Adam(lr=0.001),
+              #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
               metrics=[accuracy, miou])
@@ -91,7 +92,8 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacks,
-          epochs=150,
+          #epochs=150,
+          epochs=500,
           steps_per_epoch=123,
           validation_data=dataset.test_set.batch(256).repeat(),
           validation_steps=6,
