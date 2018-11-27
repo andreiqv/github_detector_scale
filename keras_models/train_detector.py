@@ -57,7 +57,8 @@ model = models.model_first2(inputs)
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
 
-model.compile(optimizer='adam',
+model.compile(optimizer='adagrad',
+              #optimizer='adam',
               loss=bboxes_loss,
               metrics=[accuracy, miou])
 
