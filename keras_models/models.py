@@ -345,10 +345,10 @@ def model_first2(inputs):
     )(x)
     x = layers.BatchNormalization()(x)
     x = layers.Flatten()(x)
-    x = layers.Dropout(0.5)(x)
+    #x = layers.Dropout(0.5)(x)
     #x = layers.Dense(1000, activation='sigmoid')(x)
-    x = layers.Dense(1000, activation='relu')(x)
-    x = layers.Dropout(0.5)(x)
+    #x = layers.Dense(1000, activation='relu')(x)
+    x = layers.Dropout(0.2)(x)
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
 
