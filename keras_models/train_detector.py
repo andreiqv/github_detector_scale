@@ -59,7 +59,7 @@ model = models.model_first2(inputs)
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.001),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.0005),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
