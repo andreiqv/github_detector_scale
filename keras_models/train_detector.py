@@ -51,7 +51,8 @@ dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords",
 dataset.augment_train_dataset()
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
-model = models.model_first2(inputs)
+#model = models.model_first2(inputs)
+model = models.model3(inputs)
 #model = models.model_first(inputs)
 #model = models.model3(inputs)
 
