@@ -79,20 +79,20 @@ print(model.summary())
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_first2-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_test-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_first2'
+        log_dir='./tensorboard/model_test'
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          callbacks=callbacks,
+          #callbacks=callbacks,
           #epochs=150,
           epochs=300,
           steps_per_epoch=123,
