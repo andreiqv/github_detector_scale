@@ -91,9 +91,9 @@ callbacks = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          #callbacks=callbacks,
+          callbacks=callbacks,
           #epochs=150,
-          epochs=500,
+          epochs=300,
           steps_per_epoch=123,
           validation_data=dataset.test_set.batch(256).repeat(),
           validation_steps=6,
