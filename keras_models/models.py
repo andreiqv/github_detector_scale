@@ -189,10 +189,10 @@ def model3(inputs):
         activation='sigmoid'
     )(x)
 
-    #x = layers.Reshape((5,))(x)
+    x = layers.Reshape((5,))(x)
 
-    x = layers.Flatten()(x)
-    x = layers.Dense(5, activation='sigmoid')(x)
+    #x = layers.Flatten()(x)
+    #x = layers.Dense(5, activation='sigmoid')(x)
 
     model = keras.Model(inputs, x, name='glp_model3')
 
