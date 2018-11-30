@@ -95,7 +95,7 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 
 batch_size = 32  # 256
 
-model.fit(dataset.train_set.batch(batch_size).repeat(),
+model.fit(dataset.train_set.repeat(),
           #callbacks=callbacks,
           #epochs=150,
           epochs=500,
