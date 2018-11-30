@@ -40,7 +40,7 @@ def lr_scheduler(epoch, lr):
     return lr
 
 
-batch_size = 64  # 256
+batch_size = 128  # 256
 
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
@@ -58,7 +58,8 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model_first(inputs)
 
 import models2
-model = models2.model_InceptionV3(inputs)
+#model = models2.model_InceptionV3(inputs)
+model = models2.model_ResNet50(inputs)
 
 
 # optimizer = tf.train.AdamOptimizer()
@@ -99,7 +100,7 @@ model.fit(dataset.train_set.repeat(),
           #callbacks=callbacks,
           #epochs=150,
           epochs=500,
-          steps_per_epoch=123,
+          steps_per_epoch=246,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
-          validation_steps=6,
+          validation_steps=12,
           )
