@@ -56,7 +56,7 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model_first(inputs)
 
 import models2
-model = models2.model_resnet(inputs)
+model = models2.model_ResNet50(inputs)
 
 
 # optimizer = tf.train.AdamOptimizer()
