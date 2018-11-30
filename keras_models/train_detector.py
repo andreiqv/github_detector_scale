@@ -40,6 +40,8 @@ def lr_scheduler(epoch, lr):
     return lr
 
 
+batch_size = 64  # 256
+
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
 
@@ -92,8 +94,6 @@ callbacks = [
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 keras.backend.get_session().run(tf.local_variables_initializer())
-
-batch_size = 32  # 256
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacks,
