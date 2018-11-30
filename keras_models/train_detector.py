@@ -47,7 +47,7 @@ batch_size = 64  # 256
 
 dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
                             "../dataset/test-bboxes128x128.tfrecords", 
-                            image_shape, image_channels, 256)
+                            image_shape, image_channels, batch_size)
 
 
 dataset.augment_train_dataset()
