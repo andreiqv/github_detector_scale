@@ -55,7 +55,7 @@ model = models.model_first2(inputs)
 #model = models.model3(inputs)
 #model = models.model_first(inputs)
 
-model = models.model_resnet(inputs)
+#model = models2.model_resnet(inputs)
 
 
 # optimizer = tf.train.AdamOptimizer()
