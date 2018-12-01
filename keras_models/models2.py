@@ -8,6 +8,7 @@ from tensorflow.contrib.slim.nets import alexnet
 
 from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications.inception_v3 import InceptionV3
+from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2  #224x224.
 
 def model_resnet50(inputs):
 
@@ -35,3 +36,11 @@ def model_InceptionV3(inputs):
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_InceptionV3')	
 	return model
 	
+def model_MobileNetV2(inputs):
+
+	base_model = MobileNetV2(weights='imagenet', include_top=False, pooling='avg', 
+		input_tensor=inputs)
+	x = base_model.output
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs=inputs, outputs=x, name='keras_InceptionV3')	
+	return model	
