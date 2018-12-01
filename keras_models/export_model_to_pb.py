@@ -4,6 +4,8 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.python.framework import graph_io
+sys.path.append('.')
+sys.path.append('..')
 from keras_models.aux import accuracy, bboxes_loss, miou
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
