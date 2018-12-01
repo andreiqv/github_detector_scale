@@ -65,7 +65,7 @@ model = models2.model_InceptionV3(inputs)
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.001),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
