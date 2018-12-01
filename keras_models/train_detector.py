@@ -58,8 +58,8 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model_first(inputs)
 
 import models2
-#model = models2.model_InceptionV3(inputs)
-model = models2.model_ResNet50(inputs)
+model = models2.model_InceptionV3(inputs)
+#model = models2.model_ResNet50(inputs)
 
 
 # optimizer = tf.train.AdamOptimizer()
@@ -84,13 +84,13 @@ print(model.summary())
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_resnet50-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_InceptionV3-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_resnet50'
+        log_dir='./tensorboard/model_InceptionV3'
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
