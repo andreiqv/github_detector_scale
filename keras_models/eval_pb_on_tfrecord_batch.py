@@ -119,7 +119,7 @@ def evaluate_pb_model(graph_def, dataset):
 							print(labels)
 							print('predictions:')
 							print(predict_values)
-							print('miou:', miou_value)
+							print('miou:', miou_values)
 							print()
 				
 					except tf.errors.OutOfRangeError:
