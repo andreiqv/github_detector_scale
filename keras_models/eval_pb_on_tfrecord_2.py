@@ -103,10 +103,11 @@ def evaluate_pb_model(graph_def, dataset):
 						#miou_value = miou(labels, predict_values)
 						#miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
 						
-						predict_values, acc_value, miou_value = sess.run(\
-							[logits_, accuracy_, miou_],\
+						predict_values, miou_value = sess.run(\
+							[logits_, miou_],\
 							feed_dict={input_: [features], labels_:[labels]})
 						
+						acc_value = 0
 						acc_list.append(acc_value)
 						if miou_value == miou_value:
 							miou_list.append(miou_value)							
