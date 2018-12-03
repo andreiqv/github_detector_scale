@@ -80,7 +80,7 @@ def evaluate_pb_model(graph_def, dataset):
 			for i in range(train_steps_per_epoch):
 				features, labels = sess.run(next_element_train)
 
-				p_val = predictions.eval(feed_dict={input_: features})
+				p_val = predictions.eval(feed_dict={input_: [features]})
 				#index = np.argmax(p_val)
 				#label = labels[index]
 				print(p_val)
