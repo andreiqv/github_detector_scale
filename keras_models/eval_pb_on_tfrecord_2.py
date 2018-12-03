@@ -92,6 +92,7 @@ def evaluate_pb_model(graph_def, dataset):
 				print('predictions:')
 				print(predict_values)
 				#miou_value = miou(labels, predict_values)
+				miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
 				#print('miou:', miou_value)
 				print()
 
