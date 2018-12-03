@@ -10,7 +10,7 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.python.platform import gfile
 from PIL import Image
-import timer
+#import timer
 
 sys.path.append('.')
 sys.path.append('..')
