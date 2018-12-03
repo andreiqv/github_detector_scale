@@ -103,7 +103,7 @@ def evaluate_pb_model(graph_def, dataset):
 					print()
 			
 				except tf.errors.OutOfRangeError:
-					logging.debug("The end of training dataset.")
+					print("The end of training dataset.")
 					break
 
 			print('mean miou:', np.mean(miou_list))
