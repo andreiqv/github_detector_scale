@@ -84,22 +84,27 @@ def evaluate_pb_model(graph_def, dataset):
 			miou_list = []
 
 			# valid
-			for i in range(valid_steps_per_epoch):
-				features, labels = sess.run(next_element_valid)
+			while True:
+				try:
+					features, labels = sess.run(next_element_valid)
 
-				predict_values = logits_.eval(feed_dict={input_: [features]})
-				#index = np.argmax(p_val)
-				#label = labels[index]
-				print('labels:')
-				print(labels)
-				print('predictions:')
-				print(predict_values)
-				#miou_value = miou(labels, predict_values)
-				miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
-				print('miou:', miou_value)
-				if miou_value == miou_value:
-					miou_list.append(miou_value)
-				print()
+					predict_values = logits_.eval(feed_dict={input_: [features]})
+					#index = np.argmax(p_val)
+					#label = labels[index]
+					print('labels:')
+					print(labels)
+					print('predictions:')
+					print(predict_values)
+					#miou_value = miou(labels, predict_values)
+					miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
+					print('miou:', miou_value)
+					if miou_value == miou_value:
+						miou_list.append(miou_value)
+					print()
+			
+				except tf.errors.OutOfRangeError:
+					logging.debug("The end of training dataset.")
+					break
 
 			print('mean miou:', np.mean(miou_list))
 
