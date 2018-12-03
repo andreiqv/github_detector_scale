@@ -26,7 +26,7 @@ INPUT_NODE = 'input_1'
 OUTPUT_NODE = 'dense/Sigmoid'	
 input_output_placeholders = ['input_1:0', 'dense/Sigmoid:0']
 
-BATCH_SIZE = 1  # 256
+BATCH_SIZE = 128  # 256
 
 
 def get_frozen_graph(pb_file):
@@ -59,7 +59,7 @@ def compress_graph_with_trt(graph_def, precision_mode):
 def evaluate_pb_model(graph_def, dataset):
 	""" 
 	"""
-	limit_iters = 100
+	limit_iters = 1000
 	#train_steps_per_epoch = 100 #31488
 	#valid_steps_per_epoch = 1536 #1536
 	train_dataset = dataset.train_set #.batch(BATCH_SIZE)
