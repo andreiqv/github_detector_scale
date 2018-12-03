@@ -13,6 +13,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 
 model_name = 'model_first2-213-0.982-0.982[0.778].hdf5'
+model_name = model_name.rstrip('.hdf5')
 
 
 def freeze_graph(graph, session, output):
