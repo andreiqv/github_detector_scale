@@ -97,8 +97,8 @@ def evaluate_pb_model(graph_def, dataset):
 				#miou_value = miou(labels, predict_values)
 				miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
 				print('miou:', miou_value)
-				miou_value = miou_value if miou_value == miou_value else 0
-				miou_list.append(miou_value)
+				if miou_value == miou_value:
+					miou_list.append(miou_value)
 				print()
 
 			print('mean miou:', np.mean(miou_list))
