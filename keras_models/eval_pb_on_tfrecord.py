@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Using TF for inference, and TensorRT for compress a graph.
+# Скрипт для валидации модели в виде pb-файла.
 
 import sys
 import os
@@ -25,7 +25,7 @@ INPUT_NODE = 'input_1'
 OUTPUT_NODE = 'dense/Sigmoid'	
 input_output_placeholders = ['input_1:0', 'dense/Sigmoid:0']
 
-BATCH_SIZE = 2  # 256
+BATCH_SIZE = 5  # 256
 
 
 def get_frozen_graph(pb_file):
@@ -80,13 +80,13 @@ def evaluate_pb_model(graph_def, dataset):
 			for i in range(train_steps_per_epoch):
 				features, labels = sess.run(next_element_train)
 
-				p_val = predictions.eval(feed_dict={input_: [features]})
+				predict_values = predictions.eval(feed_dict={input_: [features]})
 				#index = np.argmax(p_val)
 				#label = labels[index]
 				print('labels:')
 				print(labels)
 				print('p_val:')
-				print(p_val)
+				print(predict_values)
 				print()
 				
 				#print('{0}: prediction={1}'.format(filename, label))
