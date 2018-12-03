@@ -28,7 +28,7 @@ INPUT_NODE = 'input_1'
 OUTPUT_NODE = 'dense/Sigmoid'	
 input_output_placeholders = ['input_1:0', 'dense/Sigmoid:0']
 
-BATCH_SIZE = 128  # 256
+BATCH_SIZE = 5  # 256
 
 
 def get_frozen_graph(pb_file):
@@ -61,7 +61,7 @@ def compress_graph_with_trt(graph_def, precision_mode):
 def evaluate_pb_model(graph_def, dataset):
 	""" 
 	"""
-	limit_iters = 100000
+	limit_iters = 20
 	#train_steps_per_epoch = 100 #31488
 	#valid_steps_per_epoch = 1536 #1536
 	train_dataset = dataset.train_set #.batch(BATCH_SIZE)
@@ -114,7 +114,7 @@ def evaluate_pb_model(graph_def, dataset):
 						if miou_value == miou_value:
 							miou_list.append(miou_value)							
 						
-						if False:
+						if True:
 							print('labels:')
 							print(labels)
 							print('predictions:')
