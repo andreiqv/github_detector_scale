@@ -14,6 +14,7 @@ from PIL import Image
 
 sys.path.append('.')
 sys.path.append('..')
+from keras_models.aux import miou, bboxes_loss, accuracy
 from tfrecords_converter import TfrecordsDataset
 #import tensorflow.contrib.tensorrt as trt
 
@@ -25,7 +26,7 @@ INPUT_NODE = 'input_1'
 OUTPUT_NODE = 'dense/Sigmoid'	
 input_output_placeholders = ['input_1:0', 'dense/Sigmoid:0']
 
-BATCH_SIZE = 5  # 256
+BATCH_SIZE = 1  # 256
 
 
 def get_frozen_graph(pb_file):
@@ -85,10 +86,12 @@ def evaluate_pb_model(graph_def, dataset):
 				#label = labels[index]
 				print('labels:')
 				print(labels)
-				print('p_val:')
+				print('predictions:')
 				print(predict_values)
+				miou_value = miou(labels, predict_values)
+				print('miou:', miou_value)
 				print()
-				
+
 				#print('{0}: prediction={1}'.format(filename, label))
 
 
