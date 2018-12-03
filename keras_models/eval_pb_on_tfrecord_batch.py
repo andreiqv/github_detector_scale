@@ -127,7 +127,7 @@ def evaluate_pb_model(graph_def, dataset):
 						break
 
 				print('{} mean acc={:.4f}, miou = {:.4f}'.format(
-					phase, np.mean(acc_list), np.mean(miou_list)))
+					phase, np.mean(acc_list), np.nanmean(miou_list)))
 
 
 				#print('{0}: prediction={1}'.format(filename, label))
