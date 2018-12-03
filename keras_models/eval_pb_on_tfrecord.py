@@ -58,10 +58,10 @@ def compress_graph_with_trt(graph_def, precision_mode):
 def evaluate_pb_model(graph_def, dataset):
 	""" 
 	"""
-	train_steps_per_epoch = 724 #1157
-	valid_steps_per_epoch = 78  #77
+	train_steps_per_epoch = 10 #1157
+	valid_steps_per_epoch = 10  #77
 	train_dataset = dataset.train_set.repeat()
-	valid_dataset = dataset.test_set.batch(128)
+	valid_dataset = dataset.test_set.batch(BATCH_SIZE)
 
 	with tf.Graph().as_default() as graph:
 
@@ -83,8 +83,12 @@ def evaluate_pb_model(graph_def, dataset):
 				p_val = predictions.eval(feed_dict={input_: [features]})
 				#index = np.argmax(p_val)
 				#label = labels[index]
-				print(p_val)
+				print('labels:')
 				print(labels)
+				print('p_val:')
+				print(p_val)
+				print()
+				
 				#print('{0}: prediction={1}'.format(filename, label))
 
 
