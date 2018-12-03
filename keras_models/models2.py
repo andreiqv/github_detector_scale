@@ -34,7 +34,7 @@ def model_MobileNetV2(inputs):
 	num_layers: 157
 	"""
 
-	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=1.0,
+	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=0.35,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
 	x = layers.Dense(5, activation='sigmoid')(x)
