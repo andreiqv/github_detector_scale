@@ -108,7 +108,7 @@ def evaluate_pb_model(graph_def, dataset):
 							feed_dict={input_: features, labels_:labels})
 						
 						acc_value = 0
-						#acc_list.append(acc_value)
+						acc_list.append(acc_value)
 						if miou_value == miou_value:
 							miou_list.append(miou_value)							
 						

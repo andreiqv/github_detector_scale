@@ -12,7 +12,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 
-model_name = 'model_resnet50-97-0.996-0.996[0.833]'
+model_name = 'model_first2-213-0.982-0.982[0.778].hdf5'
 
 
 def freeze_graph(graph, session, output):
