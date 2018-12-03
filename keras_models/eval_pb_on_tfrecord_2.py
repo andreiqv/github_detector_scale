@@ -74,6 +74,7 @@ def evaluate_pb_model(graph_def, dataset):
 		next_elements = {'train': next_element_train, 'valid':next_element_valid}	
 
 		with tf.Session() as sess:
+			sess.run(tf.global_variables_initializer())
 
 			# Import a graph_def into the current default Graph
 			print("import graph")	
