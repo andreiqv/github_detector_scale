@@ -114,7 +114,7 @@ def evaluate_pb_model(graph_def, dataset):
 							miou_list += miou_values
 
 						
-						if False:
+						if True:
 							print('labels:')
 							print(labels)
 							print('predictions:')
