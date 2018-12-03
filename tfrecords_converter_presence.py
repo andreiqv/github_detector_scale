@@ -97,7 +97,10 @@ def convert_to_tfrecords(x_list, y_list, image_size, output_file):
                 }
             )
             example = tf.train.Example(features=features)
-            record_writer.write(example.SerializeToString())
+
+            # Write images with a good only
+            if objectness == 1: 
+                record_writer.write(example.SerializeToString())
 
 
 def plot_image(image):
@@ -238,6 +241,6 @@ if __name__ == '__main__':
     print(len(x_train))
     print(len(x_test))
     convert_to_tfrecords(x_train, y_train, image_size, 
-                "train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
+                "presence_train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
     convert_to_tfrecords(x_test, y_test, image_size,
-                "test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
+                "presence_test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
