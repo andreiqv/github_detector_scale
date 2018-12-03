@@ -82,13 +82,14 @@ def evaluate_pb_model(graph_def, dataset):
 			#labels = tf.Variable()			
 			labels_ = tf.placeholder(tf.float32, [None, 5], name='labels')
 			miou_ = miou(labels_, logits_)
-
+			accuracy_ = accuracy(labels_, logits_)
 
 			for phase in next_elements:
 				
 				print('phase:', phase)
 				next_element = next_elements[phase]			
 				miou_list = []
+				acc_list = []
 				
 				while True:
 					if len(miou_list) > limit_iters:
@@ -97,11 +98,17 @@ def evaluate_pb_model(graph_def, dataset):
 					try:
 						features, labels = sess.run(next_element)
 
-						predict_values = logits_.eval(feed_dict={input_: [features]})
+						#predict_values = logits_.eval(feed_dict={input_: [features]})
 						#miou_value = miou(labels, predict_values)
-						miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
+						#miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
+						
+						predict_values, acc_value, miou_value = sess.run(\
+							[logits_, accuracy_, miou_],\
+							feed_dict={input_: [features], labels_:[labels]})
+						
+						acc_list.append(acc_value)
 						if miou_value == miou_value:
-							miou_list.append(miou_value)
+							miou_list.append(miou_value)							
 						
 						if False:
 							print('labels:')
@@ -115,7 +122,8 @@ def evaluate_pb_model(graph_def, dataset):
 						print("The end of {} dataset.".format(phase))
 						break
 
-				print('{} mean miou = {:.4f}'.format(phase, np.mean(miou_list)))
+				print('{} mean acc={:.4f}, miou = {:.4f}'.format(
+					phase, np.mean(acc_list), np.mean(miou_list)))
 
 
 				#print('{0}: prediction={1}'.format(filename, label))
