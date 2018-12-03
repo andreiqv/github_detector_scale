@@ -109,9 +109,8 @@ def evaluate_pb_model(graph_def, dataset):
 						
 						acc_value = 0
 						#acc_list.append(acc_value)
-						if miou_values == miou_values:
+						if miou_value == miou_value:
 							miou_list.append(miou_value)							
-
 						
 						if False:
 							print('labels:')
