@@ -59,8 +59,8 @@ def compress_graph_with_trt(graph_def, precision_mode):
 def evaluate_pb_model(graph_def, dataset):
 	""" 
 	"""
-	train_steps_per_epoch = 10 #1157
-	valid_steps_per_epoch = 10  #77
+	train_steps_per_epoch = 31488
+	valid_steps_per_epoch = 1536
 	train_dataset = dataset.train_set.repeat()
 	valid_dataset = dataset.test_set.batch(BATCH_SIZE).repeat()
 
