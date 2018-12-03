@@ -38,9 +38,9 @@ def model_InceptionV3(inputs):
 	
 def model_MobileNetV2(inputs):
 
-	base_model = MobileNetV2(weights=None, alpha=0.5, depth_multiplier=0.35,
+	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=0.35,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
 	x = layers.Dense(5, activation='sigmoid')(x)
-	model = keras.Model(inputs=inputs, outputs=x, name='keras_InceptionV3')	
+	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')	
 	return model	
