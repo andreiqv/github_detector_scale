@@ -81,6 +81,8 @@ def evaluate_pb_model(graph_def, dataset):
 			labels_ = tf.placeholder(tf.float32, [None, 5], name='labels')
 			miou_ = miou(labels_, logits_)
 
+			miou_list = []
+
 			for i in range(train_steps_per_epoch):
 				features, labels = sess.run(next_element_train)
 
@@ -93,8 +95,11 @@ def evaluate_pb_model(graph_def, dataset):
 				print(predict_values)
 				#miou_value = miou(labels, predict_values)
 				miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
+				miou_list.append(miou_value)
 				print('miou:', miou_value)
 				print()
+
+			print('mean miou:', np.mean(miou_value))
 
 				#print('{0}: prediction={1}'.format(filename, label))
 
