@@ -59,7 +59,7 @@ def compress_graph_with_trt(graph_def, precision_mode):
 def evaluate_pb_model(graph_def, dataset):
 	""" 
 	"""
-	limit_iters = 100
+	limit_iters = 10
 	#train_steps_per_epoch = 100 #31488
 	#valid_steps_per_epoch = 1536 #1536
 	train_dataset = dataset.train_set.batch(BATCH_SIZE)
@@ -111,7 +111,7 @@ def evaluate_pb_model(graph_def, dataset):
 						#acc_list.append(acc_value)
 						if miou_values == miou_values:
 							#miou_list.append(miou_values)
-							miou_list += miou_values
+							miou_list += miou_values.tolist()
 
 						
 						if False:
