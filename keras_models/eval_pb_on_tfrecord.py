@@ -50,7 +50,7 @@ def compress_graph_with_trt(graph_def, precision_mode):
 		graph_def,
 		[output_node],
 		max_batch_size=1,
-		max_workspace_size_bytes=2<<20,
+		max_workspace_size_bytes = 2<<20,
 		precision_mode=precision_mode)
 
 	return trt_graph
@@ -62,7 +62,7 @@ def evaluate_pb_model(graph_def, dataset):
 	train_steps_per_epoch = 10 #1157
 	valid_steps_per_epoch = 10  #77
 	train_dataset = dataset.train_set.repeat()
-	valid_dataset = dataset.test_set.batch(BATCH_SIZE)
+	valid_dataset = dataset.test_set.batch(BATCH_SIZE).repeat()
 
 	with tf.Graph().as_default() as graph:
 
@@ -77,7 +77,7 @@ def evaluate_pb_model(graph_def, dataset):
 			print("import graph")	
 			input_, predictions =  tf.import_graph_def(graph_def, name='', 
 				return_elements=input_output_placeholders)
-			
+
 			for i in range(train_steps_per_epoch):
 				features, labels = sess.run(next_element_train)
 
@@ -88,8 +88,8 @@ def evaluate_pb_model(graph_def, dataset):
 				print(labels)
 				print('predictions:')
 				print(predict_values)
-				miou_value = miou(labels, predict_values)
-				print('miou:', miou_value)
+				#miou_value = miou(labels, predict_values)
+				#print('miou:', miou_value)
 				print()
 
 				#print('{0}: prediction={1}'.format(filename, label))
