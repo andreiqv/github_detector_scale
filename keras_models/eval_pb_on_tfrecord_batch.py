@@ -29,7 +29,7 @@ INPUT_NODE = 'input_1'
 OUTPUT_NODE = 'dense/Sigmoid'	
 input_output_placeholders = ['input_1:0', 'dense/Sigmoid:0']
 
-BATCH_SIZE = 5  # 256
+BATCH_SIZE = 128  # 256
 
 
 def get_frozen_graph(pb_file):
