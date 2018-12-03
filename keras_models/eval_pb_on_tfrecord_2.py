@@ -59,6 +59,7 @@ def compress_graph_with_trt(graph_def, precision_mode):
 def evaluate_pb_model(graph_def, dataset):
 	""" 
 	"""
+	limit_iters = 100
 	train_steps_per_epoch = 100 #31488
 	valid_steps_per_epoch = 1536 #1536
 	train_dataset = dataset.train_set #.batch(BATCH_SIZE)
@@ -69,7 +70,8 @@ def evaluate_pb_model(graph_def, dataset):
 		iterator_train = train_dataset.make_one_shot_iterator()
 		next_element_train = iterator_train.get_next()
 		iterator_valid = valid_dataset.make_one_shot_iterator()
-		next_element_valid = iterator_valid.get_next()		
+		next_element_valid = iterator_valid.get_next()
+		next_elements = {'train': next_element_train, 'valid':next_element_valid}	
 
 		with tf.Session() as sess:
 
@@ -81,32 +83,39 @@ def evaluate_pb_model(graph_def, dataset):
 			labels_ = tf.placeholder(tf.float32, [None, 5], name='labels')
 			miou_ = miou(labels_, logits_)
 
-			miou_list = []
 
-			# valid
-			while True:
-				try:
-					features, labels = sess.run(next_element_valid)
+			for phase in next_elements:
+				
+				print('phase:', phase)
+				next_element = next_elements[phase]			
+				miou_list = []
+				
+				while True:
+					if len(miou_list) > limit_iters:
+						break 
 
-					predict_values = logits_.eval(feed_dict={input_: [features]})
-					#index = np.argmax(p_val)
-					#label = labels[index]
-					print('labels:')
-					print(labels)
-					print('predictions:')
-					print(predict_values)
-					#miou_value = miou(labels, predict_values)
-					miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
-					print('miou:', miou_value)
-					if miou_value == miou_value:
-						miou_list.append(miou_value)
-					print()
-			
-				except tf.errors.OutOfRangeError:
-					print("The end of training dataset.")
-					break
+					try:
+						features, labels = sess.run(next_element)
 
-			print('mean miou:', np.mean(miou_list))
+						predict_values = logits_.eval(feed_dict={input_: [features]})
+						#index = np.argmax(p_val)
+						#label = labels[index]
+						print('labels:')
+						print(labels)
+						print('predictions:')
+						print(predict_values)
+						#miou_value = miou(labels, predict_values)
+						miou_value = miou_.eval(feed_dict={input_: [features], labels_:[labels]})
+						print('miou:', miou_value)
+						if miou_value == miou_value:
+							miou_list.append(miou_value)
+						print()
+				
+					except tf.errors.OutOfRangeError:
+						print("The end of {} dataset.".format(phase))
+						break
+
+				print('{} mean miou = {}'.format(phase, np.mean(miou_list)))
 
 
 				#print('{0}: prediction={1}'.format(filename, label))
