@@ -61,8 +61,8 @@ def evaluate_pb_model(graph_def, dataset):
 	"""
 	train_steps_per_epoch = 100 #31488
 	valid_steps_per_epoch = 1536 #1536
-	train_dataset = dataset.train_set.repeat()
-	valid_dataset = dataset.test_set.batch(BATCH_SIZE)
+	train_dataset = dataset.train_set
+	valid_dataset = dataset.test_set
 
 	with tf.Graph().as_default() as graph:
 
