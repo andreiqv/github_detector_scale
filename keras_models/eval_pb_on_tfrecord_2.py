@@ -83,8 +83,9 @@ def evaluate_pb_model(graph_def, dataset):
 
 			miou_list = []
 
-			for i in range(train_steps_per_epoch):
-				features, labels = sess.run(next_element_train)
+			# valid
+			for i in range(valid_steps_per_epoch):
+				features, labels = sess.run(next_element_valid)
 
 				predict_values = logits_.eval(feed_dict={input_: [features]})
 				#index = np.argmax(p_val)
