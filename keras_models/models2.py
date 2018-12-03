@@ -10,13 +10,6 @@ from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2  #224x224.
 
-def model_resnet50(inputs):
-
-	net = resnet_v2.resnet_v2_50
-	x, end_points = net(inputs, num_classes=5, is_training=True)
-	x = layers.Reshape((5,))(x)
-	model = keras.Model(inputs, x, name='resnet')
-	return model
 
 def model_ResNet50(inputs):
 
@@ -42,5 +35,5 @@ def model_MobileNetV2(inputs):
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
 	x = layers.Dense(5, activation='sigmoid')(x)
-	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')	
+	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')
 	return model	

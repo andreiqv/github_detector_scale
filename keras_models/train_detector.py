@@ -62,9 +62,14 @@ import models2
 #model = models2.model_ResNet50(inputs)
 model = models2.model_MobileNetV2(inputs)
 
-
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
+
+print(model.summary())
+
+num_layers = len(model.layers)
+print('num_layers:', num_layers)
+
 
 model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
@@ -81,7 +86,6 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
 #               loss=bboxes_loss,
 #               metrics=[accuracy, miou])
 
-print(model.summary())
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
