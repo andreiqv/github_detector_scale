@@ -19,8 +19,8 @@ from tfrecords_converter import TfrecordsDataset
 #import tensorflow.contrib.tensorrt as trt
 
 
-#FROZEN_FPATH = './output/model_resnet50-97-0.996-0.996[0.833].pb'
-FROZEN_FPATH = './output/model_first2-213-0.982-0.982[0.778].pb'
+FROZEN_FPATH = './output/model_resnet50-97-0.996-0.996[0.833].pb'
+#FROZEN_FPATH = './output/model_first2-213-0.982-0.982[0.778].pb'
 
 #ENGINE_FPATH = 'saved_model_full_2.plan'
 INPUT_SIZE = [3, 299, 299]
