@@ -13,20 +13,6 @@ import numpy as np
 import math
 import sys, os
 
-from dataset_factory import GoodsDataset
-#from goods_tf_records import GoodsTfrecordsDataset
-
-# tf.enable_eager_execution()
-import settings
-from settings import IMAGE_SIZE
-from utils.timer import timer
-
-#--
-#------------
-# dataset
-#goods_dataset = GoodsDataset(settings.dataset_list, settings.labels_list, 
-#settings.IMAGE_SIZE, settings.train_batch, settings.valid_batch, settings.multiply, 
-#settings.valid_percentage)
 
 batch_size = 8  # 256
 image_shape = (128, 128)
