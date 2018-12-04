@@ -13,6 +13,7 @@ import numpy as np
 import math
 import sys, os
 
+from tfrecords_converter import TfrecordsDataset
 
 batch_size = 8  # 256
 image_shape = (128, 128)
