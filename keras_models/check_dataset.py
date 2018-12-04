@@ -13,6 +13,8 @@ import numpy as np
 import math
 import sys, os
 
+sys.path.append('.')
+sys.path.append('..')
 from tfrecords_converter import TfrecordsDataset
 
 batch_size = 8  # 256

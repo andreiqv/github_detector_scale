@@ -109,12 +109,14 @@ def plot_figure(results, ax1, ax2):
 
 #------------
 # dataset
-from dataset_factory import GoodsDataset
+sys.path.append('.')
+sys.path.append('..')
+from tfrecords_converter import TfrecordsDataset
 #from dataset_factory_imgaug import GoodsDatasetImgaug as GoodsDataset
 
-goods_dataset = GoodsDataset(settings.dataset_list, settings.labels_list, 
-settings.IMAGE_SIZE, settings.train_batch, settings.valid_batch, settings.multiply, 
-settings.valid_percentage)
+dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
+	"../dataset/objectness_test-bboxes128x128.tfrecords", 
+	image_shape, image_channels, batch_size)
 
 train_dataset = goods_dataset.get_train_dataset()
 valid_dataset = goods_dataset.get_valid_dataset()
