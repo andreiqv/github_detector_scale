@@ -14,6 +14,9 @@ import math
 import sys, os
 import argparse
 
+sys.path.append('.')
+sys.path.append('..')
+
 # tf.enable_eager_execution()
 #import settings
 #from settings import IMAGE_SIZE
@@ -109,8 +112,6 @@ def plot_figure(results, ax1, ax2):
 
 #------------
 # dataset
-sys.path.append('.')
-sys.path.append('..')
 from tfrecords_converter import TfrecordsDataset
 batch_size = 128  # 256
 image_shape = (128, 128)
