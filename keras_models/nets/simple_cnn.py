@@ -2,7 +2,7 @@ import tensorflow as tf
 slim = tf.contrib.slim
 from settings import IMAGE_SIZE
 
-def cnn2(inputs, num_classes=1000, is_training=True):
+def cnn(inputs, num_classes=1000, is_training=True):
 
 	x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
 	x = slim.conv2d(x, 8, [5,5], scope='conv1')   
