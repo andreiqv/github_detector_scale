@@ -11,13 +11,13 @@ def cnn(inputs, num_classes=1000, is_training=True):
 	x = slim.max_pool2d(x, [2,2], scope='pool2')  # 32 x 32 x 16
 	x = slim.conv2d(x, 16, [5,5], scope='conv3')
 	x = slim.max_pool2d(x, [2,2], scope='pool3')  # 16 x 16 x 16
-	x = slim.conv2d(x, 16, [5,5], scope='conv3')
-	x = slim.max_pool2d(x, [2,2], scope='pool3')  # 8 x 8 x 16
-	x = slim.conv2d(x, 32, [5,5], scope='conv3')
-	x = slim.max_pool2d(x, [2,2], scope='pool3')  # 4 x 4 x 32
+	x = slim.conv2d(x, 16, [5,5], scope='conv4')
+	x = slim.max_pool2d(x, [2,2], scope='pool4')  # 8 x 8 x 16
+	x = slim.conv2d(x, 32, [5,5], scope='conv5')
+	x = slim.max_pool2d(x, [2,2], scope='pool5')  # 4 x 4 x 32
 	x = slim.flatten(x, scope='flatten3')
 	#x = slim.fully_connected(x, 500, scope='fc4')	
-	logits = slim.fully_connected(x, num_classes, scope='fc/fc_1')
+	logits = slim.fully_connected(x, num_classes, scope='fc1')
 	end_points = ['none']
 	return logits, end_points
 
