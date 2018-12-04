@@ -211,7 +211,7 @@ if __name__ == '__main__':
 						#print('train:', i, labels[0], train_logits[0])
 						for j in range(len(labels)):
 							if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):
-								print('train:', i, j, labels[0], train_logits[0])						
+								print('train:', i, j, labels[j], train_logits[j])
 
 						train_loss_list.append(np.mean(train_loss))
 						train_acc_list.append(train_acc)
@@ -242,7 +242,7 @@ if __name__ == '__main__':
 						#print('valid:', i, labels[0], valid_logits[0])
 						for j in range(len(labels)):
 							if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
-								print('valid:', i, j, labels[0], valid_logits[0])
+								print('valid:', i, j, labels[j], valid_logits[j])
 
 						valid_loss_list.append(np.mean(valid_loss))
 						valid_acc_list.append(valid_acc)
