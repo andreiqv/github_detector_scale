@@ -14,7 +14,7 @@ def cnn_2(inputs, num_classes=1000, is_training=True):
 	x = slim.conv2d(x, 32, [5,5], scope='conv4')
 	x = slim.max_pool2d(x, [2,2], scope='pool4')  # 8 x 8 x 32
 	x = slim.flatten(x, scope='flatten3')
-	x = slim.fully_connected(x, 1000, scope='fc_hid')	
+	x = slim.fully_connected(x, 200, scope='fc_hid')	
 	logits = slim.fully_connected(x, num_classes, scope='fc_last')
 	end_points = ['none']
 	return logits, end_points

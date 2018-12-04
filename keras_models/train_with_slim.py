@@ -43,7 +43,7 @@ from keras_models.nets.nasnet import nasnet
 #from nets import simple_fc
 #net, net_model_name = simple_fc.fc, 'simple_fc'
 from nets import simple_cnn
-net, net_model_name = simple_cnn.cnn_2, 'simple_cnn_2'
+net, net_model_name = simple_cnn.cnn, 'simple_cnn_2'
 #net, net_model_name = alexnet.alexnet_v2, 'alexnet_v2'
 #net, net_model_name = inception_v4.inception_v4, 'inception_v4'
 #net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
@@ -115,7 +115,7 @@ def plot_figure(results, ax1, ax2):
 #------------
 # dataset
 from tfrecords_converter import TfrecordsDataset
-batch_size = 32  # 256
+batch_size = 64  # 256
 image_shape = (128, 128)
 image_channels = 3
 dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
@@ -126,8 +126,8 @@ valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
 epochs_checkpoint = 100 # interval for saving checkpoints and pb-file 
-train_steps_per_epoch = 376 #1157
-valid_steps_per_epoch = 96  #77
+train_steps_per_epoch = 188 #1157
+valid_steps_per_epoch = 48  #77
 train_dataset = train_dataset.repeat()
 valid_dataset = valid_dataset.repeat()
 
