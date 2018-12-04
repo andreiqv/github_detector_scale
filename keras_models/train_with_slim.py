@@ -234,7 +234,7 @@ if __name__ == '__main__':
 					
 					try:
 						features, labels = sess.run(next_element_valid)
-						valid_logits, valid_logits, valid_loss, valid_acc, valid_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
+						valid_logits, valid_loss, valid_acc, valid_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 						print('valid:', i, labels[0], valid_logits[0])	
 
 						valid_loss_list.append(np.mean(valid_loss))
