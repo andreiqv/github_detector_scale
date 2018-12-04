@@ -59,22 +59,21 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 
 import models2
 #model = models2.model_InceptionV3(inputs)
-#model = models2.model_ResNet50(inputs)
-model = models2.model_MobileNetV2(inputs)
+model = models2.model_ResNet50(inputs)
+#model = models2.model_MobileNetV2(inputs)
 
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
 
 print(model.summary())
-
 num_layers = len(model.layers)
 print('num_layers:', num_layers)
 print('model.trainable_weights:', len(model.trainable_weights))
 
-num_last_trainable_layers = 60
-for layer in model.layers[:num_layers - num_last_trainable_layers]:
-   layer.trainable = False
-print('model.trainable_weights:', len(model.trainable_weights))
+#num_last_trainable_layers = 60
+#for layer in model.layers[:num_layers - num_last_trainable_layers]:
+#   layer.trainable = False
+#print('model.trainable_weights:', len(model.trainable_weights))
 
 
 model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
