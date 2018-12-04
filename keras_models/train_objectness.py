@@ -11,7 +11,7 @@ sys.path.append('..')
 import keras_models.models as models
 import keras_models.models_classification as models_classification
 from tfrecords_converter import TfrecordsDataset
-from keras_models.aux import miou, bboxes_loss, accuracy
+from keras_models.aux import bboxes_loss, accuracy
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -81,7 +81,7 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
-              metrics=[accuracy, miou])
+              metrics=[accuracy])
 
 # model = keras.models.load_model(
 #     "./checkpoints/model2-106-0.991-0.991[0.645].hdf5",
@@ -108,7 +108,7 @@ callbacks = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          callbacks=callbacks,
+          #callbacks=callbacks,
           #epochs=150,
           epochs=500,
           steps_per_epoch=246,
