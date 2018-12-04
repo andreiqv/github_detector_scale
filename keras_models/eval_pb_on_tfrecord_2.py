@@ -115,7 +115,7 @@ def evaluate_pb_model(graph_def, dataset):
 						if miou_value == miou_value:
 							miou_list.append(miou_value)							
 						
-						if False:
+						if True:
 							print('labels:')
 							print(labels)
 							print('predictions:')
@@ -163,8 +163,8 @@ if __name__ == '__main__':
 
 	image_shape = (128, 128)
 	image_channels = 3
-	dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
-		"../dataset/test-bboxes128x128.tfrecords", 
+	dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
+		"../presence_dataset/test-bboxes128x128.tfrecords", 
 		image_shape, image_channels, BATCH_SIZE)
 
 
