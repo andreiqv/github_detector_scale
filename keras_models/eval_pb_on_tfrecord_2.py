@@ -164,7 +164,7 @@ if __name__ == '__main__':
 	image_shape = (128, 128)
 	image_channels = 3
 	dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
-		"../presence_dataset/test-bboxes128x128.tfrecords", 
+		"../dataset/presence_dataset/test-bboxes128x128.tfrecords", 
 		image_shape, image_channels, BATCH_SIZE)
 
 
