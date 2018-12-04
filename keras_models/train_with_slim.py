@@ -62,7 +62,7 @@ net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
 OUTPUT_NODE = 'softmax'
 num_classes = 2
 print('num_classes:', num_classes)
-print('IMAGE_SIZE:', IMAGE_SIZE) #IMAGE_SIZE = (299, 299) 
+#print('IMAGE_SIZE:', IMAGE_SIZE) #IMAGE_SIZE = (299, 299) 
 print('Network name:', net_model_name)
 
 #--
