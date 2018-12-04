@@ -210,7 +210,8 @@ if __name__ == '__main__':
 
 						#print('train:', i, labels[0], train_logits[0])
 						for j in range(len(labels)):
-							if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):
+							#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):
+							if True:
 								print('train:', i, j, labels[j], train_logits[j])
 
 						train_loss_list.append(np.mean(train_loss))
