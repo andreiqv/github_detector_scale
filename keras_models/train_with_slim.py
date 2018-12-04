@@ -208,7 +208,10 @@ if __name__ == '__main__':
 						#train_acc, train_acc_top6 = sess.run([acc, acc_top6], feed_dict={x: features, y: labels})
 						train_logits, train_loss, train_acc, train_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 
-						print('train:', i, labels[0], train_logits[0])
+						#print('train:', i, labels[0], train_logits[0])
+						for j in range(len(labels)):
+							if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):
+								print('train:', i, j, labels[0], train_logits[0])						
 
 						train_loss_list.append(np.mean(train_loss))
 						train_acc_list.append(train_acc)
