@@ -238,7 +238,7 @@ if __name__ == '__main__':
 						
 						#print('valid:', i, labels[0], valid_logits[0])
 						for j in range(len(labels)):
-							if labels[j] != valid_logits[j]:
+							if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
 								print('valid:', i, j, labels[0], valid_logits[0])
 
 						valid_loss_list.append(np.mean(valid_loss))
