@@ -4,7 +4,8 @@ from settings import IMAGE_SIZE
 
 def cnn_3(inputs, num_classes=1000, is_training=True):
 
-	x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
+	#x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
+	x = inputs
 	x = slim.conv2d(x, 16, [5,5], scope='conv1')   
 	x = slim.flatten(x, scope='flatten3')
 	x = slim.fully_connected(x, 1000, activation_fn=tf.nn.sigmoid, scope='fc_hid')	
@@ -15,7 +16,8 @@ def cnn_3(inputs, num_classes=1000, is_training=True):
 
 def cnn_2(inputs, num_classes=1000, is_training=True):
 
-	x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
+	#x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
+	x = inputs
 	x = slim.conv2d(x, 16, [5,5], scope='conv1')   
 	x = slim.max_pool2d(x, [2,2], scope='pool1')  # 64 x 64  x 
 	x = slim.conv2d(x, 32, [5,5], scope='conv2')
