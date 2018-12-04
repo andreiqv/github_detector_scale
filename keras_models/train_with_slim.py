@@ -32,7 +32,7 @@ from tensorflow.contrib.slim.nets import alexnet
 #from nets import mobilenet_v1
 #from nets import inception_v4
 #from nets.mobilenet import mobilenet_v2
-3from nets.nasnet import nasnet
+#from nets.nasnet import nasnet
 
 #-----------------
 # Select network
