@@ -126,8 +126,8 @@ valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
 epochs_checkpoint = 100 # interval for saving checkpoints and pb-file 
-train_steps_per_epoch = 94 #1157
-valid_steps_per_epoch = 24  #77
+train_steps_per_epoch = 188 #1157
+valid_steps_per_epoch = 48  #77
 train_dataset = train_dataset.repeat()
 valid_dataset = valid_dataset.repeat()
 
@@ -213,7 +213,7 @@ if __name__ == '__main__':
 						train_acc_list.append(train_acc)
 						train_top6_list.append(np.mean(train_top6))
 
-						if i % 20 == 0:
+						if i % 30 == 0:
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}, top6={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
 								np.mean(train_acc_list), np.mean(train_top6_list)))
@@ -238,7 +238,7 @@ if __name__ == '__main__':
 						valid_loss_list.append(np.mean(valid_loss))
 						valid_acc_list.append(valid_acc)
 						valid_top6_list.append(np.mean(valid_top6))
-						if i % 10 == 0:
+						if i % 20 == 0:
 							print('epoch={} i={}: valid acc={:.4f}, top6={:.4f}'.\
 								format(epoch, i, np.mean(valid_acc_list), np.mean(valid_top6_list)))
 					except tf.errors.OutOfRangeError:
