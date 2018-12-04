@@ -7,8 +7,8 @@ def cnn_3(inputs, num_classes=1000, is_training=True):
 	x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
 	x = slim.conv2d(x, 16, [5,5], scope='conv1')   
 	x = slim.flatten(x, scope='flatten3')
-	x = slim.fully_connected(x, 1000, scope='fc_hid')	
-	logits = slim.fully_connected(x, num_classes, scope='fc_last')
+	x = slim.fully_connected(x, 1000, activation_fn=tf.nn.sigmoid, scope='fc_hid')	
+	logits = slim.fully_connected(x, num_classes, activation_fn=tf.nn.sigmoid, scope='fc_last')
 	end_points = ['none']
 	return logits, end_points
 
