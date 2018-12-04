@@ -42,6 +42,7 @@ from keras_models.nets.nasnet import nasnet
 
 #from nets import simple_fc
 #net, net_model_name = simple_fc.fc, 'simple_fc'
+from nets import simple_cnn
 net, net_model_name = simple_cnn.cnn, 'simple_cnn'
 #net, net_model_name = alexnet.alexnet_v2, 'alexnet_v2'
 #net, net_model_name = inception_v4.inception_v4, 'inception_v4'
