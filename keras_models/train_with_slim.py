@@ -39,9 +39,9 @@ from tensorflow.contrib.slim.nets import alexnet
 
 #from nets import simple_fc
 #net, net_model_name = simple_fc.fc, 'simple_fc'
-#net, net_model_name = alexnet.alexnet_v2, 'alexnet_v2'
+net, net_model_name = alexnet.alexnet_v2, 'alexnet_v2'
 #net, net_model_name = inception_v4.inception_v4, 'inception_v4'
-net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
+#net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
 #net, net_model_name = resnet_v2.resnet_v2_152, 'resnet_v2_152'
 #net, net_model_name = mobilenet_v2.mobilenet_v2_050, 'mobilenet_v2_050'
 #net, net_model_name = mobilenet_v2.mobilenet_v2_035, 'mobilenet_v2_035'
@@ -211,7 +211,7 @@ if __name__ == '__main__':
 						train_acc_list.append(train_acc)
 						train_top6_list.append(np.mean(train_top6))
 
-						if i % 100 == 0:
+						if i % 20 == 0:
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}, top6={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
 								np.mean(train_acc_list), np.mean(train_top6_list)))
