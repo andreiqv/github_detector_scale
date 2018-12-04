@@ -17,7 +17,7 @@ sys.path.append('.')
 sys.path.append('..')
 from tfrecords_converter import TfrecordsDataset
 
-batch_size = 8  # 256
+batch_size = 128  # 256
 image_shape = (128, 128)
 image_channels = 3
 dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
@@ -47,7 +47,7 @@ with graph.as_default():
 				train_count += 1
 				if train_count % 20 == 0:
 					print('train_count', train_count)
-					print(labels)	
+					#print(labels)	
 			except tf.errors.OutOfRangeError:
 				print("End of training dataset. Count={} batches".format(train_count))
 				break	
