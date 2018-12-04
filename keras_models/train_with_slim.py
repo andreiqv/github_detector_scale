@@ -15,8 +15,8 @@ import sys, os
 import argparse
 
 # tf.enable_eager_execution()
-import settings
-from settings import IMAGE_SIZE
+#import settings
+#from settings import IMAGE_SIZE
 from utils.timer import timer
 from augment import images_augment
 
@@ -60,7 +60,7 @@ net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
 #--------------
 
 OUTPUT_NODE = 'softmax'
-num_classes = settings.num_classes
+num_classes = 2
 print('num_classes:', num_classes)
 print('IMAGE_SIZE:', IMAGE_SIZE) #IMAGE_SIZE = (299, 299) 
 print('Network name:', net_model_name)
@@ -112,19 +112,20 @@ def plot_figure(results, ax1, ax2):
 sys.path.append('.')
 sys.path.append('..')
 from tfrecords_converter import TfrecordsDataset
-#from dataset_factory_imgaug import GoodsDatasetImgaug as GoodsDataset
-
+batch_size = 128  # 256
+image_shape = (128, 128)
+IMAGE_SIZE = image_shape
+image_channels = 3
 dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
 	"../dataset/objectness_test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
-
-train_dataset = goods_dataset.get_train_dataset()
-valid_dataset = goods_dataset.get_valid_dataset()
+train_dataset = dataset.train_set.batch(batch_size)
+valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
-epochs_checkpoint = 20 # interval for saving checkpoints and pb-file 
-train_steps_per_epoch = 724 #1157
-valid_steps_per_epoch = 78  #77
+epochs_checkpoint = 100 # interval for saving checkpoints and pb-file 
+train_steps_per_epoch = 94 #1157
+valid_steps_per_epoch = 24  #77
 train_dataset = train_dataset.repeat()
 valid_dataset = valid_dataset.repeat()
 
