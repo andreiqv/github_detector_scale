@@ -11,7 +11,7 @@ sys.path.append('..')
 import keras_models.models as models
 import keras_models.models_classification as models_classification
 from tfrecords_converter import TfrecordsDataset
-from keras_models.aux import bboxes_loss, accuracy
+#from keras_models.aux import bboxes_loss, accuracy
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -80,8 +80,8 @@ print('model.trainable_weights:', len(model.trainable_weights))
 model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
-              loss=bboxes_loss,
-              metrics=[accuracy])
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
 # model = keras.models.load_model(
 #     "./checkpoints/model2-106-0.991-0.991[0.645].hdf5",
