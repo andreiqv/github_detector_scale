@@ -42,12 +42,12 @@ from keras_models.nets.nasnet import nasnet
 
 #from nets import simple_fc
 #net, net_model_name = simple_fc.fc, 'simple_fc'
-#from nets import simple_cnn
-#net, net_model_name = simple_cnn.cnn, 'simple_cnn'
+from nets import simple_cnn
+net, net_model_name = simple_cnn.cnn, 'simple_cnn'
 #net, net_model_name = alexnet.alexnet_v2, 'alexnet_v2'
 #net, net_model_name = inception_v4.inception_v4, 'inception_v4'
 #net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
-net, net_model_name = resnet_v2.resnet_v2_152, 'resnet_v2_152'
+#net, net_model_name = resnet_v2.resnet_v2_152, 'resnet_v2_152'
 #net, net_model_name = mobilenet_v2.mobilenet_v2_050, 'mobilenet_v2_050'
 #net, net_model_name = mobilenet_v2.mobilenet_v2_035, 'mobilenet_v2_035'
 
@@ -214,9 +214,9 @@ if __name__ == '__main__':
 						train_top6_list.append(np.mean(train_top6))
 
 						if i % 30 == 0:
-							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}, top6={:.4f}'.\
+							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
-								np.mean(train_acc_list), np.mean(train_top6_list)))
+								np.mean(train_acc_list))) # np.mean(train_top6_list)
 						
 					except tf.errors.OutOfRangeError:
 						print("End of training dataset.")
@@ -239,8 +239,8 @@ if __name__ == '__main__':
 						valid_acc_list.append(valid_acc)
 						valid_top6_list.append(np.mean(valid_top6))
 						if i % 20 == 0:
-							print('epoch={} i={}: valid acc={:.4f}, top6={:.4f}'.\
-								format(epoch, i, np.mean(valid_acc_list), np.mean(valid_top6_list)))
+							print('epoch={} i={}: valid acc={:.4f}'.\
+								format(epoch, i, np.mean(valid_acc_list)))
 					except tf.errors.OutOfRangeError:
 						print("End of valid dataset.")
 						break			
@@ -253,9 +253,12 @@ if __name__ == '__main__':
 				mean_valid_acc = np.mean(valid_acc_list)
 				mean_train_top6 = np.mean(train_top6_list)
 				mean_valid_top6 = np.mean(valid_top6_list)
-				res = '[{:02}]: TRAIN loss={:.4f} acc={:.4f} top6={:.4f}; VALID loss={:.4f} acc={:.4f} top6={:.4f}\n'.\
-					format(epoch, mean_train_loss, mean_train_acc, mean_train_top6,
-						mean_valid_loss, mean_valid_acc, mean_valid_top6)
+				res = '[{:02}]: TRAIN loss={:.4f} acc={:.4f}, VALID loss={:.4f} acc={:.4f}\n'.\
+					format(epoch, mean_train_loss, mean_train_acc,
+						mean_valid_loss, mean_valid_acc)
+				#res = '[{:02}]: TRAIN loss={:.4f} acc={:.4f} top6={:.4f}; VALID loss={:.4f} acc={:.4f} top6={:.4f}\n'.\
+				#	format(epoch, mean_train_loss, mean_train_acc, mean_train_top6,
+				#		mean_valid_loss, mean_valid_acc, mean_valid_top6)
 				print(res)
 				f_res.write(res)
 				f_res.flush()
