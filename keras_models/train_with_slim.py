@@ -19,7 +19,7 @@ sys.path.append('..')
 
 # tf.enable_eager_execution()
 #import settings
-#from settings import IMAGE_SIZE
+from settings import IMAGE_SIZE
 from utils.timer import timer
 #from augment import images_augment
 
@@ -42,12 +42,13 @@ from keras_models.nets.nasnet import nasnet
 
 #from nets import simple_fc
 #net, net_model_name = simple_fc.fc, 'simple_fc'
+net, net_model_name = simple_cnn.cnn, 'simple_cnn'
 #net, net_model_name = alexnet.alexnet_v2, 'alexnet_v2'
 #net, net_model_name = inception_v4.inception_v4, 'inception_v4'
 #net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
 #net, net_model_name = resnet_v2.resnet_v2_152, 'resnet_v2_152'
 #net, net_model_name = mobilenet_v2.mobilenet_v2_050, 'mobilenet_v2_050'
-net, net_model_name = mobilenet_v2.mobilenet_v2_035, 'mobilenet_v2_035'
+#net, net_model_name = mobilenet_v2.mobilenet_v2_035, 'mobilenet_v2_035'
 
 
 #net = inception.inception_v3
@@ -115,7 +116,6 @@ def plot_figure(results, ax1, ax2):
 from tfrecords_converter import TfrecordsDataset
 batch_size = 128  # 256
 image_shape = (128, 128)
-IMAGE_SIZE = image_shape
 image_channels = 3
 dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
 	"../dataset/objectness_test-bboxes128x128.tfrecords", 
