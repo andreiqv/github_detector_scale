@@ -115,7 +115,7 @@ def plot_figure(results, ax1, ax2):
 #------------
 # dataset
 from tfrecords_converter import TfrecordsDataset
-batch_size = 128  # 256
+batch_size = 64  # 256
 image_shape = (128, 128)
 image_channels = 3
 dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
