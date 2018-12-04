@@ -93,18 +93,6 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
 #               metrics=[accuracy, miou])
 
 
-callbacks = [
-    keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_MobileNetV2-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
-        save_best_only=True,
-        monitor='val_miou',
-        mode='max'
-    ),
-    LRTensorBoard(
-        log_dir='./tensorboard/model_MobileNetV2'
-    ),
-    keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
-]
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
