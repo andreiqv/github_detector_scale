@@ -18,7 +18,7 @@ import argparse
 #import settings
 #from settings import IMAGE_SIZE
 from utils.timer import timer
-from augment import images_augment
+#from augment import images_augment
 
 #--------------------
 
