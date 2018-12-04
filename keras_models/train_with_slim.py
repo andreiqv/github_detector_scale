@@ -29,10 +29,10 @@ from tensorflow.contrib.slim.nets import inception
 from tensorflow.contrib.slim.nets import resnet_v1, resnet_v2
 from tensorflow.contrib.slim.nets import vgg
 from tensorflow.contrib.slim.nets import alexnet
-from nets import mobilenet_v1
-from nets import inception_v4
-from nets.mobilenet import mobilenet_v2
-from nets.nasnet import nasnet
+from keras_models.nets import mobilenet_v1
+from keras_models.nets import inception_v4
+from keras_models.nets.mobilenet import mobilenet_v2
+from keras_models.nets.nasnet import nasnet
 
 #-----------------
 # Select network
