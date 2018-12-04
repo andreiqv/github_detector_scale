@@ -4,7 +4,7 @@ from settings import IMAGE_SIZE
 
 def cnn(inputs, num_classes=1000, is_training=True):
 
-	x = tf.reshape(inputs, [-1, IMAGE_SIZE[0]*IMAGE_SIZE[1]*3])  # 128 x 128 x 3
+	x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
 	x = slim.conv2d(x, 8, [5,5], scope='conv1')   
 	x = slim.max_pool2d(x, [2,2], scope='pool1')  # 64 x 64  x 8
 	x = slim.conv2d(x, 16, [5,5], scope='conv2')
