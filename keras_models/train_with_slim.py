@@ -202,7 +202,7 @@ if __name__ == '__main__':
 					
 					try:
 						features, labels = sess.run(next_element_train)
-						#print(i, labels[0])						
+						print(i, labels[0])						
 
 						sess.run(train_op, feed_dict={x: features, y: labels})
 						
