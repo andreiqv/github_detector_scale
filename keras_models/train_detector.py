@@ -53,13 +53,14 @@ dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords",
 dataset.augment_train_dataset()
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
-#model = models.model_first2(inputs)
+model = models.model_first2(inputs)
 #model = models.model3(inputs)
 #model = models.model_first(inputs)
 
+
 import models2
 #model = models2.model_InceptionV3(inputs)
-model = models2.model_ResNet50(inputs)
+#model = models2.model_ResNet50(inputs)
 #model = models2.model_MobileNetV2(inputs)
 
 # optimizer = tf.train.AdamOptimizer()
