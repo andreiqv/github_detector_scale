@@ -46,8 +46,8 @@ batch_size = 128  # 256
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
 
-dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
-                            "../dataset/objectness_test-bboxes128x128.tfrecords", 
+dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords", 
+                            "../dataset/regression_test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
 
 
