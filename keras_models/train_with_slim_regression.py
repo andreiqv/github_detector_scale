@@ -144,7 +144,7 @@ def model_function(next_element):
 
 def calc_mean_acc(labels, outputs):
 
-	th = 0.7
+	th = 0.3
 	#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
 	#np.mean(train_loss)
 	vf = np.vectorize(lambda x: 1.0 if x > th else 0.0)
