@@ -220,7 +220,7 @@ if __name__ == '__main__':
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
 								np.mean(train_acc_list))) # np.mean(train_top6_list)
-							
+
 							if DEBUG:
 								for j in range(len(labels)):
 									#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
@@ -244,18 +244,22 @@ if __name__ == '__main__':
 						features, labels = sess.run(next_element_valid)
 						valid_logits, valid_loss, valid_acc, valid_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 						
-						#print('valid:', i, labels[0], valid_logits[0])
-						if DEBUG:
-							for j in range(len(labels)):
-								#if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
-								print('valid:', i, j, labels[j], valid_logits[j])
 
 						valid_loss_list.append(np.mean(valid_loss))
 						valid_acc_list.append(valid_acc)
 						valid_top6_list.append(np.mean(valid_top6))
+
 						if i % 20 == 0:
 							print('epoch={} i={}: valid acc={:.4f}'.\
 								format(epoch, i, np.mean(valid_acc_list)))
+
+							#print('valid:', i, labels[0], valid_logits[0])
+							if DEBUG:
+								for j in range(len(labels)):
+									#if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
+									print('valid:', i, j, labels[j], valid_logits[j])
+
+
 					except tf.errors.OutOfRangeError:
 						print("End of valid dataset.")
 						break			
