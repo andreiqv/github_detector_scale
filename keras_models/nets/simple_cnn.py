@@ -16,7 +16,7 @@ def fc2(inputs, num_classes=1000, is_training=True):
 	x = slim.max_pool2d(x, [2,2], scope='pool3')  # 16 x 16 x 	
 	x = slim.flatten(x, scope='flatten')
 	x = slim.fully_connected(x, 100, activation_fn=tf.nn.tanh, scope='fc_hid')	
-	x = slim.dropout(x, keep_prob=0.8)
+	#x = slim.dropout(x, keep_prob=0.8)
 	logits = slim.fully_connected(x, num_classes, activation_fn=None, scope='fc_last')
 	end_points = ['none']
 	return logits, end_points
