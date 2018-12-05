@@ -84,8 +84,8 @@ def convert_to_tfrecords(x_list, y_list, image_size, output_file):
             if label[0] == label[1] == label[2] == label[3] == 0:
                 objectness = 0
             #label.append(objectness)
-            #label = [0, 1] if objectness == 0 else [1, 0]
-            label = [objectness]
+            label = [0, 1] if objectness == 0 else [1, 0]
+            #label = [objectness]
 
             im = Image.open(image_path).resize(image_size, Image.BICUBIC)
             np_im = np.array(im)

@@ -20,8 +20,8 @@ from tfrecords_converter import TfrecordsDataset
 batch_size = 128  # 256
 image_shape = (128, 128)
 image_channels = 3
-dataset = TfrecordsDataset("../dataset/objectness_train-bboxes128x128.tfrecords", 
-	"../dataset/objectness_test-bboxes128x128.tfrecords", 
+dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords", 
+	"../dataset/regression_test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
 train_dataset = dataset.train_set.batch(batch_size)
 valid_dataset = dataset.test_set.batch(batch_size)
@@ -45,7 +45,7 @@ with graph.as_default():
 				train_count += 1
 				if train_count % 20 == 0:
 					print('train_count', train_count)
-					#print(labels)	
+					print(labels)
 			except tf.errors.OutOfRangeError:
 				print("End of training dataset. Count={} batches".format(train_count))
 				break	
