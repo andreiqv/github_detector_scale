@@ -41,7 +41,7 @@ def lr_scheduler(epoch, lr):
     return lr
 
 
-batch_size = 128  # 256
+batch_size = 64  # 256
 
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)

@@ -212,9 +212,21 @@ if __name__ == '__main__':
 						sess.run(train_op, feed_dict={x: features, y: labels})
 						
 						#train_acc, train_acc_top6 = sess.run([acc, acc_top6], feed_dict={x: features, y: labels})
-						train_logits, train_loss, train_acc, train_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
+						train_outputs, train_loss, train_acc, train_top6 = sess.run([output, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 
 						#print('train:', i, labels[0], train_logits[0])
+
+						th = 0.5
+						#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
+						#np.mean(train_loss)
+						vf = np.vectorize(lambda x: 1 if x[0][0][0] > th else 0)
+						results = vf(train_outputs)
+
+						print(labels)
+						print(results)
+						sys.exit()
+
+						#np.abs(labels - results)
 
 						train_loss_list.append(np.mean(train_loss))
 						train_acc_list.append(train_acc)
@@ -225,7 +237,7 @@ if __name__ == '__main__':
 							if DEBUG:
 								for j in range(len(labels)):
 									#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
-									print('train:', i, j, labels[j], train_logits[j])
+									print('train:', i, j, labels[j], train_outputs[j])
 
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
@@ -247,9 +259,8 @@ if __name__ == '__main__':
 					
 					try:
 						features, labels = sess.run(next_element_valid)
-						valid_logits, valid_loss, valid_acc, valid_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
+						valid_outputs, valid_loss, valid_acc, valid_top6 = sess.run([output, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 						
-
 						valid_loss_list.append(np.mean(valid_loss))
 						valid_acc_list.append(valid_acc)
 						valid_top6_list.append(np.mean(valid_top6))
@@ -260,7 +271,7 @@ if __name__ == '__main__':
 							if DEBUG:
 								for j in range(len(labels)):
 									#if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
-									print('valid:', i, j, labels[j], valid_logits[j])
+									print('valid:', i, j, labels[j], valid_outputs[j])
 
 							print('epoch={} i={}: valid acc={:.4f}'.\
 								format(epoch, i, np.mean(valid_acc_list)))
