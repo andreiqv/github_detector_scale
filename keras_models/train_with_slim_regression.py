@@ -256,10 +256,10 @@ if __name__ == '__main__':
 
 						if i % 30 == 0:
 
-							if False:
+							if True:
 								for j in range(len(labels)):
-									#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
-									print('train:', i, j, labels[j], train_outputs[j])
+									if  np.argmax(labels[j]) !=  np.argmax(train_outputs[j]):
+										print('train:', i, j, labels[j], train_outputs[j])
 
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
