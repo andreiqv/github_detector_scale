@@ -223,7 +223,8 @@ if __name__ == '__main__':
 						results = vf(train_outputs)
 
 						print(labels[0])
-						print(train_outputs[0])
+						print(results)
+						#print(train_outputs[0])
 						sys.exit()
 
 						#np.abs(labels - results)
