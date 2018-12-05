@@ -217,14 +217,15 @@ if __name__ == '__main__':
 						train_top6_list.append(np.mean(train_top6))
 
 						if i % 30 == 0:
-							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
-								format(epoch, i, np.mean(train_loss_list), 
-								np.mean(train_acc_list))) # np.mean(train_top6_list)
 
 							if DEBUG:
 								for j in range(len(labels)):
 									#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
 									print('train:', i, j, labels[j], train_logits[j])
+
+							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
+								format(epoch, i, np.mean(train_loss_list), 
+								np.mean(train_acc_list))) # np.mean(train_top6_list)
 
 						
 					except tf.errors.OutOfRangeError:
@@ -250,8 +251,6 @@ if __name__ == '__main__':
 						valid_top6_list.append(np.mean(valid_top6))
 
 						if i % 20 == 0:
-							print('epoch={} i={}: valid acc={:.4f}'.\
-								format(epoch, i, np.mean(valid_acc_list)))
 
 							#print('valid:', i, labels[0], valid_logits[0])
 							if DEBUG:
@@ -259,6 +258,8 @@ if __name__ == '__main__':
 									#if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
 									print('valid:', i, j, labels[j], valid_logits[j])
 
+							print('epoch={} i={}: valid acc={:.4f}'.\
+								format(epoch, i, np.mean(valid_acc_list)))
 
 					except tf.errors.OutOfRangeError:
 						print("End of valid dataset.")
