@@ -64,7 +64,7 @@ net, net_model_name = simple_cnn.fc2, 'simple_fc2'
 #net = resnet_v2.resnet_v2_152
 
 #--------------
-DEBUG = False
+DEBUG = True
 
 OUTPUT_NODE = 'softmax'
 num_classes = 2

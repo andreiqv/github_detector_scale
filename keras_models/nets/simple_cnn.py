@@ -10,12 +10,17 @@ def fc2(inputs, num_classes=1000, is_training=True):
 	x = inputs
 	x = slim.conv2d(x, 16, [5,5], scope='conv1')
 	x = slim.max_pool2d(x, [2,2], scope='pool1')
+	x = slim.conv2d(x, 32, [5,5], scope='conv2')
+	x = slim.max_pool2d(x, [2,2], scope='pool2')  # 32 x 32 x 
+	x = slim.conv2d(x, 32, [5,5], scope='conv3')
+	x = slim.max_pool2d(x, [2,2], scope='pool3')  # 16 x 16 x 	
 	x = slim.flatten(x, scope='flatten')
 	x = slim.fully_connected(x, 100, activation_fn=tf.nn.tanh, scope='fc_hid')	
 	x = slim.dropout(x, keep_prob=0.8)
 	logits = slim.fully_connected(x, num_classes, activation_fn=None, scope='fc_last')
 	end_points = ['none']
 	return logits, end_points
+
 
 def fc1(inputs, num_classes=1000, is_training=True):
 
