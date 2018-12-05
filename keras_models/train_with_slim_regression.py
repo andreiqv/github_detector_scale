@@ -223,9 +223,10 @@ if __name__ == '__main__':
 						results = list(map(lambda x: x[0], train_outputs))
 						results = vf(results)
 						labels = list(map(lambda x: x[0], labels))
-						results = np.abs(np.array(results) - np.array(labels))
+						similar = np.abs(1 - np.array(results) + np.array(labels))
 						print(labels)
 						print(results)
+						print(similar)
 						#print(train_outputs[0])
 						sys.exit()
 
