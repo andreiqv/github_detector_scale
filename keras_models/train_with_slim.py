@@ -211,10 +211,6 @@ if __name__ == '__main__':
 						train_logits, train_loss, train_acc, train_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 
 						#print('train:', i, labels[0], train_logits[0])
-						if DEBUG:
-							for j in range(len(labels)):
-								#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
-								print('train:', i, j, labels[j], train_logits[j])
 
 						train_loss_list.append(np.mean(train_loss))
 						train_acc_list.append(train_acc)
@@ -224,6 +220,12 @@ if __name__ == '__main__':
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
 								format(epoch, i, np.mean(train_loss_list), 
 								np.mean(train_acc_list))) # np.mean(train_top6_list)
+							
+							if DEBUG:
+								for j in range(len(labels)):
+									#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
+									print('train:', i, j, labels[j], train_logits[j])
+
 						
 					except tf.errors.OutOfRangeError:
 						print("End of training dataset.")
