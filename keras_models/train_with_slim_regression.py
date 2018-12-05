@@ -222,8 +222,8 @@ if __name__ == '__main__':
 						#vf = np.vectorize(lambda x: 1 if x[0][0] > th else 0)
 						#results = vf(train_outputs)
 
-						print(labels)
-						print(train_outputs)
+						print(labels[0])
+						print(train_outputs[0])
 						sys.exit()
 
 						#np.abs(labels - results)
