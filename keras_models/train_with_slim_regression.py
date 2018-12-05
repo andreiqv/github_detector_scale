@@ -289,13 +289,14 @@ if __name__ == '__main__':
 						valid_acc_list.append(valid_acc)
 						valid_top6_list.append(np.mean(valid_top6))
 
-						if i % 20 == 0:
-
 							#print('valid:', i, labels[0], valid_logits[0])
+						if True:	
 							if True:
 								for j in range(len(labels)):
 									if  np.argmax(labels[j]) !=  np.argmax(valid_outputs[j]):
 										print('valid:', i, j, labels[j], valid_outputs[j])
+
+						if i % 20 == 0:
 
 							print('epoch={} i={}: valid acc={:.4f}'.\
 								format(epoch, i, np.mean(valid_acc_list)))
