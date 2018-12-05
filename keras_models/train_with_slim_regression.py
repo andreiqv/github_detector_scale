@@ -128,8 +128,8 @@ valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
 epochs_checkpoint = 100 # interval for saving checkpoints and pb-file 
-train_steps_per_epoch = 188 #1157
-valid_steps_per_epoch = 48  #77
+train_steps_per_epoch = 84 #1157
+valid_steps_per_epoch = 24  #77
 train_dataset = train_dataset.repeat()
 valid_dataset = valid_dataset.repeat()
 
@@ -151,7 +151,7 @@ def calc_mean_acc(labels, outputs):
 	results = list(map(lambda x: x[0], outputs))
 	results = vf(results)
 	labels = list(map(lambda x: x[0], labels))
-	coincidence = np.abs(1 - np.array(results) + np.array(labels))
+	coincidence = 1 - np.abs(np.array(results) - np.array(labels))
 	#print(labels)
 	#print(results)
 	#print(coincidence)
