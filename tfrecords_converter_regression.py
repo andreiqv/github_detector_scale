@@ -242,6 +242,6 @@ if __name__ == '__main__':
     print(len(x_train))
     print(len(x_test))
     convert_to_tfrecords(x_train, y_train, image_size, 
-                "../dataset/objectness_train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
+                "../dataset/regression_train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
     convert_to_tfrecords(x_test, y_test, image_size,
-                "../dataset/objectness_test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
+                "../dataset/regression_test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
