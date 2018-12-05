@@ -142,6 +142,22 @@ def model_function(next_element):
 	return logits, loss
 """
 
+def acc(labels, outputs):
+
+	th = 0.5
+	#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
+	#np.mean(train_loss)
+	vf = np.vectorize(lambda x: 1.0 if x > th else 0.0)
+	results = list(map(lambda x: x[0], outputs))
+	results = vf(results)
+	labels = list(map(lambda x: x[0], labels))
+	coincidence = np.abs(1 - np.array(results) + np.array(labels))
+	#print(labels)
+	#print(results)
+	#print(coincidence)
+	#sys.exit()
+	return np.mean(coincidence)
+
 
 def createParser ():
 	"""	ArgumentParser """
@@ -216,6 +232,7 @@ if __name__ == '__main__':
 
 						#print('train:', i, labels[0], train_logits[0])
 
+						"""
 						th = 0.5
 						#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
 						#np.mean(train_loss)
@@ -228,9 +245,10 @@ if __name__ == '__main__':
 						#print(results)
 						#print(coincidence)
 						#sys.exit()
-
-						#np.abs(labels - results)
 						train_acc = np.mean(coincidence)
+						"""
+
+						train_acc = acc(labels, train_outputs)
 
 						train_loss_list.append(np.mean(train_loss))
 						train_acc_list.append(train_acc)
