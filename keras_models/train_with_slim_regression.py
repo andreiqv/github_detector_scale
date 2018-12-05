@@ -64,7 +64,7 @@ net, net_model_name = resnet_v2.resnet_v2_50, 'resnet_v2_50'
 #net = resnet_v2.resnet_v2_152
 
 #--------------
-DEBUG = True
+DEBUG = False
 
 OUTPUT_NODE = 'softmax'
 num_classes = 1
@@ -283,7 +283,7 @@ if __name__ == '__main__':
 						features, labels = sess.run(next_element_valid)
 						valid_outputs, valid_loss, valid_acc, valid_top6 = sess.run([output, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 						
-						#valid_acc = calc_mean_acc(labels, valid_outputs)
+						valid_acc = calc_mean_acc(labels, valid_outputs)
 
 						valid_loss_list.append(np.mean(valid_loss))
 						valid_acc_list.append(valid_acc)
