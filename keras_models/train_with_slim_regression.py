@@ -144,7 +144,7 @@ def model_function(next_element):
 
 def calc_mean_acc(labels, outputs):
 
-	th = 0.5
+	th = 0.7
 	#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
 	#np.mean(train_loss)
 	vf = np.vectorize(lambda x: 1.0 if x > th else 0.0)
@@ -256,7 +256,7 @@ if __name__ == '__main__':
 
 						if i % 30 == 0:
 
-							if DEBUG:
+							if False:
 								for j in range(len(labels)):
 									#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
 									print('train:', i, j, labels[j], train_outputs[j])
@@ -292,10 +292,10 @@ if __name__ == '__main__':
 						if i % 20 == 0:
 
 							#print('valid:', i, labels[0], valid_logits[0])
-							if DEBUG:
+							if True:
 								for j in range(len(labels)):
-									#if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
-									print('valid:', i, j, labels[j], valid_outputs[j])
+									if  np.argmax(labels[j]) !=  np.argmax(valid_outputs[j]):
+										print('valid:', i, j, labels[j], valid_outputs[j])
 
 							print('epoch={} i={}: valid acc={:.4f}'.\
 								format(epoch, i, np.mean(valid_acc_list)))
