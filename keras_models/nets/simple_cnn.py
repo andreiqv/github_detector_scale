@@ -7,8 +7,9 @@ def fc1(inputs, num_classes=1000, is_training=True):
 
 	#x = tf.reshape(inputs, [-1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3])  # 128 x 128 x 3
 	x = inputs
+	x = slim.max_pool2d(x, [2,2], scope='pool1')
 	x = slim.flatten(x, scope='flatten')
-	x = slim.fully_connected(x, 1000, activation_fn=tf.nn.tanh, scope='fc_hid')	
+	#x = slim.fully_connected(x, 1000, activation_fn=tf.nn.tanh, scope='fc_hid')	
 	logits = slim.fully_connected(x, num_classes, activation_fn=None, scope='fc_last')
 	end_points = ['none']
 	return logits, end_points
