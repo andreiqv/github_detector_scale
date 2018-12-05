@@ -9,7 +9,7 @@ from tensorflow.keras.callbacks import TensorBoard
 sys.path.append('.')
 sys.path.append('..')
 import keras_models.models as models
-import keras_models.models_classification as models_classification
+import keras_models.models_regression as models_regression
 from tfrecords_converter import TfrecordsDataset
 #from keras_models.aux import bboxes_loss, accuracy
 
@@ -60,7 +60,7 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 
 import models2
 #model = models2.model_InceptionV3(inputs)
-model = models_classification.model_ResNet50(inputs)
+model = models_regression.model_ResNet50(inputs)
 #model = models2.model_MobileNetV2(inputs)
 
 # optimizer = tf.train.AdamOptimizer()
