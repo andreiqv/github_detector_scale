@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
 		loss = tf.reduce_mean(tf.squared_difference(y, output))
 		#loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits, labels=y)
-		#train_op = tf.train.AdagradOptimizer(0.005).minimize(loss)
+		train_op = tf.train.AdagradOptimizer(0.005).minimize(loss)
 		#train_op = tf.train.AdamOptimizer(0.02).minimize(loss)		
 		#correct_prediction = tf.equal(tf.argmax(logits,1), tf.argmax(y,1))
 		
