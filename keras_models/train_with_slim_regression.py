@@ -219,11 +219,11 @@ if __name__ == '__main__':
 						th = 0.5
 						#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
 						#np.mean(train_loss)
-						vf = np.vectorize(lambda x: 1 if x[0][0] > th else 0)
-						results = vf(train_outputs)
+						#vf = np.vectorize(lambda x: 1 if x[0][0] > th else 0)
+						#results = vf(train_outputs)
 
 						print(labels)
-						print(results)
+						print(train_outputs)
 						sys.exit()
 
 						#np.abs(labels - results)
