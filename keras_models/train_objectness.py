@@ -95,7 +95,7 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
 
 keras.backend.get_session().run(tf.local_variables_initializer())
 
-model.fit(dataset.train_set.batch(batch_size).repeat(),
+model.fit(dataset.train_set.repeat(),
           #callbacks=callbacks,
           #epochs=150,
           epochs=500,
