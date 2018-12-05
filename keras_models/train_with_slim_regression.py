@@ -142,7 +142,7 @@ def model_function(next_element):
 	return logits, loss
 """
 
-def acc(labels, outputs):
+def calc_mean_acc(labels, outputs):
 
 	th = 0.5
 	#results = np.map(lambda x: 1 if x[0][0] > th else 0, train_outputs)
@@ -248,7 +248,7 @@ if __name__ == '__main__':
 						train_acc = np.mean(coincidence)
 						"""
 
-						train_acc = acc(labels, train_outputs)
+						train_acc = calc_mean_acc(labels, train_outputs)
 
 						train_loss_list.append(np.mean(train_loss))
 						train_acc_list.append(train_acc)
@@ -283,6 +283,8 @@ if __name__ == '__main__':
 						features, labels = sess.run(next_element_valid)
 						valid_outputs, valid_loss, valid_acc, valid_top6 = sess.run([output, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 						
+						#valid_acc = calc_mean_acc(labels, valid_outputs)
+
 						valid_loss_list.append(np.mean(valid_loss))
 						valid_acc_list.append(valid_acc)
 						valid_top6_list.append(np.mean(valid_top6))
