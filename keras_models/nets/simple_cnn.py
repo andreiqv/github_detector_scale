@@ -9,7 +9,7 @@ def fc1(inputs, num_classes=1000, is_training=True):
 	x = inputs
 	x = slim.flatten(x, scope='flatten')
 	#x = slim.fully_connected(x, 1000, activation_fn=tf.nn.sigmoid, scope='fc_hid')	
-	logits = slim.fully_connected(x, num_classes, activation_fn=None, scope='fc_last')
+	logits = slim.fully_connected(x, num_classes, activation_fn=tf.nn.sigmoid, scope='fc_last')
 	end_points = ['none']
 	return logits, end_points
 
