@@ -80,8 +80,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+              loss='mean_squared_error')
 
 # model = keras.models.load_model(
 #     "./checkpoints/model2-106-0.991-0.991[0.645].hdf5",

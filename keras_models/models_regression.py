@@ -16,7 +16,7 @@ def model_ResNet50(inputs):
 	base_model = ResNet50(weights='imagenet', include_top=False, pooling='avg', 
 		input_tensor=inputs)
 	x = base_model.output
-	x = layers.Dense(2, activation='softmax')(x)
+	x = layers.Dense(1, activation=None)(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_ResNet50')	
 	return model
 
