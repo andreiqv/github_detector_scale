@@ -64,6 +64,7 @@ net, net_model_name = simple_cnn.fc2, 'simple_fc2'
 #net = resnet_v2.resnet_v2_152
 
 #--------------
+DEBUG = False
 
 OUTPUT_NODE = 'softmax'
 num_classes = 2
@@ -210,9 +211,9 @@ if __name__ == '__main__':
 						train_logits, train_loss, train_acc, train_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 
 						#print('train:', i, labels[0], train_logits[0])
-						for j in range(len(labels)):
-							#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):
-							if True:
+						if DEBUG:
+							for j in range(len(labels)):
+								#if  np.argmax(labels[j]) !=  np.argmax(train_logits[j]):		
 								print('train:', i, j, labels[j], train_logits[j])
 
 						train_loss_list.append(np.mean(train_loss))
@@ -242,8 +243,9 @@ if __name__ == '__main__':
 						valid_logits, valid_loss, valid_acc, valid_top6 = sess.run([logits, loss, acc, acc_top6], feed_dict={x: features, y: labels})
 						
 						#print('valid:', i, labels[0], valid_logits[0])
-						for j in range(len(labels)):
-							if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
+						if DEBUG:
+							for j in range(len(labels)):
+								#if  np.argmax(labels[j]) !=  np.argmax(valid_logits[j]):
 								print('valid:', i, j, labels[j], valid_logits[j])
 
 						valid_loss_list.append(np.mean(valid_loss))
