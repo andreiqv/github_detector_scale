@@ -221,7 +221,7 @@ if __name__ == '__main__':
 						#np.mean(train_loss)
 						vf = np.vectorize(lambda x: 1.0 if x > th else 0.0)
 						results = vf(train_outputs[0])
-						labels = map(lambda x: x[0], labels)
+						labels = list(map(lambda x: x[0], labels))
 						print(labels)
 						print(results)
 						#print(train_outputs[0])
