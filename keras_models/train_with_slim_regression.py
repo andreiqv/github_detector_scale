@@ -256,9 +256,9 @@ if __name__ == '__main__':
 
 						if i % 30 == 0:
 
-							if True:
+							if False:
 								for j in range(len(labels)):
-									if  labels[j] !=  train_outputs[j]:
+									if  labels[j][0] !=  train_outputs[j][0]:
 										print('train:', i, j, labels[j], train_outputs[j])
 
 							timer('epoch={} i={}: train loss={:.4f}, acc={:.4f}'.\
@@ -290,13 +290,13 @@ if __name__ == '__main__':
 						valid_top6_list.append(np.mean(valid_top6))
 
 							#print('valid:', i, labels[0], valid_logits[0])
-						if True:	
-							if True:
-								for j in range(len(labels)):
-									if  np.argmax(labels[j]) !=  np.argmax(valid_outputs[j]):
-										print('valid:', i, j, labels[j], valid_outputs[j])
 
 						if i % 20 == 0:
+
+							if True:
+								for j in range(len(labels)):
+									if labels[j][0] != valid_outputs[j][0]:
+										print('valid:', i, j, labels[j], valid_outputs[j])
 
 							print('epoch={} i={}: valid acc={:.4f}'.\
 								format(epoch, i, np.mean(valid_acc_list)))
