@@ -3,7 +3,7 @@
 """
 Исходный датасет:
 Без аугментации: 
-С аугментацией: 
+С аугментацией: Train=469, valid=24
 
 presence:
 Без аугментации: Train=60, valid=16
@@ -28,8 +28,8 @@ dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords",
 	"../dataset/test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
 
-dataset.augment_train_dataset()
-train_dataset = dataset.train_set #.batch(batch_size)
+#dataset.augment_train_dataset()
+train_dataset = dataset.train_set.batch(batch_size)
 valid_dataset = dataset.test_set.batch(batch_size)
 
 graph = tf.Graph()  # сreate a new graph
