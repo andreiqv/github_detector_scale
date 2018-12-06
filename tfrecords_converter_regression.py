@@ -180,7 +180,8 @@ class TfrecordsDataset:
 
                 return fliped_im, new_labels
 
-            images, labels = tf.cond(toss, _flip_left, lambda: (images, labels))
+            # no _flip_left !
+            #images, labels = tf.cond(toss, _flip_left, lambda: (images, labels))
 
             toss2 = tf.less(tf.random_uniform(shape=(1,), minval=0, maxval=4), tf.constant([1.0], dtype=tf.float32))
             toss2 = tf.reshape(toss2, [])
