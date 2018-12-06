@@ -3,7 +3,6 @@ from tensorflow import keras
 
 layers = keras.layers
 
-#--------------
 
 def model1(inputs):
     x = layers.Conv2D(
@@ -172,10 +171,10 @@ def darknet_block(filters, kernel, stride, padding, x):
 def model3(inputs):
     x = darknet_block(32, 3, 1, 'SAME', inputs)
     x = darknet_block(32, 3, 2, 'VALID', x)
-    x = darknet_block(64, 3, 1, 'SAME', x)
+    x = darknet_block(64, 3, 1, 'SAME',  x)
     x = darknet_block(32, 3, 2, 'VALID', x)
     x = darknet_block(128, 3, 1, 'SAME', x)
-    x = darknet_block(64, 1, 1, 'SAME', x)
+    x = darknet_block(64, 1, 1, 'SAME',  x)
     x = darknet_block(128, 3, 1, 'SAME', x)
     x = darknet_block(32, 3, 2, 'VALID', x)
     x = darknet_block(256, 3, 1, 'SAME', x)
@@ -191,10 +190,6 @@ def model3(inputs):
     )(x)
 
     x = layers.Reshape((5,))(x)
-
-    #x = layers.Flatten()(x)
-    #x = layers.Dense(5, activation='sigmoid')(x)
-
     model = keras.Model(inputs, x, name='glp_model3')
 
     return model
@@ -352,7 +347,6 @@ def model_first2(inputs):
     x = layers.Flatten()(x)
     x = layers.Dropout(0.5)(x)
     x = layers.Dense(1000, activation='sigmoid')(x)
-    #x = layers.Dense(1000, activation='relu')(x)
     x = layers.Dropout(0.5)(x)
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
