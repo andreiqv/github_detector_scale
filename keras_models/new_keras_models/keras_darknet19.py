@@ -69,4 +69,4 @@ def darknet19(inputs):
     body = darknet_body()(inputs)
     #logits = DarknetConv2D(1000, (1, 1), activation='softmax')(body)
     outputs = DarknetConv2D(5, (1, 1), activation='sigmoid')(body)
-    return Model(inputs, logits, name='darknet19')
+    return Model(inputs, outputs, name='darknet19')
