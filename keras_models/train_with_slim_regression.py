@@ -124,8 +124,12 @@ dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords"
 	"../dataset/regression_test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
 
-dataset.augment_train_dataset()
-train_dataset = dataset.train_set #.batch(batch_size)
+AUGMENT = False
+if AUGMENT:
+	dataset.augment_train_dataset()
+	train_dataset = dataset.train_set #.batch(batch_size)
+else:
+	train_dataset = dataset.train_set.batch(batch_size)
 valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
