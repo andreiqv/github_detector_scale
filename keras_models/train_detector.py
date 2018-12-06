@@ -107,11 +107,14 @@ if presence:
                             "../dataset/presence_test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
     print('Using presence_train-bboxes128x128.tfrecords')
+    train_steps, valid_steps = 299, 16  # no pictures with empty scales
+
 else:
     dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
                             "../dataset/test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
     print('Using train-bboxes128x128.tfrecords')
+    train_steps, valid_steps = 469, 24    
 
 dataset.augment_train_dataset()
 
@@ -142,7 +145,7 @@ model.fit(dataset.train_set.repeat(),
           callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
-          steps_per_epoch=60,
+          steps_per_epoch=train_steps,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
-          validation_steps=16,
+          validation_steps=valid_steps,
           )
