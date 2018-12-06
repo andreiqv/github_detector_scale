@@ -78,7 +78,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.002),
               #optimizer='adagrad',
               #optimizer='adam',
               loss='mean_squared_error',
@@ -93,11 +93,14 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
 #               loss=bboxes_loss,
 #               metrics=[accuracy, miou])
 
+callbacksLearningRate = [   
+    keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
+]
 
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          #callbacks=callbacks,
+          callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
           steps_per_epoch=246,
