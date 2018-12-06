@@ -20,7 +20,7 @@ sys.path.append('..')
 # tf.enable_eager_execution()
 #import settings
 from settings import IMAGE_SIZE
-from utils.timer import timer
+from keras_models.utils.timer import timer
 #from augment import images_augment
 
 #--------------------
