@@ -91,16 +91,9 @@ batch_size = 128  # 256
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
 
-if presence:
-    dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
-                            "../dataset/presence_test-bboxes128x128.tfrecords", 
-                            image_shape, image_channels, batch_size)
-    print('Using presence_train-bboxes128x128.tfrecords')
-else:
-    dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
+dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
                             "../dataset/test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
-    print('Using train-bboxes128x128.tfrecords')
 dataset.augment_train_dataset()
 
 
