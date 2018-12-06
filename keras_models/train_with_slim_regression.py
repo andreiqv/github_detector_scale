@@ -123,13 +123,15 @@ image_channels = 3
 dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords", 
 	"../dataset/regression_test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
-train_dataset = dataset.train_set.batch(batch_size)
+
+dataset.augment_train_dataset()
+train_dataset = dataset.train_set #.batch(batch_size)
 valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
 epochs_checkpoint = 100 # interval for saving checkpoints and pb-file 
-train_steps_per_epoch = 84 #1157
-valid_steps_per_epoch = 24  #77
+train_steps_per_epoch = 60  #1157
+valid_steps_per_epoch = 16  #77
 train_dataset = train_dataset.repeat()
 valid_dataset = valid_dataset.repeat()
 
@@ -354,56 +356,3 @@ if __name__ == '__main__':
 					tf.train.write_graph(output_graph_def, dir_for_pb, pb_file_name, as_text=False)	
 	# end of training
 	f_res.close()
-
-"""
-With augmentation (rot+transform):
-
-Inception-v3.  (910 + 31 sec / epoch)  299x299.
-0:  train_acc=0.1611 [top6=0.3261]; valid_acc=0.1425 [top6=0.3247]
-5:  train_acc=0.3400 [top6=0.7028]; valid_acc=0.2802 [top6=0.5678]
-10: train_acc=0.6066 [top6=0.9249]; valid_acc=0.3785 [top6=0.7643]
-20: train_acc=0.8325 [top6=0.9869]; valid_acc=0.6048 [top6=0.9237]
-30: train_acc=0.9187 [top6=0.9973]; valid_acc=0.6758 [top6=0.9500]
-31: train_acc=0.9229 [top6=0.9972]; valid_acc=0.6625 [top6=0.9525]
-
-vgg_19: (1653.3062 sec. + 39) 224x224
-0: train_acc=0.1567 [top6=0.3003]; valid_acc=0.1644 [top6=0.3174]
-1: train_acc=0.1674 [top6=0.3843]; valid_acc=0.1653 [top6=0.3898]
-
-mobilenet_v1:
-20: train_acc=0.9662 [top6=0.9989]; valid_acc=0.7253 [top6=0.9623]
-40: train_acc=0.9966 [top6=1.0000]; valid_acc=0.7363 [top6=0.9647]
-49: train_acc=0.9988 [top6=1.0000]; valid_acc=0.7419 [top6=0.9635]
-
-mobilenet_v2:
-20: train_acc=0.9662 [top6=0.9989]; valid_acc=0.7253 [top6=0.9623]
-40: train_acc=0.9420 [top6=0.9993]; valid_acc=0.7287 [top6=0.9683]
-49: train_acc=0.9577 [top6=0.9998]; valid_acc=0.7303 [top6=0.9687]
-
-mobilenet_v2_035:
-20: train_acc=0.7108 [top6=0.9627]; valid_acc=0.5983 [top6=0.9233]
-40: train_acc=0.7615 [top6=0.9769]; valid_acc=0.6478 [top6=0.9391]
-49: train_acc=0.7744 [top6=0.9811]; valid_acc=0.6603 [top6=0.9435]
-
-resnet_v2_50:
-10: train_acc=0.9468 [top6=0.9977]; valid_acc=0.6893 [top6=0.9622]
-20: train_acc=0.9918 [top6=1.0000]; valid_acc=0.7250 [top6=0.9642]
-40: train_acc=0.9999 [top6=1.0000]; valid_acc=0.7473 [top6=0.9614]
-
-resnet_v2_152:
-10: TRAIN loss=0.2988 acc=0.9453 top6=0.9972; VALID loss=0.9972 acc=0.6909 top6=0.9586
-20: TRAIN loss=0.0969 acc=0.9907 top6=0.9999; VALID loss=0.8622 acc=0.7437 top6=0.9630
-
-
-------
-influence of augmentation:
-resnet_v2_50
-1) no transform:  [20]: TRAIN loss=0.0586 acc=0.9971 top6=1.0000; VALID loss=1.0276 acc=0.7062 top6=0.9551
-2) only rotation: [20]: TRAIN loss=0.1296 acc=0.9858 top6=0.9997; VALID loss=1.5145 acc=0.5818 top6=0.9170
-3) trans. no rot. [20]: TRAIN loss=0.1367 acc=0.9831 top6=0.9996; VALID loss=0.9056 acc=0.7097 top6=0.9671
-				  [60]: TRAIN loss=0.0071 acc=0.9999 top6=1.0000; VALID loss=1.1407 acc=0.7358 top6=0.9619	
-4) full augment.: [20]: TRAIN loss=0.2077 acc=0.9704 top6=0.9989; VALID loss=0.9470 acc=0.6974 top6=0.9615
-
-
-------
-"""
