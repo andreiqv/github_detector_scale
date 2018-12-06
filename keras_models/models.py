@@ -3,7 +3,6 @@ from tensorflow import keras
 
 layers = keras.layers
 
-
 def model1(inputs):
     x = layers.Conv2D(
         filters=32,
