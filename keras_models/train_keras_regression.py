@@ -1,3 +1,5 @@
+# slice index 4 of dimension 1 out of bounds
+
 import os
 import sys
 import cv2
@@ -80,7 +82,7 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
               loss='mean_squared_error',
-              metrics=[accuracy])
+              metrics=['accuracy'])
 
 # model = keras.models.load_model(
 #     "./checkpoints/model2-106-0.991-0.991[0.645].hdf5",
