@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Прямой проход без хеширования промежуточных данных.
+Исходный датасет:
+Без аугментации: 
+С аугментацией: 
 
-v2 - added saver.
+presence:
+Без аугментации: Train=60, valid=16
+С аугментацией: Train=299, valid=16
 """
 	
 # https://github.com/tensorflow/tensorflow/issues/22837#issuecomment-428327601
@@ -20,8 +24,8 @@ from tfrecords_converter import TfrecordsDataset
 batch_size = 128  # 256
 image_shape = (128, 128)
 image_channels = 3
-dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
-	"../dataset/presence_test-bboxes128x128.tfrecords", 
+dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
+	"../dataset/test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
 
 dataset.augment_train_dataset()
