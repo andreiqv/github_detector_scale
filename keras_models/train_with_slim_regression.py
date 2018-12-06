@@ -124,7 +124,7 @@ dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords"
 	"../dataset/regression_test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
 
-AUGMENT = False
+AUGMENT = True
 if AUGMENT:
 	dataset.augment_train_dataset()
 	train_dataset = dataset.train_set #.batch(batch_size)
