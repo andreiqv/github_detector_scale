@@ -149,7 +149,7 @@ class TfrecordsDataset:
         return dataset
 
     def augment_train_dataset(self):
-        self.train_set = self.train_set.shuffle(60000).repeat(5).batch(self.batch_size)
+        self.train_set = self.train_set.shuffle(10000).repeat(5).batch(self.batch_size)
 
         def _random_distord(images, labels):
             rand = tf.random_uniform(shape=(1,), minval=0, maxval=2)
