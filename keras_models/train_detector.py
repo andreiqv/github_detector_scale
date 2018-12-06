@@ -10,7 +10,8 @@ sys.path.append('.')
 sys.path.append('..')
 import keras_models.models as models
 from tfrecords_converter import TfrecordsDataset
-from keras_models.aux import miou, bboxes_loss, accuracy
+#from keras_models.aux import miou, bboxes_loss, accuracy
+from keras_models.aux1 import miou, bboxes_loss, accuracy
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
