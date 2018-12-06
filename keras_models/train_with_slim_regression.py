@@ -130,8 +130,8 @@ valid_dataset = dataset.test_set.batch(batch_size)
 
 num_epochs = 500		
 epochs_checkpoint = 100 # interval for saving checkpoints and pb-file 
-train_steps_per_epoch = 60  #1157
-valid_steps_per_epoch = 16  #77
+train_steps_per_epoch = 84 #1157
+valid_steps_per_epoch = 24  #77
 train_dataset = train_dataset.repeat()
 valid_dataset = valid_dataset.repeat()
 

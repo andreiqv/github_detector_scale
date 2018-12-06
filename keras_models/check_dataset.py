@@ -23,7 +23,9 @@ image_channels = 3
 dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
 	"../dataset/presence_test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
-train_dataset = dataset.train_set.batch(batch_size)
+
+dataset.augment_train_dataset()
+train_dataset = dataset.train_set #.batch(batch_size)
 valid_dataset = dataset.test_set.batch(batch_size)
 
 graph = tf.Graph()  # сreate a new graph
