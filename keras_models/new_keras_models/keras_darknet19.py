@@ -71,7 +71,7 @@ def darknet19(inputs):
     x = darknet_body()(inputs)
     #logits = DarknetConv2D(1000, (1, 1), activation='softmax')(body)
     #outputs = DarknetConv2D(5, (1, 1), activation='sigmoid')(body)
-    
+    x = layers.Flatten()(x)
     x = layers.Dense(5, activation='sigmoid')(x)
     model = keras.Model(inputs, x, name='darknet19')
 
