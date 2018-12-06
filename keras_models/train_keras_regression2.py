@@ -11,15 +11,7 @@ sys.path.append('..')
 import keras_models.models as models
 from tfrecords_converter import TfrecordsDataset
 
-if len(sys.argv) > 1 and sys.argv[1] == '1':
-    presence = True
-else:
-    presence = False
-
-if presence:
-    from keras_models.aux1 import miou, bboxes_loss, accuracy
-else:
-    from keras_models.aux import miou, bboxes_loss, accuracy
+from keras_models.aux_regression import miou, bboxes_loss, accuracy
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
