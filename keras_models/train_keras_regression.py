@@ -10,7 +10,7 @@ sys.path.append('.')
 sys.path.append('..')
 import keras_models.models as models
 import keras_models.models_regression as models_regression
-from tfrecords_converter import TfrecordsDataset
+from tfrecords_converter_regression import TfrecordsDataset
 from keras_models.aux_regression import bboxes_loss, accuracy
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
@@ -49,7 +49,6 @@ batch_size = 64  # 256
 dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords", 
                             "../dataset/regression_test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
-
 
 dataset.augment_train_dataset()
 
