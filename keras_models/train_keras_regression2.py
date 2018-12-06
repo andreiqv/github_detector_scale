@@ -9,9 +9,18 @@ from tensorflow.keras.callbacks import TensorBoard
 sys.path.append('.')
 sys.path.append('..')
 import keras_models.models as models
-import keras_models.models_regression as models_regression
 from tfrecords_converter import TfrecordsDataset
-from keras_models.aux_regression import bboxes_loss, accuracy
+
+if len(sys.argv) > 1 and sys.argv[1] == '1':
+    presence = True
+else:
+    presence = False
+
+if presence:
+    from keras_models.aux1 import miou, bboxes_loss, accuracy
+else:
+    from keras_models.aux import miou, bboxes_loss, accuracy
+
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -41,26 +50,16 @@ def lr_scheduler(epoch, lr):
     return lr
 
 
-batch_size = 64  # 256
-
-#dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
-#                           image_channels, 256)
-
-dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords", 
-                            "../dataset/regression_test-bboxes128x128.tfrecords", 
-                            image_shape, image_channels, batch_size)
-
-
-dataset.augment_train_dataset()
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model_first2(inputs)
-#model = models.model3(inputs)
+model = models.model3(inputs)
 #model = models.model_first(inputs)
+
 
 import models2
 #model = models2.model_InceptionV3(inputs)
-model = models_regression.model_ResNet50(inputs)
+#model = models2.model_ResNet50(inputs)
 #model = models2.model_MobileNetV2(inputs)
 
 # optimizer = tf.train.AdamOptimizer()
@@ -80,7 +79,8 @@ print('model.trainable_weights:', len(model.trainable_weights))
 model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
-              loss='mean_squared_error')
+              loss=bboxes_loss,
+              metrics=[accuracy, miou])
 
 # model = keras.models.load_model(
 #     "./checkpoints/model2-106-0.991-0.991[0.645].hdf5",
@@ -92,13 +92,48 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
 #               metrics=[accuracy, miou])
 
 
+# ------
+
+batch_size = 128  # 256
+
+#dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
+#                           image_channels, 256)
+
+if presence:
+    dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
+                            "../dataset/presence_test-bboxes128x128.tfrecords", 
+                            image_shape, image_channels, batch_size)
+    print('Using presence_train-bboxes128x128.tfrecords')
+else:
+    dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
+                            "../dataset/test-bboxes128x128.tfrecords", 
+                            image_shape, image_channels, batch_size)
+    print('Using train-bboxes128x128.tfrecords')
+dataset.augment_train_dataset()
+
+
+
+# ------
+
+callbacks = [
+    keras.callbacks.ModelCheckpoint(
+        "./checkpoints/model_test-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        save_best_only=True,
+        monitor='val_miou',
+        mode='max'
+    ),
+    LRTensorBoard(
+        log_dir='./tensorboard/model_test'
+    ),
+    keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
+]
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacks,
           #epochs=150,
           epochs=500,
-          steps_per_epoch=246,
+          steps_per_epoch=60,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
-          validation_steps=12,
+          validation_steps=16,
           )
