@@ -131,7 +131,8 @@ def miou(_labels, _logits):
     union = tf.multiply(_logits[:, 2], (_logits[:, 3])) + tf.multiply(_labels[:, 2], (_labels[:, 3])) - intersection
     iou = tf.divide(intersection, union)
     correct_empty_amount = tf.cast(tf.shape(tf.where(correct_mask_e))[0], dtype=tf.float32)
-    mean_iou = tf.reduce_sum(tf.boolean_mask(iou, correct_mask_n))
+    #mean_iou = tf.reduce_sum(tf.boolean_mask(iou, correct_mask_n))
+    mean_iou = tf.reduce_sum(iou)
     mean_iou = tf.divide(mean_iou, tf.cast(tf.shape(iou)[0], dtype=tf.float32) - correct_empty_amount)
 
     return mean_iou
