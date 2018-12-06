@@ -99,7 +99,7 @@ else:
     dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
                             "../dataset/test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
-     print('Using train-bboxes128x128.tfrecords')
+    print('Using train-bboxes128x128.tfrecords')
 dataset.augment_train_dataset()
 
 
