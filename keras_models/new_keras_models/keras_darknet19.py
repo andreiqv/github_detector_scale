@@ -2,6 +2,7 @@
 import functools
 from functools import partial
 
+import tensorflow.keras.layers as layers
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.layers import BatchNormalization
@@ -66,7 +67,11 @@ def darknet_body():
 
 def darknet19(inputs):
     """Generate Darknet-19 model for Imagenet classification."""
-    body = darknet_body()(inputs)
+    x = darknet_body()(inputs)
     #logits = DarknetConv2D(1000, (1, 1), activation='softmax')(body)
-    outputs = DarknetConv2D(5, (1, 1), activation='sigmoid')(body)
-    return Model(inputs, outputs, name='darknet19')
+    #outputs = DarknetConv2D(5, (1, 1), activation='sigmoid')(body)
+    
+    x = layers.Dense(5, activation='sigmoid')(x)
+    model = keras.Model(inputs, x, name='darknet19')
+
+    return model # Model(inputs, outputs, name='darknet19')
