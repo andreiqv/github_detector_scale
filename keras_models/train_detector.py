@@ -54,7 +54,7 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model1(inputs)  # val_miou: 0.0517 ->  0.0855
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
-#model = models.model_first2(inputs) #val_miou: 0.4919 -> 0.8045 
+model = models.model_first2(inputs) #val_miou: 0.4919 -> 0.8045 
 #model = models.model_first(inputs)
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
