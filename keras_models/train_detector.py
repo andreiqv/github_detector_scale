@@ -41,22 +41,6 @@ def lr_scheduler(epoch, lr):
     return lr
 
 
-batch_size = 128  # 256
-
-#dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
-#                           image_channels, 256)
-
-if len(sys.argv) > 1 and sys.argv[1] == '1':
-    dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
-                            "../dataset/presence_test-bboxes128x128.tfrecords", 
-                            image_shape, image_channels, batch_size)
-else:
-    dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
-                            "../dataset/test-bboxes128x128.tfrecords", 
-                            image_shape, image_channels, batch_size)
-
-
-dataset.augment_train_dataset()
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model_first2(inputs)
@@ -98,6 +82,29 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
 #               loss=bboxes_loss,
 #               metrics=[accuracy, miou])
 
+
+# ------
+
+batch_size = 128  # 256
+
+#dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
+#                           image_channels, 256)
+
+if len(sys.argv) > 1 and sys.argv[1] == '1':
+    dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
+                            "../dataset/presence_test-bboxes128x128.tfrecords", 
+                            image_shape, image_channels, batch_size)
+    print('Using presence_train-bboxes128x128.tfrecords')
+else:
+    dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
+                            "../dataset/test-bboxes128x128.tfrecords", 
+                            image_shape, image_channels, batch_size)
+     print('Using train-bboxes128x128.tfrecords')
+dataset.augment_train_dataset()
+
+
+
+# ------
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
