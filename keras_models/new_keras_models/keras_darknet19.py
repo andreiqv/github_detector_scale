@@ -2,7 +2,7 @@
 import functools
 from functools import partial
 
-import tensorflow.keras.Model as Model
+from tensorflow import keras
 import tensorflow.keras.layers as layers
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.layers import LeakyReLU
@@ -73,6 +73,6 @@ def darknet19(inputs):
     #outputs = DarknetConv2D(5, (1, 1), activation='sigmoid')(body)
     
     x = layers.Dense(5, activation='sigmoid')(x)
-    model = Model(inputs, x, name='darknet19')
+    model = keras.Model(inputs, x, name='darknet19')
 
     return model # Model(inputs, outputs, name='darknet19')
