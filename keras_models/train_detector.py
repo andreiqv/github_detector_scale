@@ -57,7 +57,7 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 model = models.model_first2(inputs) #val_miou: 0.4919 -> 0.5159 
 #model = models.model_first(inputs)
 
-import new_keras_models.keras_darknet19 as keras_darknet19
+#import new_keras_models.keras_darknet19 as keras_darknet19
 
 #model = keras_darknet19.darknet19(inputs)
 
