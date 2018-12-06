@@ -10,8 +10,17 @@ sys.path.append('.')
 sys.path.append('..')
 import keras_models.models as models
 from tfrecords_converter import TfrecordsDataset
-#from keras_models.aux import miou, bboxes_loss, accuracy
-from keras_models.aux1 import miou, bboxes_loss, accuracy
+
+if len(sys.argv) > 1 and sys.argv[1] == '1':
+    presence = True
+else:
+    presence = False
+
+if presence:
+    from keras_models.aux1 import miou, bboxes_loss, accuracy
+else:
+    from keras_models.aux import miou, bboxes_loss, accuracy
+
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -90,7 +99,7 @@ batch_size = 128  # 256
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
 
-if len(sys.argv) > 1 and sys.argv[1] == '1':
+if presence:
     dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
                             "../dataset/presence_test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
