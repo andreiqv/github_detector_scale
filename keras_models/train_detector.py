@@ -77,7 +77,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.001),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
