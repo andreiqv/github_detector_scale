@@ -9,7 +9,7 @@ from tensorflow.keras.callbacks import TensorBoard
 sys.path.append('.')
 sys.path.append('..')
 import keras_models.models as models
-from tfrecords_converter import TfrecordsDataset
+from tfrecords_converter_regression import TfrecordsDataset
 
 from keras_models.aux_regression import miou, bboxes_loss, accuracy
 
