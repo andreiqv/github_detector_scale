@@ -45,7 +45,7 @@ batch_size = 128  # 256
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
 
-if sys.argv[1] == '1':
+if len(sys.argv) > 1 and sys.argv[1] == '1':
     dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
                             "../dataset/presence_test-bboxes128x128.tfrecords", 
                             image_shape, image_channels, batch_size)
