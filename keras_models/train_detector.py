@@ -54,11 +54,11 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model1(inputs)  # val_miou: 0.0517 ->  0.0855
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
-model = models.model_first2(inputs) #val_miou: 0.4919 -> 0.8045 
+#model = models.model_first2(inputs) #val_miou: 0.4919 -> 0.8045 
 #model = models.model_first(inputs)
 
-#import new_keras_models.keras_darknet19 as keras_darknet19
-#model = keras_darknet19.darknet19(inputs)
+import new_keras_models.keras_darknet19 as keras_darknet19
+model = keras_darknet19.darknet19(inputs)
 
 import models2
 #model = models2.model_InceptionV3(inputs)
@@ -79,7 +79,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.02),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
@@ -142,7 +142,7 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          callbacks=callbacksLearningRate,
+          #callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,
