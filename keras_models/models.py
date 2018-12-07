@@ -462,6 +462,16 @@ def model_first_3(inputs): # add
         pool_size=2,
         strides=1
     )(x)
+    
+    x = layers.Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        strides=(1, 1),
+        padding='VALID',
+        use_bias=True,
+        activation='relu'
+    )(x)
+
     x = layers.BatchNormalization()(x)
     x = layers.Flatten()(x)
     x = layers.Dropout(0.5)(x)
