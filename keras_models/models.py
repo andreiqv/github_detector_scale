@@ -397,7 +397,7 @@ def model_first2(inputs):
 def model_first_3(inputs): # add
     x = layers.Conv2D(
         filters=8,
-        kernel_size=(3, 3),
+        kernel_size=(5, 5),
         strides=(1, 1),
         padding='VALID',
         activation='relu',
@@ -410,7 +410,7 @@ def model_first_3(inputs): # add
 
     x = layers.Conv2D(
         filters=16,
-        kernel_size=(3, 3),
+        kernel_size=(5, 5),
         strides=(2, 2),
         padding='VALID',
         use_bias=True,
@@ -424,7 +424,7 @@ def model_first_3(inputs): # add
 
     x = layers.Conv2D(
         filters=16,
-        kernel_size=(3, 3),
+        kernel_size=(5, 5),
         strides=(2, 2),
         padding='VALID',
         use_bias=True,
@@ -458,7 +458,6 @@ def model_first_3(inputs): # add
         use_bias=True,
         activation='tanh'
     )(x)
-    x = layers.BatchNormalization()(x)
 
     x = layers.Conv2D(
         filters=32,
@@ -483,7 +482,6 @@ def model_first_3(inputs): # add
         use_bias=True,
         activation='tanh'
     )(x)
-    x = layers.BatchNormalization()(x)
 
     x = layers.Conv2D(
         filters=64,
