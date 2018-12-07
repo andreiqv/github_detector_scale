@@ -464,7 +464,7 @@ def model_first_3(inputs): # add
     )(x)
     
     x = layers.Conv2D(
-        filters=32,
+        filters=64,
         kernel_size=(3, 3),
         strides=(1, 1),
         padding='VALID',
@@ -475,8 +475,8 @@ def model_first_3(inputs): # add
     x = layers.BatchNormalization()(x)
     x = layers.Flatten()(x)
     x = layers.Dropout(0.5)(x)
-    #x = layers.Dense(1000, activation='sigmoid')(x)
-    #x = layers.Dropout(0.5)(x)
+    x = layers.Dense(1000, activation='sigmoid')(x)
+    x = layers.Dropout(0.5)(x)
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
 
