@@ -472,6 +472,7 @@ def model_first_3(inputs): # add
         pool_size=2,
         strides=1
     )(x)
+    x = layers.BatchNormalization()(x)
  
     x = layers.Conv2D(
         filters=64,
