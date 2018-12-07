@@ -465,8 +465,8 @@ def model_first_3(inputs): # add
     x = layers.BatchNormalization()(x)
     x = layers.Flatten()(x)
     x = layers.Dropout(0.5)(x)
-    x = layers.Dense(1000, activation='sigmoid')(x)
-    x = layers.Dropout(0.5)(x)
+    #x = layers.Dense(1000, activation='sigmoid')(x)
+    #x = layers.Dropout(0.5)(x)
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
 

@@ -64,7 +64,7 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model4(inputs)  # val_miou:  0.7663 -> 0.7925
 #model = models.model_first(inputs)  # val_miou: 0.7519 ->  0.7715
 #model = models.model_first2(inputs) # val_miou:  -> 0.8045 
-model = models.model_first_3(inputs) # val_miou:  -> 0.8045 
+model = models.model_first_3(inputs) # val_miou:  -> 0.8097 
 
 import models2
 #model = models2.model_InceptionV3(inputs)
