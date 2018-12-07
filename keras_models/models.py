@@ -458,11 +458,30 @@ def model_first_3(inputs): # add
         use_bias=True,
         activation='tanh'
     )(x)
+
+    x = layers.Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        strides=(1, 1),
+        padding='VALID',
+        use_bias=True,
+        activation='tanh'
+    )(x)
+
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
     )(x)
-    
+ 
+    x = layers.Conv2D(
+        filters=64,
+        kernel_size=(3, 3),
+        strides=(1, 1),
+        padding='VALID',
+        use_bias=True,
+        activation='tanh'
+    )(x)
+
     x = layers.Conv2D(
         filters=64,
         kernel_size=(3, 3),
