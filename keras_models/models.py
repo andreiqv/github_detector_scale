@@ -205,9 +205,8 @@ def model4(inputs):  # added
     x = darknet_block(32, 3, 2, 'VALID', x)
     x = darknet_block(256, 3, 1, 'SAME', x)
     x = darknet_block(64, 3, 2, 'VALID', x)
-    x = darknet_block(256, 3, 1, 'SAME', x)
-    x = darknet_block(64, 3, 2, 'VALID', x)
     
+    """
     x = layers.Conv2D(
         filters=5,
         kernel_size=(7, 7),
@@ -216,8 +215,17 @@ def model4(inputs):  # added
         use_bias=False,
         activation='sigmoid'
     )(x)
+    """
 
-    x = layers.Reshape((5,))(x)
+    #x = layers.Reshape((5,))(x)
+
+    x = layers.BatchNormalization()(x)
+    x = layers.Flatten()(x)
+    x = layers.Dropout(0.5)(x)
+    x = layers.Dense(1000, activation='elu')(x)
+    x = layers.Dropout(0.5)(x)
+    x = layers.Dense(5, activation='sigmoid')(x)
+
     model = keras.Model(inputs, x, name='glp_model3')
 
     return model
