@@ -194,6 +194,36 @@ def model3(inputs):
     return model
 
 
+def model4(inputs):  # added
+    x = darknet_block(32, 3, 1, 'SAME', inputs)
+    x = darknet_block(32, 3, 2, 'VALID', x)
+    x = darknet_block(64, 3, 1, 'SAME',  x)
+    x = darknet_block(32, 3, 2, 'VALID', x)
+    x = darknet_block(128, 3, 1, 'SAME', x)
+    x = darknet_block(64, 1, 1, 'SAME',  x)
+    x = darknet_block(128, 3, 1, 'SAME', x)
+    x = darknet_block(32, 3, 2, 'VALID', x)
+    x = darknet_block(256, 3, 1, 'SAME', x)
+    x = darknet_block(64, 3, 2, 'VALID', x)
+    x = darknet_block(256, 3, 1, 'SAME', x)
+    x = darknet_block(64, 3, 2, 'VALID', x)
+    
+    x = layers.Conv2D(
+        filters=5,
+        kernel_size=(7, 7),
+        strides=(1, 1),
+        padding='VALID',
+        use_bias=False,
+        activation='sigmoid'
+    )(x)
+
+    x = layers.Reshape((5,))(x)
+    model = keras.Model(inputs, x, name='glp_model3')
+
+    return model
+
+#------
+
 def model_first(inputs):
     x = layers.Conv2D(
         filters=8,
