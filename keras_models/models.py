@@ -396,7 +396,7 @@ def model_first2(inputs):
 def model_first_3(inputs):
     x = layers.Conv2D(
         filters=8,
-        kernel_size=(5, 5),
+        kernel_size=(3, 3),
         strides=(1, 1),
         padding='VALID',
         activation='tanh',
@@ -409,7 +409,7 @@ def model_first_3(inputs):
 
     x = layers.Conv2D(
         filters=16,
-        kernel_size=(5, 5),
+        kernel_size=(3, 3),
         strides=(2, 2),
         padding='VALID',
         use_bias=True,
@@ -446,6 +446,17 @@ def model_first_3(inputs):
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
+    )(x)
+    x = layers.BatchNormalization()(x)
+
+    # added
+    x = layers.Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        strides=(1, 1),
+        padding='VALID',
+        use_bias=True,
+        activation='tanh'
     )(x)
     x = layers.BatchNormalization()(x)
 

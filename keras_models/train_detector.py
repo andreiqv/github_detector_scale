@@ -68,7 +68,7 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 
 import models2
 #model = models2.model_InceptionV3(inputs)
-model = models2.model_ResNet50(inputs)
+model = models2.model_ResNet50(inputs)   #  -> 0.8062
 #model = models2.model_MobileNetV2(inputs)
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
