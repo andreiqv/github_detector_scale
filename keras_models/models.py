@@ -414,7 +414,7 @@ def model_first_3(inputs): # add
         strides=(2, 2),
         padding='VALID',
         use_bias=True,
-        activation='relu'
+        activation='tanh'
     )(x)
     x = layers.MaxPool2D(
         pool_size=2,
@@ -428,7 +428,7 @@ def model_first_3(inputs): # add
         strides=(2, 2),
         padding='VALID',
         use_bias=True,
-        activation='relu'
+        activation='tanh'
     )(x)
     x = layers.MaxPool2D(
         pool_size=2,
@@ -442,7 +442,7 @@ def model_first_3(inputs): # add
         strides=(2, 2),
         padding='VALID',
         use_bias=True,
-        activation='relu'
+        activation='tanh'
     )(x)
     x = layers.MaxPool2D(
         pool_size=2,
@@ -456,7 +456,7 @@ def model_first_3(inputs): # add
         strides=(1, 1),
         padding='VALID',
         use_bias=True,
-        activation='relu'
+        activation='tanh'
     )(x)
     x = layers.MaxPool2D(
         pool_size=2,
@@ -469,7 +469,7 @@ def model_first_3(inputs): # add
         strides=(1, 1),
         padding='VALID',
         use_bias=True,
-        activation='relu'
+        activation='tanh'
     )(x)
 
     x = layers.BatchNormalization()(x)
