@@ -458,6 +458,7 @@ def model_first_3(inputs): # add
         use_bias=True,
         activation='tanh'
     )(x)
+    x = layers.BatchNormalization()(x)
 
     x = layers.Conv2D(
         filters=32,
@@ -482,6 +483,7 @@ def model_first_3(inputs): # add
         use_bias=True,
         activation='tanh'
     )(x)
+    x = layers.BatchNormalization()(x)
 
     x = layers.Conv2D(
         filters=64,
