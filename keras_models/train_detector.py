@@ -70,7 +70,7 @@ import models2
 #model = models2.model_InceptionV3(inputs)
 #model = models2.model_ResNet50(inputs)
 #model = models2.model_MobileNetV2(inputs)
-п
+
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
