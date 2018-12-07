@@ -1,3 +1,8 @@
+"""
+SqueezeNet
+Darknet Reference  
+Tiny Darknet
+"""
 import os
 import sys
 import cv2
@@ -52,18 +57,22 @@ def lr_scheduler(epoch, lr):
 
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
+
 #model = models.model1(inputs)  # val_miou: 0.0517 ->  0.0855
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
-#model = models.model_first2(inputs) #val_miou: 0.4919 -> 0.8045 
-#model = models.model_first(inputs)
-
-import new_keras_models.keras_darknet19 as keras_darknet19
-model = keras_darknet19.darknet19(inputs)
+#model = models.model_first2(inputs) #val_miou:  -> 0.8045 
+model = models.model_first(inputs)
 
 import models2
 #model = models2.model_InceptionV3(inputs)
 #model = models2.model_ResNet50(inputs)
 #model = models2.model_MobileNetV2(inputs)
+
+#import new_keras_models.keras_darknet19 as keras_darknet19
+#model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
+
+
+
 
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
