@@ -68,7 +68,7 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 
 import models2
 #model = models2.model_InceptionV3(inputs)
-model = models2.model_ResNet50(inputs)   #  -> 0.8062
+#model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
 #model = models2.model_MobileNetV2(inputs)
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
@@ -154,7 +154,7 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          #callbacks=callbacksLearningRate,
+          callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,

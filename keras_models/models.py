@@ -404,9 +404,9 @@ def model_first_3(inputs):
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
+    )(x)    
 
+    x = layers.BatchNormalization()(x)  
     x = layers.Conv2D(
         filters=16,
         kernel_size=(3, 3),
@@ -415,6 +415,17 @@ def model_first_3(inputs):
         use_bias=True,
         activation='tanh'
     )(x)
+    x = layers.BatchNormalization()(x)  
+    x = layers.Conv2D(
+        filters=16,
+        kernel_size=(3, 3),
+        strides=(2, 2),
+        padding='VALID',
+        use_bias=True,
+        activation='tanh'
+    )(x)
+
+    
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
