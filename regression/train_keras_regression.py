@@ -59,10 +59,6 @@ model = models_regression.model_first2(inputs)  # val_acc = 0.6
 #model = models.model3(inputs)
 #model = models.model_first(inputs)
 
-import models2
-#model = models2.model_InceptionV3(inputs)
-#model = models_regression.model_ResNet50(inputs)
-#model = models2.model_MobileNetV2(inputs)
 
 # optimizer = tf.train.AdamOptimizer()
 # optimizer = keras.optimizers.Adam(lr=0.0001)
