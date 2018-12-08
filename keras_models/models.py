@@ -160,9 +160,9 @@ def darknet_block(filters, kernel, stride, padding, x):
         kernel_size=kernel,
         strides=stride,
         padding=padding,
-        activation=None,
+        activation='tanh',
         use_bias=False)(x)
-    x = layers.LeakyReLU(0.1)(x)
+    #x = layers.LeakyReLU(0.1)(x)
     x = layers.BatchNormalization()(x)
     return x
 
