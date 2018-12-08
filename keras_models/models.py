@@ -178,8 +178,8 @@ def model3(inputs):
     x = darknet_block(32, 3, 2, 'VALID', x)
     x = darknet_block(256, 3, 1, 'SAME', x)
     x = darknet_block(64, 3, 2, 'VALID', x)
-    x = darknet_block(256, 3, 1, 'SAME', x)
-    
+    x = darknet_block(256, 3, 1, 'SAME', x) # +
+
     x = layers.Conv2D(
         filters=5,
         kernel_size=(7, 7),
