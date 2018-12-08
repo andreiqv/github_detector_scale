@@ -469,6 +469,6 @@ def model_first_3(inputs):
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
 
-    model = keras.Model(inputs, x, name='model_first2')
+    model = keras.Model(inputs, x, name='model_first_3')
 
     return model
