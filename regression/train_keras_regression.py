@@ -11,9 +11,9 @@ from tensorflow.keras.callbacks import TensorBoard
 sys.path.append('.')
 sys.path.append('..')
 #import keras_models.models as models
-import keras_models.models_regression as models_regression
 from tfrecords_converter_regression import TfrecordsDataset
-from keras_models.aux_regression import bboxes_loss, accuracy
+import regression.models_regression as models_regression
+from regression.aux_regression import bboxes_loss, accuracy
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
