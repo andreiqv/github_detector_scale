@@ -10,7 +10,7 @@ from tensorflow.keras.callbacks import TensorBoard
 
 sys.path.append('.')
 sys.path.append('..')
-import keras_models.models as models
+#import keras_models.models as models
 import keras_models.models_regression as models_regression
 from tfrecords_converter_regression import TfrecordsDataset
 from keras_models.aux_regression import bboxes_loss, accuracy
@@ -55,7 +55,7 @@ dataset = TfrecordsDataset("../dataset/regression_train-bboxes128x128.tfrecords"
 dataset.augment_train_dataset()
 
 inputs = keras.layers.Input(shape=(128, 128, 3))
-model = models.model_first2(inputs)  # val_acc = 0.6
+model = models_regression.model_first2(inputs)  # val_acc = 0.6
 #model = models.model3(inputs)
 #model = models.model_first(inputs)
 
