@@ -160,9 +160,9 @@ def darknet_block(filters, kernel, stride, padding, x):
         kernel_size=kernel,
         strides=stride,
         padding=padding,
-        activation=None,   # tanh -> 0.8070
+        activation='tanh',   # 0.7757 -> tanh 0.8070
         use_bias=False)(x)
-    x = layers.LeakyReLU(0.1)(x)
+    #x = layers.LeakyReLU(0.1)(x)
     x = layers.BatchNormalization()(x)
     return x
 
@@ -178,7 +178,8 @@ def model3(inputs):
     x = darknet_block(32, 3, 2, 'VALID', x)
     x = darknet_block(256, 3, 1, 'SAME', x)
     x = darknet_block(64, 3, 2, 'VALID', x)
-
+    x = darknet_block(256, 3, 1, 'SAME', x)
+    
     x = layers.Conv2D(
         filters=5,
         kernel_size=(7, 7),
