@@ -457,6 +457,16 @@ def model_first_3(inputs):
         use_bias=True,
         activation='tanh'
     )(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        strides=(1, 1),
+        padding='SAME',
+        use_bias=True,
+        activation='tanh'
+    )(x)
+
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
@@ -464,7 +474,7 @@ def model_first_3(inputs):
     x = layers.BatchNormalization()(x)
     x = layers.Flatten()(x)
     x = layers.Dropout(0.5)(x)
-    x = layers.Dense(1000, activation='relu')(x)
+    x = layers.Dense(1000, activation='sigmoid')(x)
     x = layers.Dropout(0.5)(x)
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
