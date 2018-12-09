@@ -63,8 +63,8 @@ inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
 #model = models.model4(inputs)  # val_miou:  0.7663 -> 0.7925
 #model = models.model_first(inputs)  # val_miou: 0.7519 ->  0.7715
-model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
-#model = models.model_first_3(inputs)
+#model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
+model = models.model_first_3(inputs)
 
 import models2
 #model = models2.model_InceptionV3(inputs)
@@ -91,7 +91,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.001),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.0005),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
@@ -154,7 +154,7 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          callbacks=callbacksLearningRate,
+          #callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,

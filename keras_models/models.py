@@ -406,8 +406,20 @@ def model_first_3(inputs):
         pool_size=2,
         strides=1
     )(x)
+   
+    # add
     x = layers.BatchNormalization()(x)
+    x = layers.Conv2D(
+        filters=16,
+        kernel_size=(3, 3),
+        strides=(1, 1),
+        padding='SAME',
+        use_bias=True,
+        activation='tanh'
+    )(x)
+    #---
 
+    x = layers.BatchNormalization()(x)
     x = layers.Conv2D(
         filters=16,
         kernel_size=(3, 3),
@@ -434,8 +446,8 @@ def model_first_3(inputs):
         pool_size=2,
         strides=1
     )(x)
+    
     x = layers.BatchNormalization()(x)
-
     x = layers.Conv2D(
         filters=32,
         kernel_size=(3, 3),
@@ -444,12 +456,23 @@ def model_first_3(inputs):
         use_bias=True,
         activation='tanh'
     )(x)
+    # add
+    x = layers.BatchNormalization()(x)
+    x = layers.Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        strides=(2, 2),
+        padding='SAME',
+        use_bias=True,
+        activation='tanh'
+    )(x)
+    #--    
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
     )(x)
+    
     x = layers.BatchNormalization()(x)
-
     x = layers.Conv2D(
         filters=32,
         kernel_size=(3, 3),
@@ -458,7 +481,8 @@ def model_first_3(inputs):
         use_bias=True,
         activation='tanh'
     )(x)
-    x = layers.BatchNormalization()(x)
+    # add
+        x = layers.BatchNormalization()(x)
     x = layers.Conv2D(
         filters=32,
         kernel_size=(3, 3),
@@ -467,7 +491,7 @@ def model_first_3(inputs):
         use_bias=True,
         activation='tanh'
     )(x)
-
+    #---
     x = layers.MaxPool2D(
         pool_size=2,
         strides=1
@@ -480,6 +504,6 @@ def model_first_3(inputs):
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
 
-    model = keras.Model(inputs, x, name='model_first_3')
+    model = keras.Model(inputs, x, name='model_first2')
 
     return model
