@@ -482,7 +482,7 @@ def model_first_3(inputs):
         activation='tanh'
     )(x)
     # add
-        x = layers.BatchNormalization()(x)
+    x = layers.BatchNormalization()(x)
     x = layers.Conv2D(
         filters=32,
         kernel_size=(3, 3),
