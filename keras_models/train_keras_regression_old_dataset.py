@@ -46,11 +46,11 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(128, 128, 3))
 #model = models.model3(inputs)  # val_accuracy: 0.9277
 #model = models.model_first(inputs)
-model = models.model_first2(inputs)
+#model = models.model_first2(inputs)
 
 import models2
 #model = models2.model_InceptionV3(inputs)
-#model = models2.model_ResNet50(inputs)
+model = models2.model_ResNet50(inputs)
 #model = models2.model_MobileNetV2(inputs)
 
 # optimizer = tf.train.AdamOptimizer()
@@ -111,10 +111,14 @@ callbacks = [
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
+callbacksLearningRate = [   
+    keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
+]
+
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          #callbacks=callbacks,
+          callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
           steps_per_epoch=60,
