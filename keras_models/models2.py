@@ -80,9 +80,9 @@ def model_cnn_128(inputs):
 	x = maxpool(x)  # 4 x 4 x 16
 
 	x = layers.Flatten()(x)
-	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(1000, activation='elu')(x)
-	x = layers.Dropout(0.5)(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='elu')(x)
+	#x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid')(x)
 	model = keras.Model(inputs, x, name='cnn_128')
 	return model	
