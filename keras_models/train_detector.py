@@ -70,7 +70,7 @@ inputs = keras.layers.Input(shape=(
 
 import models2
 #model = models2.model_cnn_224(inputs)
-model = models2.model_cnn_128(inputs)
+model = models2.model_cnn_128_v2(inputs)
 
 #model = models2.model_InceptionV3(inputs)
 #model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
