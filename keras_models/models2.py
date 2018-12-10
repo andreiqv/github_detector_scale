@@ -59,6 +59,8 @@ maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
 bn = lambda x: layers.BatchNormalization()(x)
 
 def model_cnn_128(inputs):
+	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
+	"""	
 	x = inputs 
 	x = conv(x, 8, 3)
 	#x = conv(x, 8, 3)
