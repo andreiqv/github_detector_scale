@@ -60,32 +60,29 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 def model_cnn_128(inputs):
 	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
+	with batchnorm: val_miou: 0.0750
 	"""	
 	x = inputs 
-	x = conv(x, 8, 3)
-	#x = conv(x, 8, 3)
+	x = conv(x, 8, 4)
+	x = conv(x, 8, 4)
 	x = maxpool(x)  # 64
-	x = bn(x)
-	x = conv(x, 16, 3)
-	#x = conv(x, 16, 3)
+	x = conv(x, 16, 4)
+	x = conv(x, 16, 4)
 	x = maxpool(x)  # 32
-	x = bn(x)
 	x = conv(x, 16, 3)
-	#x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 16
-	x = bn(x)
 	x = conv(x, 16, 3)
-	#x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 8
-	x = bn(x)
 	x = conv(x, 32, 3)
-	#x = conv(x, 32, 3)
+	x = conv(x, 32, 3)
 	x = maxpool(x)  # 4 x 4 x 16
 
 	x = layers.Flatten()(x)
-	#x = layers.Dropout(0.5)(x)
-	#x = layers.Dense(1000, activation='elu')(x)
-	#x = layers.Dropout(0.5)(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(1000, activation='elu')(x)
+	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid')(x)
 	model = keras.Model(inputs, x, name='cnn_128')
 	
