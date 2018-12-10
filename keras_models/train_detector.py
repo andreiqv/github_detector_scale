@@ -92,7 +92,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.0005),
+model.compile(optimizer=keras.optimizers.Adam(lr=0.01),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
@@ -120,14 +120,16 @@ if presence:
                             "../dataset/presence_test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using presence_train-bboxes{}x{}.tfrecords'.format(*image_shape))
-    train_steps, valid_steps = 299, 16  # no pictures with empty scales
+    train_steps = 299 * 128 / batch_size # no pictures with empty scales
+    valid_steps = 16  * 128 / batch_size # no pictures with empty scales
 
 else:
     dataset = TfrecordsDataset("../dataset/train-bboxes{}x{}.tfrecords".format(*image_shape), 
                             "../dataset/test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using train-bboxes{}x{}.tfrecords'.format(*image_shape))
-    train_steps, valid_steps = 469, 24    
+    train_steps = 469 * 128 / batch_size
+    valid_steps = 24  * 128 / batch_size 
 
 dataset.augment_train_dataset()
 
@@ -155,7 +157,7 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          #callbacks=callbacksLearningRate,
+          callbacks=callbacksLearningRate,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,
