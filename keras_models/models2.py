@@ -58,10 +58,11 @@ maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
 	
 bn = lambda x: layers.BatchNormalization()(x)
 
+
 def model_cnn_128(inputs):
 	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
 	with batchnorm: val_miou: 0.0750
-	add s=2: 0.7611 | val_miou: 0.7754
+	add s=2: 0.7611 | val_miou: 0.7842
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
@@ -90,6 +91,37 @@ def model_cnn_128(inputs):
 
 
 
+def model_cnn_128_v2(inputs):
+	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
+	with batchnorm: val_miou: 0.0750
+	add s=2: 0.7611 | val_miou: 0.7842
+	"""	
+	x = inputs 
+	x = conv(x, 8, 3, s=3)
+	x = conv(x, 8, 3, s=2)
+	x = maxpool(x)  # 64
+	x = conv(x, 16, 3, s=3)
+	x = conv(x, 16, 3, s=2)
+	x = maxpool(x)  # 32
+	x = conv(x, 16, 3, s=3)
+	x = conv(x, 16, 3, s=2)
+	x = maxpool(x)  # 16
+	x = conv(x, 16, 3, s=2)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 8
+	x = conv(x, 32, 3, s=2)
+	x = conv(x, 32, 3)
+	x = maxpool(x)  # 4 x 4 x 16
+
+	x = layers.Flatten()(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='elu')(x)
+	#x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs, x, name='cnn_128')
+	return model
+
+#--------
 
 def model_cnn_224(inputs):
 	x = inputs 
