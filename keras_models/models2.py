@@ -109,9 +109,9 @@ def model_cnn_128_v2(inputs):
 	x = conv(x, 16, 3, s=2)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 8
-	x = conv(x, 32, 3, s=2)
-	x = conv(x, 32, 3)
-	x = maxpool(x)  # 4 x 4 x 16
+	#x = conv(x, 32, 3, s=2)
+	#x = conv(x, 32, 3)
+	#x = maxpool(x)  # 4 x 4 x 16
 
 	x = layers.Flatten()(x)
 	#x = layers.Dropout(0.5)(x)
