@@ -116,15 +116,15 @@ batch_size = 128  # 256
 #                           image_channels, 256)
 
 if presence:
-    dataset = TfrecordsDataset("../dataset/presence_train-bboxes128x128.tfrecords", 
-                            "../dataset/presence_test-bboxes128x128.tfrecords", 
+    dataset = TfrecordsDataset("../dataset/presence_train-bboxes{}x{}.tfrecords".format(*image_shape), 
+                            "../dataset/presence_test-bboxes{}x{}.tfrecords".format(*image_shape_, 
                             image_shape, image_channels, batch_size)
     print('Using presence_train-bboxes128x128.tfrecords')
     train_steps, valid_steps = 299, 16  # no pictures with empty scales
 
 else:
-    dataset = TfrecordsDataset("../dataset/train-bboxes128x128.tfrecords", 
-                            "../dataset/test-bboxes128x128.tfrecords", 
+    dataset = TfrecordsDataset("../dataset/train-bboxes{}x{}.tfrecords".format(*image_shape), 
+                            "../dataset/test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using train-bboxes128x128.tfrecords')
     train_steps, valid_steps = 469, 24    
