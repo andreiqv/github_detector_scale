@@ -50,7 +50,7 @@ def conv(x, f, k, s=1):
 		kernel_size=(k, k),
 		strides=(s, s),
 		padding='SAME',
-		activation='sigmoid', # relu
+		activation='relu', # relu
 		use_bias=True)(x)
 	return x
 
@@ -63,19 +63,19 @@ def model_cnn_128(inputs):
 	with batchnorm: val_miou: 0.0750
 	"""	
 	x = inputs 
-	x = conv(x, 8, 4)
+	x = conv(x, 8, 4, k=2)
 	x = conv(x, 8, 4)
 	x = maxpool(x)  # 64
-	x = conv(x, 16, 4)
+	x = conv(x, 16, 4, k=2)
 	x = conv(x, 16, 4)
 	x = maxpool(x)  # 32
-	x = conv(x, 16, 3)
+	x = conv(x, 16, 3, k=2)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 16
-	x = conv(x, 16, 3)
+	x = conv(x, 16, 3, k=2)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 8
-	x = conv(x, 32, 3)
+	x = conv(x, 32, 3, k=2)
 	x = conv(x, 32, 3)
 	x = maxpool(x)  # 4 x 4 x 16
 
