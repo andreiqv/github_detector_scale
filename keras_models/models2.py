@@ -97,13 +97,13 @@ def model_cnn_128_v2(inputs):
 	add s=2: 0.7611 | val_miou: 0.7842
 	"""	
 	x = inputs 
-	x = conv(x, 8, 3, s=3)
+	x = conv(x, 8, 3, s=2)
 	x = conv(x, 8, 3, s=2)
 	x = maxpool(x)  # 64
-	x = conv(x, 16, 3, s=3)
+	x = conv(x, 16, 3, s=2)
 	x = conv(x, 16, 3, s=2)
 	x = maxpool(x)  # 32
-	x = conv(x, 16, 3, s=3)
+	x = conv(x, 16, 3, s=2)
 	x = conv(x, 16, 3, s=2)
 	x = maxpool(x)  # 16
 	x = conv(x, 16, 3, s=2)
