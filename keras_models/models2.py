@@ -40,3 +40,47 @@ def model_MobileNetV2(inputs):
 	x = layers.Dense(5, activation='sigmoid')(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')
 	return model	
+
+
+# --------------------
+
+def conv(x, f, k):
+	x = layers.Conv2D(
+		filters=f,
+		kernel_size=(k, k),
+		strides=(1, 1),
+		padding='SAME',
+		activation='relu',
+		use_bias=True)(x)
+	return x
+
+maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
+	
+bn = lambda x: layers.BatchNormalization()(x)
+
+def model_cnn_1(inputs):
+	x = inputs 
+	x = conv(x, 8, 3)
+	x = conv(x, 8, 3)
+	x = maxpool(x)  # 112
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 56
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 28
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 14
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 7 x 7 x 16
+
+	x = layers.Flatten()(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='elu')(x)
+	#x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs, x, name='cnn_1')
+	
+	return model	
