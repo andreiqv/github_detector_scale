@@ -44,13 +44,13 @@ def model_MobileNetV2(inputs):
 
 # --------------------
 
-def conv(x, f, k):
+def conv(x, f, k, s=1):
 	x = layers.Conv2D(
 		filters=f,
 		kernel_size=(k, k),
-		strides=(1, 1),
+		strides=(s, s),
 		padding='SAME',
-		activation='tanh',
+		activation='relu', # relu
 		use_bias=True)(x)
 	return x
 
@@ -60,14 +60,14 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 def model_cnn_1(inputs):
 	x = inputs 
-	x = conv(x, 8, 3)
-	x = conv(x, 8, 3)
+	x = conv(x, 8, 5)
+	x = conv(x, 8, 5)
 	x = maxpool(x)  # 112
-	x = conv(x, 16, 3)
-	x = conv(x, 16, 3)
+	x = conv(x, 16, 5)
+	x = conv(x, 16, 5)
 	x = maxpool(x)  # 56
-	x = conv(x, 16, 3)
-	x = conv(x, 16, 3)
+	x = conv(x, 16, 5)
+	x = conv(x, 16, 5)
 	x = maxpool(x)  # 28
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
