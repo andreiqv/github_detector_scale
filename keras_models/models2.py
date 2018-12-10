@@ -58,16 +58,43 @@ maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
 	
 bn = lambda x: layers.BatchNormalization()(x)
 
-def model_cnn_1(inputs):
+def model_cnn_128(inputs):
 	x = inputs 
-	x = conv(x, 8, 5)
-	x = conv(x, 8, 5)
+	x = conv(x, 8, 3)
+	x = conv(x, 8, 3)
+	x = maxpool(x)  # 64
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 32
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 16
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 8
+	x = conv(x, 32, 3)
+	x = conv(x, 32, 3)
+	x = maxpool(x)  # 4 x 4 x 16
+
+	x = layers.Flatten()(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='elu')(x)
+	#x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs, x, name='cnn_128')
+	
+	return model	
+
+def model_cnn_224(inputs):
+	x = inputs 
+	x = conv(x, 8, 3)
+	x = conv(x, 8, 3)
 	x = maxpool(x)  # 112
-	x = conv(x, 16, 5)
-	x = conv(x, 16, 5)
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 56
-	x = conv(x, 16, 5)
-	x = conv(x, 16, 5)
+	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 28
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
@@ -81,11 +108,13 @@ def model_cnn_1(inputs):
 	#x = layers.Dense(1000, activation='elu')(x)
 	#x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid')(x)
-	model = keras.Model(inputs, x, name='cnn_1')
+	model = keras.Model(inputs, x, name='cnn_224')
 	
 	return model	
 
 """
+model_cnn_224
+
 0/1: Epoch 9/500 - loss: 0.3312 - accuracy: 0.9556 - miou: 0.6948 
 - val_loss: 0.3902 - val_accuracy: 0.9560 - val_miou: 0.6924
 

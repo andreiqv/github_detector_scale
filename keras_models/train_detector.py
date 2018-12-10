@@ -29,7 +29,8 @@ else:
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-image_shape = (224, 224)
+image_shape = (128, 128)
+#image_shape = (224, 224)
 image_channels = 3
 
 K = keras.backend
@@ -68,7 +69,9 @@ inputs = keras.layers.Input(shape=(
 #model = models.model_first_3(inputs)
 
 import models2
-model = models2.model_cnn_1(inputs)
+#model = models2.model_cnn_224(inputs)
+model = models2.model_cnn_128(inputs)
+
 #model = models2.model_InceptionV3(inputs)
 #model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
 #model = models2.model_MobileNetV2(inputs)
