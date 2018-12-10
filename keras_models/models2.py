@@ -50,7 +50,7 @@ def conv(x, f, k):
 		kernel_size=(k, k),
 		strides=(1, 1),
 		padding='SAME',
-		activation='relu',
+		activation='tanh',
 		use_bias=True)(x)
 	return x
 
@@ -84,3 +84,12 @@ def model_cnn_1(inputs):
 	model = keras.Model(inputs, x, name='cnn_1')
 	
 	return model	
+
+"""
+0/1: Epoch 9/500 - loss: 0.3312 - accuracy: 0.9556 - miou: 0.6948 
+- val_loss: 0.3902 - val_accuracy: 0.9560 - val_miou: 0.6924
+
+1: Epoch 6/500 - 454s 379ms/step - loss: 0.0011 - accuracy: 0.9978 - miou: 0.8414 
+- val_loss: 0.0060 - val_accuracy: 0.9980 - val_miou: 0.7043
+
+"""
