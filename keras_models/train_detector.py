@@ -29,7 +29,7 @@ else:
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-image_shape = (128, 128)
+image_shape = (224, 224)
 image_channels = 3
 
 K = keras.backend
@@ -56,7 +56,8 @@ def lr_scheduler(epoch, lr):
 
 
 
-inputs = keras.layers.Input(shape=(128, 128, 3))
+inputs = keras.layers.Input(shape=(
+    image_shape[0], image_shape[1], image_channels))
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436
