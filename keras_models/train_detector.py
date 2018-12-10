@@ -120,16 +120,16 @@ if presence:
                             "../dataset/presence_test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using presence_train-bboxes{}x{}.tfrecords'.format(*image_shape))
-    train_steps = 299 * 128 / batch_size # no pictures with empty scales
-    valid_steps = 16  * 128 / batch_size # no pictures with empty scales
+    train_steps = 299 * 128 // batch_size # no pictures with empty scales
+    valid_steps = 16  * 128 // batch_size # no pictures with empty scales
 
 else:
     dataset = TfrecordsDataset("../dataset/train-bboxes{}x{}.tfrecords".format(*image_shape), 
                             "../dataset/test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using train-bboxes{}x{}.tfrecords'.format(*image_shape))
-    train_steps = 469 * 128 / batch_size
-    valid_steps = 24  * 128 / batch_size 
+    train_steps = 469 * 128 // batch_size
+    valid_steps = 24  * 128 // batch_size 
 
 dataset.augment_train_dataset()
 
