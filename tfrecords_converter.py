@@ -206,7 +206,8 @@ class TfrecordsDataset:
 if __name__ == '__main__':
     test_percent = 0.2
     #image_size = (128, 96)
-    image_size = (128, 128)
+    #image_size = (128, 128)
+    image_size = (224, 224)
     channels_count = 3
 
     dataset_list = 'dataset-bboxes.list'
