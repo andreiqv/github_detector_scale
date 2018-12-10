@@ -61,6 +61,7 @@ bn = lambda x: layers.BatchNormalization()(x)
 def model_cnn_128(inputs):
 	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
 	with batchnorm: val_miou: 0.0750
+	add s=2: 0.7611 | val_miou: 0.7754
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
