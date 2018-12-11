@@ -92,7 +92,9 @@ def model_cnn_128(inputs):
 
 
 def model_cnn_128_v2(inputs):
-	""" 
+	""" Epoch 67/500 58s 98ms/step -
+	 loss: 0.0021 - accuracy: 0.9967 - miou: 0.8091 - 
+	 val_loss: 0.0029 - val_accuracy: 0.9967 - val_miou: 0.7914
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
@@ -123,10 +125,6 @@ def model_cnn_128_v2(inputs):
 
 def model_cnn_128_v3(inputs):
 	""" 
-	Epoch 318/500 - 65s 109ms/step 
-	- loss: 7.0415e-04 - accuracy: 0.9992 - miou: 0.8630 
-	- val_loss: 0.0038 - val_accuracy: 0.9992 - val_miou: 0.7706
-
 	"""	
 	x = inputs 
 	x = conv(x, 8, 5, s=2)
