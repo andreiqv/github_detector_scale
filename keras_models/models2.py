@@ -101,6 +101,11 @@ def model_cnn_128_v2(inputs):
  - loss: 0.0011 - accuracy: 0.9996 - miou: 0.8393 
  - val_loss: 0.0038 - val_accuracy: 0.9996 - val_miou: 0.7722
 
+ with batch normalization:
+ Epoch 70/500 - loss: 0.0015 - accuracy: 0.9990 - miou: 0.8209 
+ - val_loss: 0.0036 - val_accuracy: 0.9990 - val_miou: 0.7712
+
+
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
@@ -168,6 +173,42 @@ def model_cnn_128_v3(inputs):
 	x = layers.Dense(5, activation='sigmoid')(x)
 	model = keras.Model(inputs, x, name='cnn_128')
 	return model	
+
+
+
+def model_cnn_128_v4(inputs):
+	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
+	with batchnorm: val_miou: 0.0750
+	add s=2: 0.7611 | val_miou: 0.7842
+	"""	
+	x = inputs 
+	x = conv(x, 16, 4, s=2)
+	x = conv(x, 16, 4)
+	x = maxpool(x)  # 64
+	x = conv(x, 32, 4, s=2)
+	x = conv(x, 16, 4)
+	x = maxpool(x)  # 32
+	x = conv(x, 32, 3, s=2)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 16
+	x = conv(x, 32, 3, s=2)
+	x = conv(x, 16, 3)
+	x = maxpool(x)  # 8
+	x = conv(x, 32, 3, s=2)
+	x = conv(x, 32, 3)
+	x = maxpool(x)  # 4 x 4 x 16
+
+	x = layers.Flatten()(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='elu')(x)
+	#x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs, x, name='cnn_128')
+	return model	
+
+
+
+
 #--------
 
 def model_cnn_224(inputs):
