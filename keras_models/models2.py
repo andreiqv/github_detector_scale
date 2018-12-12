@@ -50,7 +50,7 @@ def conv(x, f, k, s=1):
 		kernel_size=(k, k),
 		strides=(s, s),
 		padding='SAME',
-		activation='sigmoid', # relu
+		activation='selu', # relu
 		use_bias=True)(x)
 	return x
 
