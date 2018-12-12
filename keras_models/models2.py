@@ -50,7 +50,7 @@ def conv(x, f, k, s=1):
 		kernel_size=(k, k),
 		strides=(s, s),
 		padding='SAME',
-		activation='relu', # relu
+		activation='sigmoid', # relu
 		use_bias=True)(x)
 	return x
 
@@ -209,9 +209,10 @@ def model_cnn_128_v4(inputs):
 
 
 def model_cnn_128_v5(inputs):
-	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
-	with batchnorm: val_miou: 0.0750
-	add s=2: 0.7611 | val_miou: 0.7842
+	""" Epoch 278/500 - 58s 98ms/step 
+	- loss: 9.0972e-04 - accuracy: 0.9998 - miou: 0.8483 
+	- val_loss: 0.0039 - val_accuracy: 0.9998 - val_miou: 0.7622
+
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
