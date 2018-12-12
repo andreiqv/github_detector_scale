@@ -95,19 +95,29 @@ def model_cnn_128_v2(inputs):
 	""" Epoch 67/500 58s 98ms/step -
 	 loss: 0.0021 - accuracy: 0.9967 - miou: 0.8091 - 
 	 val_loss: 0.0029 - val_accuracy: 0.9967 - val_miou: 0.7914
+
+	 Epoch 500/500
+598/598 [==============================] - 58s 97ms/step
+ - loss: 0.0011 - accuracy: 0.9996 - miou: 0.8393 
+ - val_loss: 0.0038 - val_accuracy: 0.9996 - val_miou: 0.7722
+
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
 	x = conv(x, 8, 4)
 	x = maxpool(x)  # 64
+	x = bn(x)
 	x = conv(x, 16, 4, s=2)
 	x = conv(x, 16, 4)
 	x = maxpool(x)  # 32
+	x = bn(x)
 	x = conv(x, 16, 3, s=2)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 16
+	x = bn(x)
 	x = conv(x, 16, 3, s=2)
 	x = conv(x, 16, 3)
+	x = bn(x)
 	x = maxpool(x)  # 8
 	x = conv(x, 32, 3, s=2)
 	x = conv(x, 32, 3)
@@ -124,7 +134,10 @@ def model_cnn_128_v2(inputs):
 
 
 def model_cnn_128_v3(inputs):
-	""" 
+	""" Epoch 107/500
+598/598 [==============================] - 58s 97ms/step 
+- loss: 0.0016 - accuracy: 0.9983 - miou: 0.8175 
+- val_loss: 0.0034 - val_accuracy: 0.9983 - val_miou: 0.7782
 	"""	
 	x = inputs 
 	x = conv(x, 8, 5, s=2)
