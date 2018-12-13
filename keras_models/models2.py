@@ -68,8 +68,6 @@ def model_cnn_128(inputs):
 	598/598 [==============================] 
 	- 59s 99ms/step - loss: 0.0015 - accuracy: 0.9993 - miou: 0.8205 
 	- val_loss: 0.0037 - val_accuracy: 0.9993 - val_miou: 0.7657
-	
-
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
@@ -260,17 +258,21 @@ def model_cnn_224(inputs):
 	x = conv(x, 8, 3)
 	x = conv(x, 8, 3)
 	x = maxpool(x)  # 112
+	x = bn(x)
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 56
+	x = bn(x)
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 28
+	x = bn(x)
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 14
-	x = conv(x, 16, 3)
-	x = conv(x, 16, 3)
+	x = bn(x)
+	x = conv(x, 32, 3)
+	x = conv(x, 32, 3)
 	x = maxpool(x)  # 7 x 7 x 16
 
 	x = layers.Flatten()(x)
