@@ -65,11 +65,11 @@ inputs = keras.layers.Input(shape=(
 #model = models.model3(inputs) 
 #model = models.model4(inputs) 
 #model = models.model_first(inputs)  
-model = models.model_first2(inputs) 
+#model = models.model_first2(inputs) 
 #model = models.model_first_3(inputs)
 
 import models2
-#model = models2.model_cnn_224(inputs)
+model = models2.model_cnn_224(inputs)
 
 #model = models2.model_InceptionV3(inputs)
 #model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
