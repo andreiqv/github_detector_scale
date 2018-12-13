@@ -63,6 +63,13 @@ def model_cnn_128(inputs):
 	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
 	with batchnorm: val_miou: 0.0750
 	add s=2: 0.7611 | val_miou: 0.7842
+	
+	Epoch 499/500
+	598/598 [==============================] 
+	- 59s 99ms/step - loss: 0.0015 - accuracy: 0.9993 - miou: 0.8205 
+	- val_loss: 0.0037 - val_accuracy: 0.9993 - val_miou: 0.7657
+	
+
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4, s=2)
@@ -152,19 +159,24 @@ def model_cnn_128_v3(inputs):
 	x = conv(x, 16, 5, s=2)
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 32
 	x = conv(x, 16, 5, s=2)
+	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
 	x = maxpool(x)  # 16
 	x = conv(x, 16, 5, s=2)
 	x = conv(x, 16, 3)
 	x = conv(x, 16, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 8
 	x = conv(x, 32, 5, s=2)
 	x = conv(x, 32, 3)
 	x = conv(x, 32, 3)
+	x = conv(x, 16, 3)
 	x = maxpool(x)  # 4 x 4 x 16
+	x = conv(x, 16, 3)
 
 	x = layers.Flatten()(x)
 	#x = layers.Dropout(0.5)(x)
