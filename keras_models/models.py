@@ -196,6 +196,12 @@ def model3(inputs):
 
 
 def model4(inputs):  # added
+"""
+Epoch 31/500 - loss: 0.0023 - accuracy: 0.9846 - miou: 0.7896 
+- val_loss: 0.0032 - val_accuracy: 0.9848 - val_miou: 0.7774
+"""
+
+
     x = darknet_block(32, 3, 1, 'SAME', inputs)
     x = darknet_block(32, 3, 2, 'VALID', x)
     x = darknet_block(64, 3, 1, 'SAME',  x)
