@@ -322,6 +322,12 @@ def model_first(inputs):
 
 
 def model_first2(inputs):
+    """
+    224x224:
+    Epoch 232/500- 199s 166ms/step - loss: 6.0059e-04 - accuracy: 1.0000 
+    - miou: 0.8748 - val_loss: 0.0030 - val_accuracy: 1.0000 - val_miou: 0.7983
+
+    """
     x = layers.Conv2D(
         filters=8,
         kernel_size=(3, 3),

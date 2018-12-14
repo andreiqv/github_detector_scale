@@ -62,10 +62,10 @@ inputs = keras.layers.Input(shape=(
 
 #model = models.model1(inputs) 
 #model = models.model2(inputs) 
-#model = models.model3(inputs) 
+model = models.model3(inputs) 
 #model = models.model4(inputs) 
 #model = models.model_first(inputs)  
-model = models.model_first2(inputs) 
+#model = models.model_first2(inputs)  # val_miou: 0.7990
 #model = models.model_first_3(inputs)
 
 import models2
