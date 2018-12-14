@@ -151,6 +151,15 @@ callbacks = [
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 
+callbacksSave = [
+    keras.callbacks.ModelCheckpoint(
+        "./checkpoints/model_test-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        save_best_only=True,
+        monitor='val_miou',
+        mode='max'
+    )
+]
+
 callbacksLearningRate = [   
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
