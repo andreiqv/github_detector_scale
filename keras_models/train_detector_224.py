@@ -113,7 +113,7 @@ model.compile(optimizer=keras.optimizers.Adam(lr=0.0002),
 
 # ------
 
-batch_size = 32  # 128  (set 32 if size==224)
+batch_size = 16  # 128  (set 32 if size==224)
 
 #dataset = TfrecordsDataset("../dataset/train-full128x128.tfrecords", "../dataset/test-full128x128.tfrecords", image_shape,
 #                           image_channels, 256)
