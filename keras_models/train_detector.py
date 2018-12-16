@@ -152,10 +152,6 @@ callbacks = [
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 
-callbacksLearningRate = [   
-    keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
-]
-
 callbacksSave = [   
     keras.callbacks.ModelCheckpoint(
         "./checkpoints/model_first_3-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
@@ -165,13 +161,16 @@ callbacksSave = [
     )
 ]
 
+callbacksLearningRate = [   
+    keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
+]
 
 
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
-          callbacks=callbacksSave,
+          #callbacks=callbacksSave,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,
