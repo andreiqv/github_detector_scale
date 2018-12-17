@@ -66,9 +66,10 @@ inputs = keras.layers.Input(shape=(
 #model = models.model4(inputs)  # val_miou:  0.7663 -> 0.7925
 #model = models.model_first(inputs)  # val_miou: 0.7519 ->  0.7715
 #model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
-model = models.model_first2_1(inputs)
+#model = models.model_first2_1(inputs)
 
 import models2
+model = models2.model_first_3(inputs)
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -141,13 +142,13 @@ dataset.augment_train_dataset()
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_first_2-1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_first_3-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_first_2-1'
+        log_dir='./tensorboard/model_first_3'
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]

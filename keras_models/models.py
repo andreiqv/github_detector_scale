@@ -322,6 +322,11 @@ def model_first(inputs):
 
 
 def model_first2(inputs):
+    """ Epoch 69/500 - 65s 108ms/step 
+    - loss: 0.0028 - accuracy: 1.0000 - miou: 0.7747 
+    - val_loss: 0.0033 - val_accuracy: 1.0000 - val_miou: 0.7833
+
+    """
     x = layers.Conv2D(
         filters=8,
         kernel_size=(3, 3),
@@ -506,118 +511,4 @@ def model_first2_1(inputs):
 
 
 
-def model_first_3(inputs):
-    """ val_accuracy: 0.9999 - val_miou: 0.7900
-    """
-    x = layers.Conv2D(
-        filters=8,
-        kernel_size=(3, 3),
-        strides=(1, 1),
-        padding='VALID',
-        activation='tanh',
-        use_bias=True)(inputs)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-   
-    # add
-    x = layers.BatchNormalization()(x)
-    x = layers.Conv2D(
-        filters=16,
-        kernel_size=(3, 3),
-        strides=(1, 1),
-        padding='SAME',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    #---
 
-    x = layers.BatchNormalization()(x)
-    x = layers.Conv2D(
-        filters=16,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-
-    x = layers.Conv2D(
-        filters=16,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    
-    x = layers.BatchNormalization()(x)
-    x = layers.Conv2D(
-        filters=32,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    # add
-    x = layers.BatchNormalization()(x)
-    x = layers.Conv2D(
-        filters=32,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='SAME',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    #--    
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    
-    x = layers.BatchNormalization()(x)
-    x = layers.Conv2D(
-        filters=32,
-        kernel_size=(3, 3),
-        strides=(1, 1),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    # add
-    x = layers.BatchNormalization()(x)
-    x = layers.Conv2D(
-        filters=32,
-        kernel_size=(3, 3),
-        strides=(1, 1),
-        padding='SAME',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    #---
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Flatten()(x)
-    x = layers.Dropout(0.5)(x)
-    x = layers.Dense(1000, activation='sigmoid')(x)
-    x = layers.Dropout(0.5)(x)
-    x = layers.Dense(5, activation='sigmoid')(x)
-    #x = layers.Dense(5, activation=None)(x)
-
-    model = keras.Model(inputs, x, name='model_first2')
-
-    return model    
