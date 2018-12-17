@@ -66,7 +66,7 @@ inputs = keras.layers.Input(shape=(
 #model = models.model4(inputs)  # val_miou:  0.7663 -> 0.7925
 #model = models.model_first(inputs)  # val_miou: 0.7519 ->  0.7715
 #model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
-model = models.model_first_3(inputs)
+model = models.model_first2_1(inputs)
 
 import models2
 #model = models2.model_cnn_128_v2(inputs)
