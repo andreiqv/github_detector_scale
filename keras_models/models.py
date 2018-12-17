@@ -321,7 +321,7 @@ def model_first(inputs):
     return model
 
 
-def model_first2(inputs):
+def model_first2_1(inputs):
     """
     224x224:
     Epoch 232/500- 199s 166ms/step - loss: 6.0059e-04 - accuracy: 1.0000 
@@ -403,9 +403,10 @@ def model_first2(inputs):
     x = layers.Dense(5, activation='sigmoid')(x)
     #x = layers.Dense(5, activation=None)(x)
 
-    model = keras.Model(inputs, x, name='model_first2')
+    model = keras.Model(inputs, x, name='model_first2_1')
 
     return model
+
 
 
 def model_first_3(inputs):
@@ -522,87 +523,4 @@ def model_first_3(inputs):
 
     model = keras.Model(inputs, x, name='model_first2')
 
-    return model
-
-def model_first2_1(inputs):
-    """
-   
-    """
-    x = layers.Conv2D(
-        filters=8,
-        kernel_size=(3, 3),
-        strides=(1, 1),
-        padding='VALID',
-        activation='tanh',
-        use_bias=True)(inputs)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-
-    x = layers.Conv2D(
-        filters=16,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-
-    x = layers.Conv2D(
-        filters=16,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-
-    x = layers.Conv2D(
-        filters=32,
-        kernel_size=(3, 3),
-        strides=(2, 2),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-
-    x = layers.Conv2D(
-        filters=32,
-        kernel_size=(3, 3),
-        strides=(1, 1),
-        padding='VALID',
-        use_bias=True,
-        activation='tanh'
-    )(x)
-    x = layers.MaxPool2D(
-        pool_size=2,
-        strides=1
-    )(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Flatten()(x)
-    x = layers.Dropout(0.5)(x)
-    x = layers.Dense(1000, activation='sigmoid')(x)
-    x = layers.Dropout(0.5)(x)
-    x = layers.Dense(5, activation='sigmoid')(x)
-    #x = layers.Dense(5, activation=None)(x)
-
-    model = keras.Model(inputs, x, name='model_first2')
-
-    return model
+    return model    

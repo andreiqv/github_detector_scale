@@ -65,8 +65,8 @@ inputs = keras.layers.Input(shape=(
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
 #model = models.model4(inputs)  # val_miou:  0.7663 -> 0.7925
 #model = models.model_first(inputs)  # val_miou: 0.7519 ->  0.7715
-#model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
-model = models.model_first2_1(inputs)
+model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
+#model = models.model_first2_1(inputs)
 
 import models2
 #model = models2.model_cnn_128_v2(inputs)
@@ -170,7 +170,7 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
-          #callbacks=callbacksSave,
+          callbacks=callbacksSave,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,
