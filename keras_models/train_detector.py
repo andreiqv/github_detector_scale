@@ -141,13 +141,13 @@ dataset.augment_train_dataset()
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_test-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_first_3-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_test'
+        log_dir='./tensorboard/model_first_3'
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
