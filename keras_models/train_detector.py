@@ -69,7 +69,7 @@ inputs = keras.layers.Input(shape=(
 #model = models.model_first2_1(inputs)
 
 import models2
-model = models2.model_first_3(inputs)
+model = models2.model_first_3_1(inputs)
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 

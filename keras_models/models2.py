@@ -60,7 +60,12 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 
 def model_first_3(inputs):
+	""" model_first_3 == model_first2_1
 
+	Epoch 35/500 - 65s 109ms/step 
+	- loss: 0.0022 - accuracy: 0.9996 - miou: 0.7954 
+	- val_loss: 0.0030 - val_accuracy: 0.9996 - val_miou: 0.7978
+	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='VALID')
 	x = maxpool(x)  # 64
@@ -88,6 +93,43 @@ def model_first_3(inputs):
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model
+
+def model_first_3_1(inputs):
+	""" model_first_3 == model_first2_1
+
+	Epoch 35/500 - 65s 109ms/step 
+	- loss: 0.0022 - accuracy: 0.9996 - miou: 0.7954 
+	- val_loss: 0.0030 - val_accuracy: 0.9996 - val_miou: 0.7978
+	"""
+	x = inputs
+	x = conv(x, f=8, k=3, s=1, p='VALID')
+	x = maxpool(x)  # 64
+	#x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	#x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = maxpool(x)
+	#x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = maxpool(x)
+	#x = bn(x)
+	x = conv(x, f=32, k=3, s=2, p='VALID')
+	x = maxpool(x)
+	#x = bn(x)
+	x = conv(x, f=32, k=3, s=1, p='VALID')
+	x = maxpool(x)
+	#x = bn(x)	
+	x = layers.BatchNormalization()(x)
+	x = layers.Flatten()(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(1000, activation='sigmoid')(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	#x = layers.Dense(5, activation=None)(x)
+	model = keras.Model(inputs, x, name='model_first_3')
+	return model	
+
+
 
 def model_cnn_128(inputs):
 	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
