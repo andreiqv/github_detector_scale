@@ -182,7 +182,8 @@ if __name__ == '__main__':
 	#pb_file_name = 'saved_model.pb' # output_graph.pb
 
 	# no compress
-	image = '/home/pi/work/images/img_1_0_2018-08-04-09-37-300672_5.jpg'
+	image_file = '/home/pi/work/images/img_1_0_2018-08-04-09-37-300672_5.jpg'
+	image = get_image_as_array(image_file)
 	inference_with_graph(graph_def, image)
 	#inference_images_with_graph(graph_def, filenames)		
 
