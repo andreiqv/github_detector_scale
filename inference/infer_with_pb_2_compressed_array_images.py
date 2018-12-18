@@ -173,6 +173,7 @@ if __name__ == '__main__':
 
 
 	#labels = get_labels('labels.txt')
+	pb_file = FROZEN_FPATH
 	graph_def = get_frozen_graph(pb_file)
 
 	#modes = ['FP32', 'FP16', 0]
