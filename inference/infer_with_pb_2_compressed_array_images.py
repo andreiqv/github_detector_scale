@@ -12,7 +12,7 @@ from tensorflow.python.platform import gfile
 from PIL import Image
 import timer
 
-import tensorflow.contrib.tensorrt as trt
+#import tensorflow.contrib.tensorrt as trt
 
 
 use_hub_model = False
