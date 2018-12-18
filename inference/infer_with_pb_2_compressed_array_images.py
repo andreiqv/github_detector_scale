@@ -18,7 +18,7 @@ import timer
 use_hub_model = False
 
 if True:
-	FROZEN_FPATH = '/home/pi/work/pb/home/pi/work/pb/model_first_3-60-1.000-1.000[0.803].pb'
+	FROZEN_FPATH = '/home/pi/work/pb/model_first_3-60-1.000-1.000[0.803].pb'
 	ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE = [3, 128, 128]
 	INPUT_NODE = 'input_1'
@@ -182,7 +182,7 @@ if __name__ == '__main__':
 	#pb_file_name = 'saved_model.pb' # output_graph.pb
 
 	# no compress
-	image = '/home/pi/work/pb/home/pi/work/images/img_1_0_2018-08-04-09-37-300672_5.jpg'
+	image = '/home/pi/work/images/img_1_0_2018-08-04-09-37-300672_5.jpg'
 	inference_with_graph(graph_def, image)
 	#inference_images_with_graph(graph_def, filenames)		
 
