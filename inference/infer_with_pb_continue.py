@@ -124,7 +124,8 @@ def inference_with_graph(graph_def, image):
 				image = image_cam.resize(shape, Image.ANTIALIAS)
 				image_arr = np.array(image, dtype=np.float32) / 255.0				
 
-				pred = predictions.eval(feed_dict={input_: [image_arr]})
+				pred_values = predictions.eval(feed_dict={input_: [image_arr]})
+				pred = preds_values[0]
 				print(pred)
 				timer.timer()
 				#time_res.append(0)
