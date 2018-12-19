@@ -73,9 +73,6 @@ def resnet18(inputs):
 	"""
 
 	x = inputs
-	x = maxpool(x)
-	x = maxpool(x)
-
 	
 	# input tensor is the 28x28 grayscale image
 	#input_tensor = Input((28, 28, 1))

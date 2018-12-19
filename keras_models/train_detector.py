@@ -81,14 +81,14 @@ import models2
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
 import models_resnet
-model = models_resnet.resnet18(inputs)
+#model = models_resnet.resnet18(inputs)
 
 #import models3
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-#model = resnet_v2.ResnetBuilder.build_resnet_18(
-#               (image_channels, image_shape[0], image_shape[1]), 5)
+model = resnet_v2.ResnetBuilder.build_resnet_18(
+               (image_channels, image_shape[0], image_shape[1]), 5)
 
 
 
@@ -151,20 +151,20 @@ dataset.augment_train_dataset()
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_first_3_1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_resnet18-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_first_3_1'
+        log_dir='./tensorboard/model_resnet18'
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 
 callbacksSave = [   
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_first_3_1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_resnet18-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
@@ -180,7 +180,7 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
-          #callbacks=callbacksSave,
+          callbacks=callbacksSave,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,
