@@ -91,9 +91,9 @@ def resnet18(inputs):
 	x = block(32)(x)					 # !!! <------- Uncomment for local evaluation
 
 	# F_6
-	# x = block(48, upscale=True)(x)	   # !!! <------- Uncomment for local evaluation
+	x = block(48, upscale=True)(x)	   # !!! <------- Uncomment for local evaluation
 	# F_7
-	# x = block(48)(x)					 # !!! <------- Uncomment for local evaluation
+	x = block(48)(x)					 # !!! <------- Uncomment for local evaluation
 
 	# last activation of the entire network's output
 	x = BatchNormalization()(x)
