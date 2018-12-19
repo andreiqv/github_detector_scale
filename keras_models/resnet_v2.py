@@ -12,8 +12,6 @@ from tensorflow.keras.activations import relu, softmax
 from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers
 
-from __future__ import division
-
 l2 = regularizers.l2
 
 
