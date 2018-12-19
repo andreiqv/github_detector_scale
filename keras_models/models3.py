@@ -8,7 +8,7 @@ def resnet(inpt, n):
 		print("ResNet depth invalid.")
 		return
 
-	num_conv = (n - 20) / 12 + 1
+	num_conv = (n - 20) // 12 + 1
 	layers = []
 
 	with tf.variable_scope('conv1'):
