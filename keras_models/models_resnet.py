@@ -58,7 +58,7 @@ def block(n_output, upscale=False):
 		
 		# F_l(x) = f(x) + H_l(x):
 		#return add([f, h])
-		return h
+		return tf.math.add(f, h)
 	
 	return block_func
 
