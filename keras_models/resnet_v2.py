@@ -1,6 +1,7 @@
 import numpy as np
 import six
 import tensorflow as tf
+from tensorflow import keras
 layers = keras.layers
 from keras import backend as K
 
