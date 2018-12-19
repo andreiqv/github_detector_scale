@@ -14,6 +14,8 @@ import timer
 
 from time import sleep
 import io
+from picamera import PiCamera
+from picamera.array import PiRGBArray
 # initialize the camera and grab a reference to the raw camera capture
 camera = PiCamera()
 camera.resolution = (640, 480)
