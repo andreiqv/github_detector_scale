@@ -103,6 +103,8 @@ def resnet18(inputs):
 	# 28x28x48 -> 1x48
 	x = GlobalAveragePooling2D()(x)
 
+	x = layers.Flatten()(x)
+
 	# dropout for more robust learning
 	x = Dropout(0.2)(x)
 
