@@ -8,6 +8,7 @@ import argparse
 
 import numpy as np
 from PIL import Image
+import time
 import timer
 
 from time import sleep
