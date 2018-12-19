@@ -36,6 +36,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	# show the frame
 	#cv2.imshow("Frame", image)
 	print(type(image))
+	timer.timer()
 	#key = cv2.waitKey(1) & 0xFF
  
 	# clear the stream in preparation for the next frame
