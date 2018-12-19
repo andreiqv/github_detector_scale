@@ -62,6 +62,7 @@ def block(n_output, upscale=False):
 	
 	return block_func
 
+
 def resnet18(inputs):
 
 	x = inputs
@@ -83,11 +84,11 @@ def resnet18(inputs):
 	# F_3
 	# H_3 is the function from the tensor of size 28x28x16 to the the tensor of size 28x28x32
 	# and we can't add together tensors of inconsistent sizes, so we use upscale=True
-	# x = block(32, upscale=True)(x)	   # !!! <------- Uncomment for local evaluation
+	x = block(32, upscale=True)(x)	   # !!! <------- Uncomment for local evaluation
 	# F_4
-	# x = block(32)(x)					 # !!! <------- Uncomment for local evaluation
+	x = block(32)(x)					 # !!! <------- Uncomment for local evaluation
 	# F_5
-	# x = block(32)(x)					 # !!! <------- Uncomment for local evaluation
+	x = block(32)(x)					 # !!! <------- Uncomment for local evaluation
 
 	# F_6
 	# x = block(48, upscale=True)(x)	   # !!! <------- Uncomment for local evaluation
