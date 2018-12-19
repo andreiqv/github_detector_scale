@@ -80,8 +80,11 @@ import models2
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
-import models_resnet
-model = models_resnet.resnet18(inputs)
+#import models_resnet
+#model = models_resnet.resnet18(inputs)
+
+import models3
+model = models3.resnet_keras(inputs)
 
 
 
