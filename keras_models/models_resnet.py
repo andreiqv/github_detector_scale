@@ -64,8 +64,14 @@ def block(n_output, upscale=False):
 
 
 def resnet18(inputs):
+	"""
+	https://www.kaggle.com/meownoid/tiny-resnet-with-keras-99-314
+	"""
 
 	x = inputs
+	x = maxpool(x)
+	x = maxpool(x)
+	
 	
 	# input tensor is the 28x28 grayscale image
 	#input_tensor = Input((28, 28, 1))
