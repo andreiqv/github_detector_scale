@@ -65,14 +65,13 @@ def block(n_output, upscale=False):
 def resnet18(inputs):
 
 	x = inputs
-
-	"""
+	
 	# input tensor is the 28x28 grayscale image
 	#input_tensor = Input((28, 28, 1))
 
-	input_tensor = inputs
 	# first conv2d with post-activation to transform the input data to some reasonable form
-	x = Conv2D(kernel_size=3, filters=16, strides=1, padding='SAME', kernel_regularizer=regularizers.l2(0.01))(input_tensor)
+	x = Conv2D(kernel_size=3, filters=16, strides=1, padding='SAME', 
+							kernel_regularizer=regularizers.l2(0.01))(x)
 	x = BatchNormalization()(x)
 	x = Activation(relu)(x)
 
@@ -113,13 +112,14 @@ def resnet18(inputs):
 	#model = Model(inputs=input_tensor, outputs=x)
 	#model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])	
 
-	"""
+	
 
 
 	#x = Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
 	#model = Model(inputs, x, name='resnet18')	
 	
+	"""
 	x = conv(x, f=8, k=3, s=1, p='VALID')
 	x = maxpool(x)  # 64
 	x = bn(x)
@@ -136,14 +136,14 @@ def resnet18(inputs):
 	x = bn(x)
 	x = conv(x, f=32, k=3, s=1, p='VALID')
 	x = maxpool(x)
-	x = bn(x)	
-	x = layers.BatchNormalization()(x)
+	x = bn(x)
+	"""
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(1000, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
-	model = keras.Model(inputs, x, name='model_first_3')
+	model = keras.Model(inputs, x, name='resnet')
 
 	return model
