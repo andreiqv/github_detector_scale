@@ -1,15 +1,21 @@
 # https://github.com/raghakot/keras-resnet
 """
 resnet18: 
+0)Epoch 00021: LearningRateScheduler reducing learning rate to 0.0003333333491658171.
+Epoch 21/500 - loss: 0.5142 - accuracy: 0.9797 - miou: 0.9210 
+- val_loss: 1.8849 - val_accuracy: 0.9801 - val_miou: 0.7929
+
 1) presence (1):
 Epoch 00087: LearningRateScheduler reducing learning rate to 9.876544208964333e-05.
 Epoch 87/500 - loss: 0.0013 - accuracy: 0.9998 - miou: 0.8669 
 - val_loss: 0.0030 - val_accuracy: 0.9998 - val_miou: 0.8124
 
-0)Epoch 00021: LearningRateScheduler reducing learning rate to 0.0003333333491658171.
-Epoch 21/500 - loss: 0.5142 - accuracy: 0.9797 - miou: 0.9210 
-- val_loss: 1.8849 - val_accuracy: 0.9801 - val_miou: 0.7929
+build_resnet_34:
+0) Epoch 16/500 - loss: 0.8229 - accuracy: 0.9736 - miou: 0.8844 
+- val_loss: 1.8881 - val_accuracy: 0.9741 - val_miou: 0.7911
 
+1) Epoch 27/500 - loss: 0.0035 - accuracy: 0.9995 - miou: 0.8072 
+- val_loss: 0.0062 - val_accuracy: 0.9995 - val_miou: 0.6569
 
 """
 
@@ -248,7 +254,7 @@ class ResnetBuilder(object):
 
 	@staticmethod
 	def build_resnet_18(input_shape, num_outputs):
-		return ResnetBuilder.build(input_shape, num_outputs, basic_block, [2, 2, 2, 2])
+		return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [2, 2, 2, 2])
 
 	@staticmethod
 	def build_resnet_34(input_shape, num_outputs):

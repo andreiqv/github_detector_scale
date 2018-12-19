@@ -87,7 +87,7 @@ import models_resnet
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-model = resnet_v2.ResnetBuilder.build_resnet_34(
+model = resnet_v2.ResnetBuilder.build_resnet_18(
                (image_channels, image_shape[0], image_shape[1]), 5)
 
 
