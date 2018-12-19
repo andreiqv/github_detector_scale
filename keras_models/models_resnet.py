@@ -33,7 +33,7 @@ def block(n_output, upscale=False):
 	
 	# keras functional api: return the function of type
 	# Tensor -> Tensor
-	def func_block(x):
+	def block_func(x):
 		
 		# H_l(x):
 		# first pre-activation
@@ -58,9 +58,9 @@ def block(n_output, upscale=False):
 		
 		# F_l(x) = f(x) + H_l(x):
 		#return add([f, h])
-		return h + h
+		return h
 	
-	return func_block
+	return block_func
 
 def resnet18(inputs):
 
