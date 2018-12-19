@@ -125,7 +125,7 @@ def inference_with_graph(graph_def, image):
 				image_arr = np.array(image, dtype=np.float32) / 255.0				
 
 				pred_values = predictions.eval(feed_dict={input_: [image_arr]})
-				pred = preds_values[0]
+				pred = pred_values[0]
 				print(pred)
 				timer.timer()
 				#time_res.append(0)
