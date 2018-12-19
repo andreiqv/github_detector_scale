@@ -116,6 +116,9 @@ def inference_with_graph(graph_def, image):
 				# grab the raw NumPy array representing the image - this array
 				# will be 3D, representing the width, height, and # of channels
 				image_arr = frame.array
+				# clear the stream in preparation for the next frame
+				rawCapture.truncate(0)			
+
 				image = Image.fromarray(np.uint8(image_arr))				
 				shape = tuple(INPUT_SIZE[1:])
 				image = image.resize(shape, Image.ANTIALIAS)
@@ -126,6 +129,7 @@ def inference_with_graph(graph_def, image):
 				timer.timer()
 				#time_res.append(0)
 				#print('index={0}, label={1}'.format(index, label))
+
 
 			#camera.stop_preview()	
 			print(camera.resolution)
