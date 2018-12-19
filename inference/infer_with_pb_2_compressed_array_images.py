@@ -12,6 +12,12 @@ from tensorflow.python.platform import gfile
 from PIL import Image
 import timer
 
+from time import sleep
+import io
+from picamera import PiCamera
+camera = PiCamera()
+stream = io.BytesIO()
+
 #import tensorflow.contrib.tensorrt as trt
 
 
@@ -94,15 +100,27 @@ def inference_with_graph(graph_def, image):
 			input_, predictions =  tf.import_graph_def(graph_def, name='', 
 				return_elements=input_output_placeholders)
 			
-			timer.timer('predictions.eval')
+			camera.start_preview()
+
+			timer.timer('predictions.eval')			
 
 			time_res = []
 			for i in range(10):
+
+				camera.capture(stream, format='jpeg')
+				stream.seek(0)
+				image = Image.open(stream)
+				shape = tuple(INPUT_SIZE[1:])
+				image = image.resize(shape, Image.ANTIALIAS)
+				image = np.array(image, dtype=np.float32) / 255.0				
+
 				pred_val = predictions.eval(feed_dict={input_: [image]})
 				print(pred_val)
 				timer.timer()
 				#time_res.append(0)
 				#print('index={0}, label={1}'.format(index, label))
+
+			camera.stop_preview()	
 
 			#print('mean time = {0}'.format(np.mean(time_res)))
 
@@ -126,6 +144,8 @@ def inference_images_with_graph(graph_def, filenames):
 			input_, predictions =  tf.import_graph_def(graph_def, name='', 
 				return_elements=input_output_placeholders)
 			
+			camera.start_preview()
+
 			for i in range(len(filenames)):
 				filename = filenames[i]
 				image = images[i]
@@ -136,7 +156,7 @@ def inference_images_with_graph(graph_def, filenames):
 
 				print('{0}: prediction={1}'.format(filename, label))
 
-
+			camera.stop_preview()	
 
 def createParser ():
 	"""ArgumentParser
