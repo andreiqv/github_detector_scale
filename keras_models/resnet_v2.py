@@ -1,4 +1,14 @@
 # https://github.com/raghakot/keras-resnet
+"""
+presence (1):
+Epoch 40/500 - 128s 214ms/step 
+- loss: 0.0036 - accuracy: 0.9995 - miou: 0.8028 
+- val_loss: 0.0084 - val_accuracy: 0.9995 - val_miou: 0.6271
+
+0: - loss: 0.6382 - accuracy: 0.9888 - miou: 0.8915 
+- val_loss: 1.9118 - val_accuracy: 0.9888 - val_miou: 0.7930
+
+"""
 
 import numpy as np
 import six
