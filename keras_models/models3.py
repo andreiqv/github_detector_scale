@@ -22,7 +22,7 @@ def resnet(inpt, n):
 			layers.append(conv2_x)
 			layers.append(conv2)
 
-		assert conv2.get_shape().as_list()[1:] == [32, 32, 16]
+		#assert conv2.get_shape().as_list()[1:] == [32, 32, 16]
 
 	for i in range (num_conv):
 		down_sample = True if i == 0 else False
@@ -32,7 +32,7 @@ def resnet(inpt, n):
 			layers.append(conv3_x)
 			layers.append(conv3)
 
-		assert conv3.get_shape().as_list()[1:] == [16, 16, 32]
+		#assert conv3.get_shape().as_list()[1:] == [16, 16, 32]
 	
 	for i in range (num_conv):
 		down_sample = True if i == 0 else False
@@ -42,11 +42,11 @@ def resnet(inpt, n):
 			layers.append(conv4_x)
 			layers.append(conv4)
 
-		assert conv4.get_shape().as_list()[1:] == [8, 8, 64]
+		#assert conv4.get_shape().as_list()[1:] == [8, 8, 64]
 
 	with tf.variable_scope('fc'):
 		global_pool = tf.reduce_mean(layers[-1], [1, 2])
-		assert global_pool.get_shape().as_list()[1:] == [64]
+		#assert global_pool.get_shape().as_list()[1:] == [64]
 		
 		out = softmax_layer(global_pool, [64, 10])
 		layers.append(out)
