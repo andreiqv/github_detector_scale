@@ -151,20 +151,20 @@ dataset.augment_train_dataset()
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_resnet18-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_first_3_1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_resnet18'
+        log_dir='./tensorboard/model_first_3_1'
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 
 callbacksSave = [   
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_resnet18-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/model_first_3_1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
