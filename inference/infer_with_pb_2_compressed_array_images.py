@@ -101,20 +101,20 @@ def inference_with_graph(graph_def, image):
 				return_elements=input_output_placeholders)
 			
 			camera.start_preview()
+			camera.capture(stream, format='jpeg')
+			stream.seek(0)
+			image = Image.open(stream)
+			shape = tuple(INPUT_SIZE[1:])
+			image = image.resize(shape, Image.ANTIALIAS)
 
 			timer.timer('predictions.eval')			
 
 			time_res = []
 			for i in range(10):
 
-				camera.capture(stream, format='jpeg')
-				stream.seek(0)
-				image = Image.open(stream)
-				shape = tuple(INPUT_SIZE[1:])
-				image = image.resize(shape, Image.ANTIALIAS)
-				image = np.array(image, dtype=np.float32) / 255.0				
+				image_arr = np.array(image, dtype=np.float32) / 255.0				
 
-				pred_val = predictions.eval(feed_dict={input_: [image]})
+				pred_val = predictions.eval(feed_dict={input_: [image_arr]})
 				print(pred_val)
 				timer.timer()
 				#time_res.append(0)
