@@ -51,6 +51,7 @@ def conv(x, f, k, s=1, p='SAME'):
 		strides=(s, s),
 		padding='SAME',
 		activation='tanh', # relu, selu
+		kernel_regularizer=regularizers.l2(0.01),
 		use_bias=True)(x)
 	return x
 
@@ -137,6 +138,8 @@ def model_first_3_1(inputs):
 	return model	
 
 
+
+#====================
 
 def model_cnn_128(inputs):
 	""" val_accuracy: 0.9879 - val_miou: 0.6895  | val_miou: 0.7115
