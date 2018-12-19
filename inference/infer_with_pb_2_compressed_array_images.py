@@ -101,7 +101,7 @@ def inference_with_graph(graph_def, image):
 				return_elements=input_output_placeholders)
 			
 			camera.start_preview()
-			#camera.resolution = (1024, 768)
+			camera.resolution = (800, 600)
 
 			timer.timer('predictions.eval')	
 
@@ -223,5 +223,9 @@ if __name__ == '__main__':
 0.0701 sec. (total time 1.72) - model_first_3-60-1.000-1.000[0.803].pb
 
 0.7628 sec. -- model_resnet50-97-0.996-0.996[0.833].pb
+
+---
+capture pict from cam:
+1024x768 (def.) - 0.7612 sec.
 
 """
