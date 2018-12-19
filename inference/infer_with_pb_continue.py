@@ -116,7 +116,7 @@ def inference_with_graph(graph_def, image):
 				# grab the raw NumPy array representing the image - this array
 				# will be 3D, representing the width, height, and # of channels
 				image_arr = frame.array
-				image = Image.fromarray(numpy.uint8(image_arr))				
+				image = Image.fromarray(np.uint8(image_arr))				
 				shape = tuple(INPUT_SIZE[1:])
 				image = image.resize(shape, Image.ANTIALIAS)
 				image_arr = np.array(image, dtype=np.float32) / 255.0				
