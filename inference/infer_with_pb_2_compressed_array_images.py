@@ -101,7 +101,7 @@ def inference_with_graph(graph_def, image):
 				return_elements=input_output_placeholders)
 			
 			camera.start_preview()
-			camera.resolution = (800, 600)
+			camera.resolution = (640, 480)
 
 			timer.timer('predictions.eval')	
 
