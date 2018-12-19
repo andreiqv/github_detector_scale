@@ -1,6 +1,8 @@
 import tensorflow as tf
 from tensorflow import keras
 layers = keras.layers
+from tensorflow.keras import regularizers
+
 from tensorflow.contrib.slim.nets import inception
 from tensorflow.contrib.slim.nets import resnet_v1, resnet_v2
 from tensorflow.contrib.slim.nets import vgg
