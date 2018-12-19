@@ -112,7 +112,7 @@ def inference_with_graph(graph_def, image):
 
 			time_res = []
 			for frame in camera.capture_continuous(\
-											rawCapture, format="bgr", use_video_port=True):
+									rawCapture, format="bgr", use_video_port=True):
 				# grab the raw NumPy array representing the image - this array
 				# will be 3D, representing the width, height, and # of channels
 				image_arr = frame.array
@@ -138,8 +138,8 @@ def inference_with_graph(graph_def, image):
 				h = pred[3] * sy
 				box = (x, y, w, h)
 				crop = image.crop(box)
-				crop.save('crop.jpg', 'jpeg')
-				sys.exit()
+				#crop.save('crop.jpg', 'jpeg')
+				#sys.exit()
 
 			#camera.stop_preview()	
 			print(camera.resolution)
