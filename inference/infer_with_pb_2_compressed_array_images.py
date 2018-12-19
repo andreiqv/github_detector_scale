@@ -101,8 +101,9 @@ def inference_with_graph(graph_def, image):
 				return_elements=input_output_placeholders)
 			
 			camera.start_preview()
+			#camera.resolution = (1024, 768)
 
-			timer.timer('predictions.eval')			
+			timer.timer('predictions.eval')	
 
 			time_res = []
 			for i in range(10):
@@ -121,6 +122,7 @@ def inference_with_graph(graph_def, image):
 				#print('index={0}, label={1}'.format(index, label))
 
 			camera.stop_preview()	
+			print(camera.resolution)
 
 			#print('mean time = {0}'.format(np.mean(time_res)))
 
