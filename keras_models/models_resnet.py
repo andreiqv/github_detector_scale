@@ -66,19 +66,23 @@ def block(n_output, upscale=False):
 def resnet18(inputs):
 	"""
 	https://www.kaggle.com/meownoid/tiny-resnet-with-keras-99-314
+
+	Epoch 43/500 - loss: 0.0121 - accuracy: 0.9687 - miou: 0.6007 
+	- val_loss: 0.0127 - val_accuracy: 0.9691 - val_miou: 0.5957
+
 	"""
 
 	x = inputs
 	x = maxpool(x)
 	x = maxpool(x)
-	
+
 	
 	# input tensor is the 28x28 grayscale image
 	#input_tensor = Input((28, 28, 1))
 
 	# first conv2d with post-activation to transform the input data to some reasonable form
 	x = Conv2D(kernel_size=3, filters=16, strides=1, padding='SAME', 
-							kernel_regularizer=regularizers.l2(0.01))(x)
+							kernel_regularizer=regularizers.l2(0.001))(x)
 	x = BatchNormalization()(x)
 	x = Activation(relu)(x)
 
@@ -112,7 +116,7 @@ def resnet18(inputs):
 	x = layers.Flatten()(x)
 
 	# dropout for more robust learning
-	x = Dropout(0.2)(x)
+	x = Dropout(0.5)(x)
 
 	# last softmax layer
 	#x = Dense(units=10, kernel_regularizer=regularizers.l2(0.01))(x)	
