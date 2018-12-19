@@ -8,6 +8,25 @@ from tensorflow.keras.activations import relu, softmax
 from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers
 
+#----------
+
+def conv(x, f, k, s=1, p='SAME'):
+	x = layers.Conv2D(
+		filters=f,
+		kernel_size=(k, k),
+		strides=(s, s),
+		padding='SAME',
+		activation='tanh', # relu, selu
+		use_bias=True)(x)
+	return x
+
+maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
+	
+bn = lambda x: layers.BatchNormalization()(x)
+
+
+#-----------
+
 def block(n_output, upscale=False):
 	# n_output: number of feature maps in the block
 	# upscale: should we use the 1x1 conv2d mapping for shortcut or not
@@ -45,6 +64,9 @@ def block(n_output, upscale=False):
 
 def resnet18(inputs):
 
+	x = inputs
+
+	"""
 	# input tensor is the 28x28 grayscale image
 	#input_tensor = Input((28, 28, 1))
 
@@ -91,8 +113,37 @@ def resnet18(inputs):
 	#model = Model(inputs=input_tensor, outputs=x)
 	#model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])	
 
-	x = Dense(5, activation='sigmoid')(x)
+	"""
+
+
+	#x = Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
-	model = Model(inputs, x, name='resnet18')	
+	#model = Model(inputs, x, name='resnet18')	
+	
+	x = conv(x, f=8, k=3, s=1, p='VALID')
+	x = maxpool(x)  # 64
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = maxpool(x)
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = maxpool(x)
+	x = bn(x)
+	x = conv(x, f=32, k=3, s=2, p='VALID')
+	x = maxpool(x)
+	x = bn(x)
+	x = conv(x, f=32, k=3, s=1, p='VALID')
+	x = maxpool(x)
+	x = bn(x)	
+	x = layers.BatchNormalization()(x)
+	x = layers.Flatten()(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(1000, activation='sigmoid')(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	#x = layers.Dense(5, activation=None)(x)
+	model = keras.Model(inputs, x, name='model_first_3')
 
 	return model
