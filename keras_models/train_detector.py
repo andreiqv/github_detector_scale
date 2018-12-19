@@ -176,7 +176,7 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
-          callbacks=callbacksSave,
+          #callbacks=callbacksSave,
           #epochs=150,
           epochs=500,
           steps_per_epoch=train_steps,
