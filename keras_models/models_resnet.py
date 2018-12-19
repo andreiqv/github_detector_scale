@@ -95,4 +95,4 @@ def resnet18(inputs):
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='resnet18')	
 
-	return model
+	#return model
