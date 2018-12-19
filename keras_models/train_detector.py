@@ -87,7 +87,8 @@ import models2
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-resnet_v2.build_resnet_18(inputs, 5)
+model = resnet_v2.ResnetBuilder.build_resnet_18(inputs, 5)
+#resnet_v2.build_resnet_18(inputs, 5)
 
 
 # optimizer = tf.train.AdamOptimizer()
