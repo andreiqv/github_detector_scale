@@ -101,8 +101,8 @@ def inference_with_graph(graph_def, image):
 
 			# Import a graph_def into the current default Graph
 			print("import graph")	
-			input_, predictions =  tf.import_graph_def(graph_def, name='', 
-				return_elements=input_output_placeholders)
+			#input_, predictions =  tf.import_graph_def(graph_def, name='', 
+			#	return_elements=input_output_placeholders)
 			
 			#camera.start_preview()
 			#camera.resolution = (640, 480)
@@ -123,6 +123,9 @@ def inference_with_graph(graph_def, image):
 				shape = tuple(INPUT_SIZE[1:])
 				image = image_cam.resize(shape, Image.ANTIALIAS)
 				image_arr = np.array(image, dtype=np.float32) / 255.0				
+
+				input_, predictions =  tf.import_graph_def(graph_def, name='', 
+					return_elements=input_output_placeholders)
 
 				pred_values = predictions.eval(feed_dict={input_: [image_arr]})
 				pred = pred_values[0]
