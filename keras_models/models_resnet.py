@@ -1,3 +1,5 @@
+# https://www.kaggle.com/meownoid/tiny-resnet-with-keras-99-314
+
 import tensorflow as tf
 from tensorflow import keras
 layers = keras.layers

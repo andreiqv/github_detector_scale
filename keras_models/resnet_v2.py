@@ -1,3 +1,5 @@
+# https://github.com/raghakot/keras-resnet
+
 import numpy as np
 import six
 import tensorflow as tf

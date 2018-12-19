@@ -1,3 +1,5 @@
+# https://github.com/xuyuwei/resnet-tf
+
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import add
