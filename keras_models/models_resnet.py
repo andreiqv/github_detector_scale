@@ -107,37 +107,13 @@ def resnet18(inputs):
 	x = Dropout(0.2)(x)
 
 	# last softmax layer
-	#x = Dense(units=10, kernel_regularizer=regularizers.l2(0.01))(x)
-	
+	#x = Dense(units=10, kernel_regularizer=regularizers.l2(0.01))(x)	
 	#x = Activation(softmax)(x)
-	#model = Model(inputs=input_tensor, outputs=x)
-	#model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])	
 
-	
-
-
-	#x = Dense(5, activation='sigmoid')(x)
+	x = Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
-	#model = Model(inputs, x, name='resnet18')	
+	model = Model(inputs, x, name='resnet18')	
 	
-	"""
-	x = conv(x, f=8, k=3, s=1, p='VALID')
-	x = maxpool(x)  # 64
-	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='VALID')
-	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='SAME')
-	x = maxpool(x)
-	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='VALID')
-	x = maxpool(x)
-	x = bn(x)
-	x = conv(x, f=32, k=3, s=2, p='VALID')
-	x = maxpool(x)
-	x = bn(x)
-	x = conv(x, f=32, k=3, s=1, p='VALID')
-	x = maxpool(x)
-	x = bn(x)
 	"""
 	x = layers.Flatten()(x)
 	#x = layers.Dropout(0.5)(x)
@@ -146,5 +122,6 @@ def resnet18(inputs):
 	x = layers.Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='resnet')
+	"""
 
 	return model
