@@ -1,5 +1,6 @@
 import numpy as np
 import tensorflow as tf
+from tensorflow.keras.layers import add
 
 
 def weight_variable(shape, name=None):
@@ -50,5 +51,6 @@ def residual_block(inpt, output_depth, down_sample, projection=False):
 	else:
 		input_layer = inpt
 
-	res = conv2 + input_layer
+	#res = conv2 + input_layer
+	res = add([conv2, input_layer])
 	return res
