@@ -2,11 +2,11 @@ import tensorflow as tf
 from tensorflow import keras
 layers = keras.layers
 
-from keras.layers import Input, Conv2D, Activation, BatchNormalization, GlobalAveragePooling2D, Dense, Dropout
-from keras.layers.merge import add
-from keras.activations import relu, softmax
-from keras.models import Model
-from keras import regularizers
+from tensorflow.keras.layers import Input, Conv2D, Activation, BatchNormalization, GlobalAveragePooling2D, Dense, Dropout
+from tensorflow.keras.layers.merge import add
+from tensorflow.keras.activations import relu, softmax
+from tensorflow.keras.models import Model
+from tensorflow.keras import regularizers
 
 def block(n_output, upscale=False):
 	# n_output: number of feature maps in the block
@@ -49,7 +49,7 @@ def resnet18(inputs):
 
 	input_tensor = inputs
 	# first conv2d with post-activation to transform the input data to some reasonable form
-	x = Conv2D(kernel_size=3, filters=16, strides=1, padding='same', kernel_regularizer=regularizers.l2(0.01))(input_tensor)
+	x = Conv2D(kernel_size=3, filters=16, strides=1, padding='SAME', kernel_regularizer=regularizers.l2(0.01))(input_tensor)
 	x = BatchNormalization()(x)
 	x = Activation(relu)(x)
 
