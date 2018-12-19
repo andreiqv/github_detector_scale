@@ -102,13 +102,14 @@ def inference_with_graph(graph_def, image):
 			
 			camera.start_preview()
 			camera.resolution = (640, 480)
+			camera.framerate = 32
 
 			timer.timer('predictions.eval')	
 
 			time_res = []
 			for i in range(10):
 
-				camera.capture(stream, format='bgr')
+				camera.capture(stream, format='jpeg')
 				stream.seek(0)
 				image = Image.open(stream)
 				shape = tuple(INPUT_SIZE[1:])
