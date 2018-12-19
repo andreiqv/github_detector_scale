@@ -76,9 +76,9 @@ def resnet18(inputs):
 	x = Activation(relu)(x)
 
 	# F_1
-	x = block(16)(x)
+	#x = block(16)(x)
 	# F_2
-	x = block(16)(x)
+	#x = block(16)(x)
 
 	# F_3
 	# H_3 is the function from the tensor of size 28x28x16 to the the tensor of size 28x28x32
