@@ -1,5 +1,9 @@
 import tensorflow as tf
+from tensorflow import keras
+layers = keras.layers
+
 from resnet import softmax_layer, conv_layer, residual_block
+
 
 n_dict = {20:1, 32:2, 44:3, 56:4}
 # ResNet architectures used for CIFAR-10
