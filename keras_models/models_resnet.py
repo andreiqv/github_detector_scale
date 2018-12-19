@@ -91,7 +91,7 @@ def resnet18(inputs):
 	#model = Model(inputs=input_tensor, outputs=x)
 	#model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])	
 
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = Model(inputs, x, name='resnet18')	
 
