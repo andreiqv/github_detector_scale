@@ -111,8 +111,8 @@ def inference_with_graph(graph_def, image):
 			timer.timer('predictions.eval')	
 
 			time_res = []
-			for i, frame in enumerate(camera.capture_continuous(\
-											rawCapture, format="bgr", use_video_port=True)):
+			for frame in camera.capture_continuous(\
+											rawCapture, format="bgr", use_video_port=True):
 				# grab the raw NumPy array representing the image - this array
 				# will be 3D, representing the width, height, and # of channels
 				image_arr = frame.array
