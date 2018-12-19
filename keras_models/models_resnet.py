@@ -3,7 +3,7 @@ from tensorflow import keras
 layers = keras.layers
 
 from tensorflow.keras.layers import Input, Conv2D, Activation, BatchNormalization, GlobalAveragePooling2D, Dense, Dropout
-from tensorflow.keras.layers.merge import add
+#from tensorflow.keras.layers.merge import add
 from tensorflow.keras.activations import relu, softmax
 from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers
@@ -38,7 +38,8 @@ def block(n_output, upscale=False):
 			f = x
 		
 		# F_l(x) = f(x) + H_l(x):
-		return add([f, h])
+		#return add([f, h])
+		return f + h
 	
 	return f
 
