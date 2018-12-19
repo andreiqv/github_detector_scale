@@ -69,7 +69,7 @@ inputs = keras.layers.Input(shape=(
 #model = models.model_first2_1(inputs)
 
 import models2
-#model = models2.model_first_3_1(inputs) # +++
+model = models2.model_first_3_1(inputs) # +++
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -80,8 +80,8 @@ import models2
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
-import models_resnet
-model = models_resnet.resnet18(inputs)
+#import models_resnet
+#model = models_resnet.resnet18(inputs)
 
 #import models3
 #model = models3.resnet_keras(inputs)
