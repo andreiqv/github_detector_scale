@@ -119,17 +119,26 @@ def inference_with_graph(graph_def, image):
 				# clear the stream in preparation for the next frame
 				rawCapture.truncate(0)			
 
-				image = Image.fromarray(np.uint8(image_arr))				
+				image_cam = Image.fromarray(np.uint8(image_arr))				
 				shape = tuple(INPUT_SIZE[1:])
-				image = image.resize(shape, Image.ANTIALIAS)
+				image = image_cam.resize(shape, Image.ANTIALIAS)
 				image_arr = np.array(image, dtype=np.float32) / 255.0				
 
-				pred_val = predictions.eval(feed_dict={input_: [image_arr]})
-				print(pred_val)
+				pred = predictions.eval(feed_dict={input_: [image_arr]})
+				print(pred)
 				timer.timer()
 				#time_res.append(0)
 				#print('index={0}, label={1}'.format(index, label))
 
+				sx, sy = image_cam.size
+				x = pred[0] * sx
+				y = pred[1] * sy
+				w = pred[2] * sx
+				h = pred[3] * sy
+				box = (x, y, w, h)
+				crop = image.crop(box)
+				crop.save('crop.jpg', 'jpeg')
+				sys.exit()
 
 			#camera.stop_preview()	
 			print(camera.resolution)
