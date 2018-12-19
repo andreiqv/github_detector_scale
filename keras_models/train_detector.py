@@ -69,7 +69,7 @@ inputs = keras.layers.Input(shape=(
 #model = models.model_first2_1(inputs)
 
 import models2
-#model = models2.model_first_3_1(inputs) # +++
+model = models2.model_first_3_1(inputs) # +++
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -87,8 +87,8 @@ import models_resnet
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-model = resnet_v2.ResnetBuilder.build_resnet_18(
-               (image_channels, image_shape[0], image_shape[1]), 5)
+#model = resnet_v2.ResnetBuilder.build_resnet_18(
+#               (image_channels, image_shape[0], image_shape[1]), 5)
 
 
 
