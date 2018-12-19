@@ -1,12 +1,15 @@
 # https://github.com/raghakot/keras-resnet
 """
-presence (1):
-Epoch 40/500 - 128s 214ms/step 
-- loss: 0.0036 - accuracy: 0.9995 - miou: 0.8028 
-- val_loss: 0.0084 - val_accuracy: 0.9995 - val_miou: 0.6271
+resnet18: 
+1) presence (1):
+Epoch 00087: LearningRateScheduler reducing learning rate to 9.876544208964333e-05.
+Epoch 87/500 - loss: 0.0013 - accuracy: 0.9998 - miou: 0.8669 
+- val_loss: 0.0030 - val_accuracy: 0.9998 - val_miou: 0.8124
 
-0: - loss: 0.6382 - accuracy: 0.9888 - miou: 0.8915 
-- val_loss: 1.9118 - val_accuracy: 0.9888 - val_miou: 0.7930
+0)Epoch 00021: LearningRateScheduler reducing learning rate to 0.0003333333491658171.
+Epoch 21/500 - loss: 0.5142 - accuracy: 0.9797 - miou: 0.9210 
+- val_loss: 1.8849 - val_accuracy: 0.9801 - val_miou: 0.7929
+
 
 """
 
