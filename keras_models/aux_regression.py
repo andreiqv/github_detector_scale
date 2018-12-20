@@ -9,7 +9,7 @@ def bboxes_loss(labels, logits):
     zeros = tf.zeros([4], tf.float)
     bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], zeros), axis=1)
     bbox_loss = tf.reduce_mean(bbox_loss * labels[:, 4])
-    return objectness_loss + 1 * bbox_loss
+    return objectness_loss #+ 1 * bbox_loss
 
 
 def accuracy(_labels, _logits):
