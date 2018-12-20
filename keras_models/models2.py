@@ -178,7 +178,8 @@ def model_first_3_2(inputs):
 
 def model_first_64(inputs):
 	""" 
-	without first layer.
+	2 conv layers: val_accuracy: 0.9333 - val_miou: 0.4136
+
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='SAME')
@@ -187,12 +188,18 @@ def model_first_64(inputs):
 	#x = bn(x)
 	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x) # 16
+
+	x = conv(x, f=32, k=3, s=1, p='SAME')
+	x = maxpool(x) # 8
+
+	x = conv(x, f=32, k=3, s=1, p='SAME')
+	x = maxpool(x) # 8
 	
 	#x = bn(x)
 	#x = conv(x, f=32, k=3, s=1, p='SAME')
 	#x = maxpool(x) # 4
 		
-	x = bn(x)	
+	#x = bn(x)
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(1000, activation='sigmoid')(x)
