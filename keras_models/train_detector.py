@@ -73,7 +73,7 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels))
 
-model_name = 'model_test_1'
+model_name = 'model_first2'
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436
@@ -84,7 +84,7 @@ model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045
 #model = models.model_first2_1(inputs)
 
 import models2
-model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
+#model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -196,7 +196,7 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
           #callbacks=callbacksSave,
-          #callbacks=callbacks,
+          callbacks=callbacks,
           #epochs=150,          
           epochs=500,
           steps_per_epoch=train_steps,
