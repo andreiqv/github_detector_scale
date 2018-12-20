@@ -184,15 +184,15 @@ def model_first_64(inputs):
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='SAME')
 	x = maxpool(x) # 32
+	x = bn(x)
 	
-	#x = bn(x)
 	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x) # 16
+	x = bn(x)
 
 	x = conv(x, f=32, k=3, s=1, p='SAME')
 	x = maxpool(x) # 8
-	
-	#x = bn(x)
+	x = bn(x)
 	#x = conv(x, f=32, k=3, s=1, p='SAME')
 	#x = maxpool(x) # 4
 		
