@@ -197,6 +197,11 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 	#print(pred)
 	timer.timer()
 
+	pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
+	pred = pred_values2[0]
+	#print(pred)
+	timer.timer()	
+
 	return pred
 
 
