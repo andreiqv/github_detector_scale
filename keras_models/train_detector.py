@@ -73,8 +73,8 @@ model_name = 'model_test_1'
 #model = models.model_first2_1(inputs)
 
 import models2
-model = models2.model_first_3_1(inputs) # +++
-#model = models2.model_cnn_128_v2(inputs)
+#model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
+model = models2.model_cnn_128(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
 #model = models2.model_InceptionV3(inputs)
