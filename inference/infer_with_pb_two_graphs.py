@@ -170,15 +170,15 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 
 	with graph1.as_default() as graph:
 		print("import graph 1")
-		with sess1 as sess:
-			inputs1, predictions1 =  tf.import_graph_def(graph_def_1, name='g1', 
-				return_elements=input_output_placeholders)
+		#with sess1 as sess:
+		inputs1, predictions1 =  tf.import_graph_def(graph_def_1, name='g1', 
+			return_elements=input_output_placeholders)
 			
 	with graph2.as_default() as graph:
 		print("import graph 2")
-		with sess2 as sess:
-			inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
-				return_elements=input_output_placeholders)
+		#with sess2 as sess:
+		inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
+			return_elements=input_output_placeholders)
 
 	timer.timer('predictions.eval')	
 	with sess1 as sess:
