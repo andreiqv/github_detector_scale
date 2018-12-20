@@ -7,6 +7,10 @@ Epoch 76/500
 938/938 [==============================] - 122s 130ms/step 
 - loss: 0.0137 - accuracy: 0.9821 - miou: 0.6944 
 - val_loss: 0.0259 - val_accuracy: 0.9821 - val_miou: 0.7069
+
+Epoch 24/500
+938/938 [==============================] - 117s 125ms/step - loss: 0.0155 - accuracy: 0.9742 - miou: 6.3403e-17 - val_loss: 0.0229 - val_accuracy: 0.9743 - val_miou: 0.0000e+00
+
 """
 import os
 import sys
