@@ -25,7 +25,7 @@ if presence:
 else:
     # LOSS:
     from keras_models.aux import miou, bboxes_loss, accuracy
-    learning_rate = 0.001
+    learning_rate = 0.005
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
