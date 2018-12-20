@@ -23,8 +23,10 @@ else:
 
 if presence:
     from keras_models.aux1 import miou, bboxes_loss, accuracy
+    learning_rate = 0.0005
 else:
     from keras_models.aux import miou, bboxes_loss, accuracy
+    learning_rate = 0.01
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
@@ -108,7 +110,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(optimizer=keras.optimizers.Adam(lr=0.05),
+model.compile(optimizer=keras.optimizers.Adam(lr=learning_rate),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
