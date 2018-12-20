@@ -14,7 +14,7 @@ import timer
 
 from time import sleep
 import io
-USE_CAMERA
+USE_CAMERA = False
 if USE_CAMERA:
 	from picamera import PiCamera
 	from picamera.array import PiRGBArray
