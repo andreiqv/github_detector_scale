@@ -12,9 +12,9 @@ def bboxes_loss(labels, logits):
 
 def bboxes_loss(labels, logits):
     objectness_loss = tf.contrib.losses.mean_squared_error(logits[:, 4], labels[:, 4])
-    bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], labels[:, :4]), axis=1)
-    #zeros = tf.zeros([4], tf.float32)
-    #bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], zeros), axis=1)
+    #bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], labels[:, :4]), axis=1)    
+    zeros = tf.zeros([4], tf.float32)
+    bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], zeros), axis=1)
     bbox_loss = tf.reduce_mean(bbox_loss * labels[:, 4])
     return objectness_loss + 1 * bbox_loss
 
