@@ -38,7 +38,8 @@ use_hub_model = False
 if True:
 	#FROZEN_FPATH = '../pb/model_first_3-60-1.000-1.000[0.803].pb'
 	#FROZEN_FPATH = '/home/pi/work/pb/model_first_3-60-1.000-1.000[0.803].pb'
-	FROZEN_FPATH = '../pb/model_resnet50-97-0.996-0.996[0.833].pb'
+	#FROZEN_FPATH = '../pb/model_resnet50-97-0.996-0.996[0.833].pb'
+	FROZEN_FPATH = '../pb/model_resnet18-38-0.986-0.986[0.797].pb'	
 	ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE = [3, 128, 128]
 	#INPUT_NODE = 'input_2'
