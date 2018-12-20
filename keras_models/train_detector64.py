@@ -1,7 +1,5 @@
 """
-SqueezeNet
-Darknet Reference  
-Tiny Darknet
+
 """
 import os
 import sys
@@ -25,6 +23,7 @@ if presence:
     from keras_models.aux1 import miou, bboxes_loss, accuracy
     learning_rate = 0.0005
 else:
+    # LOSS:
     from keras_models.aux import miou, bboxes_loss, accuracy
     learning_rate = 0.001
 
