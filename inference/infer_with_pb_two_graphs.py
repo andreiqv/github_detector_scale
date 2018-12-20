@@ -42,10 +42,9 @@ if True:
 	#FROZEN_FPATH = '../pb/model_resnet18-38-0.986-0.986[0.797].pb'	
 	ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE = [3, 128, 128]
-	OUTPUT_NODE = 'dense/Sigmoid'
 	INPUT_NODE = 'input_1'
 	#INPUT_NODE = 'input_2'	
-	#OUTPUT_NODE = 'dense_1/Sigmoid'
+	OUTPUT_NODE = 'dense_1/Sigmoid'
 	#OUTPUT_NODE = 'dense/Sigmoid'
 	input_output_placeholders = [INPUT_NODE + ':0', OUTPUT_NODE + ':0']
 
