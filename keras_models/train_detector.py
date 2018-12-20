@@ -70,7 +70,7 @@ inputs = keras.layers.Input(shape=(
 
 import models2
 model = models2.model_first_3_1(inputs) # +++
-model_name = 'model_first_3_1('
+model_name = 'model_first_3_1'
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -152,7 +152,7 @@ dataset.augment_train_dataset()
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/{}-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5".format(model_name),
+        "./checkpoints/"+model_name+"-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
@@ -165,7 +165,7 @@ callbacks = [
 
 callbacksSave = [   
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/{}-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5".format(model_name),
+        "./checkpoints/"+model_name+"-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
         save_best_only=True,
         monitor='val_miou',
         mode='max'
