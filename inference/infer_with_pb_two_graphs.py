@@ -160,7 +160,7 @@ def inference_with_graph(graph_def, image):
 
 
 def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
-	""" Predict for single images
+	""" Predict for single image; picture from file
 	"""
 
 	graph1 = tf.Graph()
@@ -181,9 +181,11 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 				return_elements=input_output_placeholders)
 
 	timer.timer('predictions.eval')	
-	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
-	pred = pred_values1[0]
-	print(pred)
+	with sess1 as sess:
+		pred_values1 = sess.run(predictions1, feed_dict={inputs1: [image_arr]})
+		pred = pred_values1[0]
+		print(pred)
+
 	timer.timer()
 	#time_res.append(0)
 	#print('index={0}, label={1}'.format(index, label))
