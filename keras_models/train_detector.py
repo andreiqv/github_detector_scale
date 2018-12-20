@@ -9,7 +9,9 @@ Epoch 76/500
 - val_loss: 0.0259 - val_accuracy: 0.9821 - val_miou: 0.7069
 
 Epoch 24/500
-938/938 [==============================] - 117s 125ms/step - loss: 0.0155 - accuracy: 0.9742 - miou: 6.3403e-17 - val_loss: 0.0229 - val_accuracy: 0.9743 - val_miou: 0.0000e+00
+938/938 [==============================] - 117s 125ms/step 
+- loss: 0.0155 - accuracy: 0.9742 - miou: 6.3403e-17 
+- val_loss: 0.0229 - val_accuracy: 0.9743 - val_miou: 0.0000e+00
 
 """
 import os
@@ -78,7 +80,7 @@ model_name = 'model_test_1'
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
 #model = models.model4(inputs)  # val_miou:  0.7663 -> 0.7925
 #model = models.model_first(inputs)  # val_miou: 0.7519 ->  0.7715
-#model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
+model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
 #model = models.model_first2_1(inputs)
 
 import models2
