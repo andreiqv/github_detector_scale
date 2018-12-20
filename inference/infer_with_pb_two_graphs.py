@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Using TF for inference, and TensorRT for compress a graph.
+"""
+
+Resnet
+GPU: 0.0227 sec.
+CPU: 0.0441 sec.
+
+"""
 
 import sys
 import os
@@ -198,9 +204,9 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 	timer.timer()
 
 	pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
-	pred = pred_values2[0]
+	pred = pred_values2
 	#print(pred)
-	timer.timer()	
+	timer.timer()
 
 	return pred
 
