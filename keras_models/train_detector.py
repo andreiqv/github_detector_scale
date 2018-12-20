@@ -70,6 +70,7 @@ inputs = keras.layers.Input(shape=(
 
 import models2
 model = models2.model_first_3_1(inputs) # +++
+model_name = 'model_first_3_1('
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -151,20 +152,20 @@ dataset.augment_train_dataset()
 
 callbacks = [
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_first_3_1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/{}-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5".format(model_name),
         save_best_only=True,
         monitor='val_miou',
         mode='max'
     ),
     LRTensorBoard(
-        log_dir='./tensorboard/model_first_3_1'
+        log_dir='./tensorboard/{}'.format(model_name)
     ),
     keras.callbacks.LearningRateScheduler(lr_scheduler, verbose=1)
 ]
 
 callbacksSave = [   
     keras.callbacks.ModelCheckpoint(
-        "./checkpoints/model_first_3_1-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5",
+        "./checkpoints/{}-{epoch:02d}-{accuracy:.3f}-{val_accuracy:.3f}[{val_miou:.3f}].hdf5".format(model_name),
         save_best_only=True,
         monitor='val_miou',
         mode='max'
