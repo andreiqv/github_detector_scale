@@ -60,6 +60,8 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels))
 
+model_name = 'model_test_1'
+
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436
 #model = models.model3(inputs)  # val_miou: 0.7457 -> 0.7912
@@ -70,7 +72,6 @@ inputs = keras.layers.Input(shape=(
 
 import models2
 model = models2.model_first_3_1(inputs) # +++
-model_name = 'model_first_3_1'
 #model = models2.model_cnn_128_v2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
