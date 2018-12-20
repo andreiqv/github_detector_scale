@@ -151,19 +151,18 @@ def model_first_3_2(inputs):
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='VALID')
-	x = maxpool(x)  # 64
-	
-	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='VALID')
-	x = bn(x)
+	x = maxpool(x)  # 64	
+	#x = bn(x)
+	#x = conv(x, f=16, k=3, s=2, p='VALID')
+	#x = bn(x)
 	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x)
 	
-	x = bn(x)
+	#x = bn(x)
 	x = conv(x, f=16, k=3, s=2, p='VALID')
 	x = maxpool(x)
 	
-	x = bn(x)
+	#x = bn(x)
 	x = conv(x, f=32, k=3, s=2, p='VALID')
 	x = maxpool(x)
 	
