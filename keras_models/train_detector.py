@@ -2,6 +2,11 @@
 SqueezeNet
 Darknet Reference  
 Tiny Darknet
+
+Epoch 76/500
+938/938 [==============================] - 122s 130ms/step 
+- loss: 0.0137 - accuracy: 0.9821 - miou: 0.6944 
+- val_loss: 0.0259 - val_accuracy: 0.9821 - val_miou: 0.7069
 """
 import os
 import sys
