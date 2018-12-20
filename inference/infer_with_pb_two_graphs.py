@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+On raspberry:
+- resnet18: 0.3741 sec.
 
-Resnet
-GPU: 0.0227 sec.
-CPU: 0.0441 sec.
 
+Resnet on SERVER: GPU: 0.0227 sec., CPU: 0.0441 sec.
 """
 
 import sys
