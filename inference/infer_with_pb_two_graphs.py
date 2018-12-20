@@ -35,9 +35,9 @@ if True:
 	#FROZEN_FPATH = '/home/pi/work/pb/model_resnet50-97-0.996-0.996[0.833].pb'
 	ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE = [3, 128, 128]
-	INPUT_NODE = 'input_2'
+	#INPUT_NODE = 'input_2'
 	OUTPUT_NODE = 'dense/Sigmoid'
-	#INPUT_NODE = 'input_1'
+	INPUT_NODE = 'input_1'
 	#OUTPUT_NODE = 'dense_1/Sigmoid'
 	#OUTPUT_NODE = 'dense/Sigmoid'
 	input_output_placeholders = [INPUT_NODE + ':0', OUTPUT_NODE + ':0']
