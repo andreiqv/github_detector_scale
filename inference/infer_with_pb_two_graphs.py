@@ -19,8 +19,9 @@ from PIL import Image
 import timer
 
 from time import sleep
+import random
 import io
-USE_CAMERA = True
+USE_CAMERA = False
 if USE_CAMERA:
 	from picamera import PiCamera
 	from picamera.array import PiRGBArray
@@ -153,7 +154,7 @@ def inference_with_graph(graph_def, image):
 				h = pred[3] * sy
 				box = (x, y, w, h)
 				crop = image.crop(box)
-				#crop.save('crop.jpg', 'jpeg')
+				crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')
 				#sys.exit()
 
 			#camera.stop_preview()	
@@ -192,13 +193,14 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
 	pred = pred_values1[0]
 	print('PB1:', pred)
-	timer.timer()
+	timer.timer()	
 
 	pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
 	pred = pred_values2[0]
 	print('PB2:', pred)
 	timer.timer()
 
+	"""
 	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
 	pred = pred_values1[0]
 	print('PB1:', pred)
@@ -208,6 +210,7 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 	pred = pred_values2[0]
 	print('PB2:', pred)
 	timer.timer()
+	"""
 
 	return pred
 
@@ -235,8 +238,8 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 
 	timer.timer('predictions.eval')	
 	time_res = []
-	for frame in camera.capture_continuous(\
-							rawCapture, format="bgr", use_video_port=True):
+	for i, frame in enumerate(camera.capture_continuous(\
+							rawCapture, format="bgr", use_video_port=True)):
 		# grab the raw NumPy array representing the image - this array
 		# will be 3D, representing the width, height, and # of channels
 		image_arr = frame.array
