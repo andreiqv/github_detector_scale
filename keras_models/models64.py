@@ -194,8 +194,7 @@ learning_rate = 0.01
 	x = maxpool(x) # 16
 	x = bn(x)
 
-	x = conv(x, f=16, k=3, s=2, p='VALID')
-	x = conv(x, f=8, k=3, s=1, p='SAME')
+	x = conv(x, f=16, k=3, s=2, p='VALID')	
 	x = maxpool(x) # 8
 	x = bn(x)
 	
