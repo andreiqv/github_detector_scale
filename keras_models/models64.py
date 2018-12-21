@@ -11,7 +11,7 @@ def conv(x, f, k, s=1, p='SAME'):
 		kernel_size=(k, k),
 		strides=(s, s),
 		padding='SAME',
-		activation='tanh', # relu, selu
+		activation='sigmoid', # relu, selu
 		#kernel_regularizer=regularizers.l2(0.01),
 		use_bias=True)(x)
 	return x
