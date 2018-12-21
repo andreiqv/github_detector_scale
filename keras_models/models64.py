@@ -16,7 +16,7 @@ def conv(x, f, k, s=1, p='SAME'):
 		use_bias=True)(x)
 	return x
 
-maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
+maxpool = lambda x, p=2, s=1: layers.MaxPool2D(pool_size=p, strides=s)(x)
 	
 bn = lambda x: layers.BatchNormalization()(x)
 
@@ -221,7 +221,7 @@ def model_first_64_v6(inputs):
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
 	x1 = bn(x1)
 	x2 = conv(x, f=8, k=3, s=1, p='SAME')
-	x2 = maxpool(x2, p=2) # 32
+	x2 = maxpool(x2, p=2, s=None) # 32
 	x2 = bn(x2)
 	x = layers.concatenate([x1, x2])	
 	x = bn(x)
