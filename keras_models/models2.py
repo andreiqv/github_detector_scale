@@ -185,22 +185,22 @@ def model_first_64(inputs):
 	val_accuracy: 0.9416 - val_miou: 0.5313
 	"""
 	x = inputs
-	x = conv(x, f=8, k=3, s=2, p='VALID')
+	x = conv(x, f=8, k=3, s=2, p='SAME')
 	x = maxpool(x) # 32
 	x = bn(x)
 
-	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = conv(x, f=16, k=3, s=2, p='SAME')
 	x = maxpool(x) # 16
 	x = bn(x)
 
-	x = conv(x, f=32, k=3, s=2, p='VALID')
+	x = conv(x, f=32, k=3, s=2, p='SAME')
 	x = maxpool(x) # 8
 	x = bn(x)
 	
-	x = conv(x, f=32, k=3, s=1, p='VALID')
+	x = conv(x, f=32, k=3, s=1, p='SAME')
 	x = maxpool(x) # 4	
 	x = bn(x)
-	print('x shape:', x.get_shape())
+	print('x shape:', x.get_shape()) # (?, 6, 6, 32)
 
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
