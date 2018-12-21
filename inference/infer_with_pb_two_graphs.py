@@ -65,10 +65,7 @@ def get_image_as_array(image_file):
 
 
 def load_image(image_file):
-	image = Image.open(image_file)
-	shape = tuple(INPUT_SIZE[1:])
-	image = image.resize(shape, Image.ANTIALIAS)
-	return image
+	return Image.open(image_file)
 
 def image_to_array(image):
 	return np.array(image, dtype=np.float32) / 255.0
@@ -373,9 +370,12 @@ if __name__ == '__main__':
 		for image_file in files:		
 			print(image_file)			
 			image = load_image(image_file)
-			image_arr = image_to_array(image)
+			shape = tuple(INPUT_SIZE[1:])
+			image_for_detector = image.resize(shape, Image.ANTIALIAS)
+			image_arr = image_to_array(image_for_detector)
 			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
 			if pred is not None:
+				image_for_classificator = image.resize((299, 299), Image.ANTIALIAS)
 				sx, sy = image.size
 				x = int(pred[0] * sx)
 				y = int(pred[1] * sy)
@@ -386,7 +386,11 @@ if __name__ == '__main__':
 				print('sx, sy = ',(sx,sy))
 				print('x, y = ',(x,y))
 				print('w, h = ',(w,h))
-				box = (x-w//2, y-h//2, x+w//2, y+h//2)
+				x0 = max(0,  x - w//2)
+				x1 = min(sx, x + w//2)
+				y0 = max(0,  y - h//2)
+				y1 = min(sy, y + h//2)				
+				box = (x0, y0, x1, y1)
 				crop = image.crop(box)
 				crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
 
