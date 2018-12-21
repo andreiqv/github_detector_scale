@@ -202,9 +202,9 @@ learning_rate = 0.01
 	x = bn(x)
 	
 	#---
-	x = conv(x, f=16, k=3, s=2, p='VALID')	 # add
+	#x = conv(x, f=16, k=3, s=1, p='VALID')	 # add
 	#x = maxpool(x) # 4	
-	x = bn(x)	# add
+	#x = bn(x)	# add
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
