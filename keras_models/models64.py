@@ -133,9 +133,10 @@ def model_first_64_v3(inputs):
 
 def model_first_64_v4(inputs):
 	""" 
-10:
-20:
-50:
+10:  val_accuracy: 0.9648 - val_miou: 0.5810
+20:  val_accuracy: 0.9707 - val_miou: 0.6323
+50:  val_accuracy: 0.9807 - val_miou: 0.6427
+100: val_accuracy: 0.9873 - val_miou: 0.6742
 300: val_accuracy: 0.9929 - val_miou: 0.6910
 
 	"""
