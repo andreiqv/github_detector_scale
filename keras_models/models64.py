@@ -90,6 +90,7 @@ def model_first_64_v2(inputs):
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 
+
 def model_first_64_v3(inputs):
 	""" 
 	"""

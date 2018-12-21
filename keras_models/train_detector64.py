@@ -73,7 +73,7 @@ model_name = 'model_test_64_v2'
 #model = models.model_first2_1(inputs)
 
 import models64
-model = models64.model_first_64_v2(inputs)  #
+model = models64.model_first_64_v3(inputs)  #
 #model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
@@ -111,8 +111,8 @@ print('model.trainable_weights:', len(model.trainable_weights))
 #print('model.trainable_weights:', len(model.trainable_weights))
 
 
-model.compile(#optimizer=keras.optimizers.Adam(lr=learning_rate),
-              keras.optimizers.SGD(lr=0.005, decay=1e-6, momentum=0.9, nesterov=True),
+model.compile(optimizer=keras.optimizers.Adam(lr=learning_rate),
+              #keras.optimizers.SGD(lr=0.005, decay=1e-6, momentum=0.9, nesterov=True),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
