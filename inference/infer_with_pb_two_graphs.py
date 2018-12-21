@@ -375,7 +375,7 @@ if __name__ == '__main__':
 			image = load_image(image_file)
 			image_arr = image_to_array(image)
 			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
-			if pred != None:
+			if pred is not None:
 				sx, sy = image.size
 				x = pred[0] * sx
 				y = pred[1] * sy
