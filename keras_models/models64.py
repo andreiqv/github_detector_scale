@@ -18,6 +18,8 @@ def conv(x, f, k, s=1, p='SAME'):
 
 maxpool = lambda x, p=2, s=1: layers.MaxPool2D(pool_size=p, strides=s)(x)
 	
+maxpool2 = lambda x, p=2: layers.MaxPool2D(pool_size=p)(x)
+
 bn = lambda x: layers.BatchNormalization()(x)
 
 
@@ -215,15 +217,18 @@ learning_rate = 0.01
 
 def model_first_64_v6(inputs):
 	""" 
-
+01: val_accuracy: 0.9278 - val_miou: 0.0707
+05: val_accuracy: 0.9566 - val_miou: 0.5089
+10: val_accuracy: 0.9657 - val_miou: 0.6342
 	"""
 	x = inputs
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
 	x1 = bn(x1)
 	x2 = conv(x, f=8, k=3, s=1, p='SAME')
-	x2 = maxpool(x2, p=2, s=None) # 32
+	x2 = maxpool2(x2) # 32
 	x2 = bn(x2)
-	x = layers.concatenate([x1, x2])	
+	x3 = maxpool2(x)
+	x = layers.concatenate([x1, x2, x3])	
 	x = bn(x)
 
 	x = conv(x, f=16, k=3, s=2, p='VALID')
