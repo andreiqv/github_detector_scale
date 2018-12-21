@@ -250,6 +250,11 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 		pred = pred_values1[0]
 		print(pred)
 		timer.timer()
+
+		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
+		pred = pred_values2[0]
+		print(pred)
+		timer.timer()		
 		#time_res.append(0)
 		#print('index={0}, label={1}'.format(index, label))
 
@@ -350,7 +355,8 @@ if __name__ == '__main__':
 	#image_file = '/home/pi/work/images/img_1_0_2018-08-04-09-37-300672_5.jpg'
 	image_file = '../images/01.jpg'
 	image = get_image_as_array(image_file)
-	inference_with_two_graphs(graph_def_1, graph_def_2, image)
+	#inference_with_two_graphs(graph_def_1, graph_def_2, image)
+	inference_from_camera_with_two_graphs(graph_def_1, graph_def_2)
 	#inference_images_with_graph(graph_def, filenames)		
 
 
