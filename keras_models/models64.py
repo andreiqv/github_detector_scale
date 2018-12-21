@@ -129,10 +129,10 @@ def model_first_64_v3(inputs):
 
 def model_first_64_v4(inputs):
 	""" 
-Epoch 259/500
-234/234 [==============================] - 25s 106ms/step 
-- loss: 0.0066 - accuracy: 0.9922 - miou: 0.7280 
-- val_loss: 0.0293 - val_accuracy: 0.9922 - val_miou: 0.6895
+10:
+20:
+50:
+300: val_accuracy: 0.9929 - val_miou: 0.6910
 
 	"""
 	x = inputs
@@ -149,7 +149,7 @@ Epoch 259/500
 	x = bn(x)
 	
 	x = conv(x, f=16, k=3, s=2, p='VALID')	
-	#x = maxpool(x) # 4
+	x = maxpool(x) # 4
 	x = bn(x)
 	print('x shape:', x.get_shape()) #
 
