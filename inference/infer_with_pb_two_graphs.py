@@ -210,7 +210,7 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 		print('PB2:', pred)
 		timer.timer()
 		return pred[:4]
-	else
+	else:
 		return None
 	
 
