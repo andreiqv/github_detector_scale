@@ -383,6 +383,7 @@ if __name__ == '__main__':
 				h = int(pred[3] * sy)
 				w = min(w, 2*(sx-x), 2*x)
 				h = min(h, 2*(sy-y), 2*y)
+				print('sx,sy = ',(sx,sy))
 				print('x,y = ',(x,y))
 				print('w,h = ',(w,h))
 				box = (x, y, w, h)
