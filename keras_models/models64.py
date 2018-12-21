@@ -132,19 +132,19 @@ def model_first_64_v4(inputs):
 
 	"""
 	x = inputs
-	x = conv(x, f=8, k=3, s=1, p='SAME')
+	x = conv(x, f=8, k=3, s=2, p='VALID')
 	x = maxpool(x) # 32
 	x = bn(x)
 
-	x = conv(x, f=16, k=3, s=1, p='SAME')
+	x = conv(x, f=16, k=3, s=2, p='VALID')
 	x = maxpool(x) # 16
 	x = bn(x)
 
-	x = conv(x, f=16, k=3, s=1, p='SAME')
+	x = conv(x, f=16, k=3, s=2, p='VALID')
 	x = maxpool(x) # 8
 	x = bn(x)
 	
-	x = conv(x, f=16, k=3, s=1, p='SAME')
+	x = conv(x, f=16, k=3, s=2, p='VALID')
 	x = maxpool(x) # 4	
 	x = bn(x)
 	print('x shape:', x.get_shape()) #
