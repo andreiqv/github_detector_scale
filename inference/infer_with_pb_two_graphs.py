@@ -374,16 +374,17 @@ if __name__ == '__main__':
 			print(image_file)			
 			image = load_image(image_file)
 			image_arr = image_to_array(image)
-			inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
-			sx, sy = image.size
-			x = pred[0] * sx
-			y = pred[1] * sy
-			w = pred[2] * sx
-			h = pred[3] * sy
-			box = (x, y, w, h)
-			crop = image.crop(box)
-			crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
-
+			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
+			if pred:
+				sx, sy = image.size
+				x = pred[0] * sx
+				y = pred[1] * sy
+				w = pred[2] * sx
+				h = pred[3] * sy
+				box = (x, y, w, h)
+				crop = image.crop(box)
+				crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
+				
 
 	"""
 	for mode in modes*2:
