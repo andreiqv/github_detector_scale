@@ -133,6 +133,12 @@ def model_first_64_v3(inputs):
 
 def model_first_64_v4(inputs):
 	""" 
+10:  val_accuracy: 0.9624 - val_miou: 0.5250
+20:  val_accuracy: 0.9699 - val_miou: 0.5778
+50:  val_accuracy: 0.9810 - val_miou: 0.6587
+100: val_accuracy: 0.9873 - val_miou: 0.6445
+---	
+без последних слоёв:
 10:  val_accuracy: 0.9648 - val_miou: 0.5810 
 20:  val_accuracy: 0.9707 - val_miou: 0.6323
 50:  val_accuracy: 0.9807 - val_miou: 0.6427
@@ -143,6 +149,7 @@ def model_first_64_v4(inputs):
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=2, p='VALID')
+	x = conv(x, f=8, k=3, s=1, p='SAME')
 	x = maxpool(x) # 32
 	x = bn(x)
 
@@ -154,9 +161,9 @@ def model_first_64_v4(inputs):
 	x = maxpool(x) # 8
 	x = bn(x)
 	
-	x = conv(x, f=16, k=3, s=2, p='VALID')	
-	x = maxpool(x) # 4
-	x = bn(x)
+	#x = conv(x, f=16, k=3, s=2, p='VALID')	
+	#x = maxpool(x) # 4
+	#x = bn(x)
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
