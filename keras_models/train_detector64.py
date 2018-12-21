@@ -25,7 +25,7 @@ if presence:
 else:
     # LOSS:
     from keras_models.aux import miou, bboxes_loss, accuracy
-    learning_rate = 0.005
+    learning_rate = 0.02
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
@@ -72,8 +72,8 @@ model_name = 'model_test_64_v3'
 #model = models.model_first2(inputs) # val_miou: 0.7731  -> 0.8045 
 #model = models.model_first2_1(inputs)
 
-import models2
-model = models2.model_first_64_v3(inputs)  # val_accuracy: 0.9577 - val_miou: 0.5092
+import models64
+model = models64.model_first_64_v3(inputs)  #
 #model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
