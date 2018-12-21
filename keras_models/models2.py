@@ -193,18 +193,18 @@ def model_first_64(inputs):
 	x = maxpool(x) # 16
 	x = bn(x)
 
-	x = conv(x, f=32, k=3, s=2, p='SAME')
+	x = conv(x, f=16, k=3, s=2, p='SAME')
 	x = maxpool(x) # 8
 	x = bn(x)
 	
-	x = conv(x, f=32, k=3, s=1, p='SAME')
+	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x) # 4	
 	x = bn(x)
 	print('x shape:', x.get_shape()) # (?, 6, 6, 32)
 
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(1000, activation='sigmoid')(x)
+	x = layers.Dense(500, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
