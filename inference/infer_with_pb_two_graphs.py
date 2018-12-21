@@ -20,7 +20,7 @@ import timer
 
 from time import sleep
 import io
-USE_CAMERA = False
+USE_CAMERA = True
 if USE_CAMERA:
 	from picamera import PiCamera
 	from picamera.array import PiRGBArray
@@ -273,7 +273,7 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 
 		# clear the stream in preparation for the next frame
 		rawCapture.truncate(0)		
-
+		sys.exit()
 
 
 """

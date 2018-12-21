@@ -93,6 +93,13 @@ def model_first_64_v2(inputs):
 
 def model_first_64_v3(inputs):
 	""" 
+
+	Epoch 264/500 - val_loss: 0.0303 - val_accuracy: 0.9921 - val_miou: 0.6973
+	Epoch 00459: LearningRateScheduler reducing learning rate to 1.3365716995394905e-06.
+	Epoch 459/500 - 28s 119ms/step 
+	- loss: 0.0063 - accuracy: 0.9934 - miou: 0.7458 
+	- val_loss: 0.0306 - val_accuracy: 0.9934 - val_miou: 0.6960
+
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=2, p='SAME')
