@@ -36,7 +36,8 @@ if USE_CAMERA:
 use_hub_model = False
 
 if True:
-	FROZEN_FPATH = '../pb/model_first_3-60-1.000-1.000[0.803].pb'
+	PB1_PATH = '../pb/model_first2-309-0.994-0.994[0.746].pb'
+	PB2_PATH = '../pb/model_first_3-60-1.000-1.000[0.803].pb'
 	#FROZEN_FPATH = '/home/pi/work/pb/model_first_3-60-1.000-1.000[0.803].pb'
 	#FROZEN_FPATH = '../pb/model_resnet50-97-0.996-0.996[0.833].pb'
 	#FROZEN_FPATH = '../pb/model_resnet18-38-0.986-0.986[0.797].pb'	
@@ -222,15 +223,15 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 
 	with graph1.as_default() as graph:
 		print("import graph 1")
-		with sess1 as sess:
-			inputs1, predictions1 =  tf.import_graph_def(graph_def_1, name='g1', 
-				return_elements=input_output_placeholders)
+		#with sess1 as sess:
+		inputs1, predictions1 =  tf.import_graph_def(graph_def_1, name='g1', 
+			return_elements=input_output_placeholders)
 			
 	with graph2.as_default() as graph:
 		print("import graph 2")
-		with sess2 as sess:
-			inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
-				return_elements=input_output_placeholders)
+		#with sess2 as sess:
+		inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
+			return_elements=input_output_placeholders)
 
 	timer.timer('predictions.eval')	
 	time_res = []
@@ -239,8 +240,6 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 		# grab the raw NumPy array representing the image - this array
 		# will be 3D, representing the width, height, and # of channels
 		image_arr = frame.array
-		# clear the stream in preparation for the next frame
-		rawCapture.truncate(0)			
 
 		image_cam = Image.fromarray(np.uint8(image_arr))				
 		shape = tuple(INPUT_SIZE[1:])
@@ -265,11 +264,12 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 		#sys.exit()
 
 		#camera.stop_preview()	
-		print(camera.resolution)
+		#print(camera.resolution)
 
-		#print('mean time = {0}'.format(np.mean(time_res)))
+		# clear the stream in preparation for the next frame
+		rawCapture.truncate(0)		
 
-		#return index
+
 
 """
 def inference_images_with_graph(graph_def, filenames):
@@ -338,9 +338,8 @@ if __name__ == '__main__':
 
 
 	#labels = get_labels('labels.txt')
-	pb_file = FROZEN_FPATH
-	graph_def_1 = get_frozen_graph(pb_file)
-	graph_def_2 = get_frozen_graph(pb_file)
+	graph_def_1 = get_frozen_graph(PB1_PATH)
+	graph_def_2 = get_frozen_graph(PB2_PATH)
 
 	#modes = ['FP32', 'FP16', 0]
 	#precision_mode = modes[2]
