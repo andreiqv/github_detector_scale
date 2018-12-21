@@ -20,7 +20,7 @@ import timer
 
 from time import sleep
 import io
-USE_CAMERA = True
+USE_CAMERA = False
 if USE_CAMERA:
 	from picamera import PiCamera
 	from picamera.array import PiRGBArray
@@ -341,7 +341,6 @@ if __name__ == '__main__':
 
 	assert type(filenames) is list and filenames != []
 
-
 	#labels = get_labels('labels.txt')
 	graph_def_1 = get_frozen_graph(PB1_PATH)
 	graph_def_2 = get_frozen_graph(PB2_PATH)
@@ -349,15 +348,12 @@ if __name__ == '__main__':
 	#modes = ['FP32', 'FP16', 0]
 	#precision_mode = modes[2]
 
-	#pb_file_name = 'saved_model.pb' # output_graph.pb
-
-	# no compress
-	#image_file = '/home/pi/work/images/img_1_0_2018-08-04-09-37-300672_5.jpg'
-	image_file = '../images/01.jpg'
-	image = get_image_as_array(image_file)
-	#inference_with_two_graphs(graph_def_1, graph_def_2, image)
-	inference_from_camera_with_two_graphs(graph_def_1, graph_def_2)
-	#inference_images_with_graph(graph_def, filenames)		
+	if USE_CAMERA:
+		inference_from_camera_with_two_graphs(graph_def_1, graph_def_2)
+	else:
+		image_file = '../images/01.jpg'
+		image = get_image_as_array(image_file)
+		inference_with_two_graphs(graph_def_1, graph_def_2, image)
 
 
 	"""
