@@ -375,7 +375,7 @@ if __name__ == '__main__':
 			image = load_image(image_file)
 			image_arr = image_to_array(image)
 			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
-			if pred:
+			if pred != None:
 				sx, sy = image.size
 				x = pred[0] * sx
 				y = pred[1] * sy
@@ -384,7 +384,7 @@ if __name__ == '__main__':
 				box = (x, y, w, h)
 				crop = image.crop(box)
 				crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
-				
+
 
 	"""
 	for mode in modes*2:
