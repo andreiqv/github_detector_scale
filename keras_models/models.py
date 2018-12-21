@@ -416,6 +416,9 @@ def model_first2_1(inputs):
     Epoch 232/500- 199s 166ms/step - loss: 6.0059e-04 - accuracy: 1.0000 
     - miou: 0.8748 - val_loss: 0.0030 - val_accuracy: 1.0000 - val_miou: 0.7983
 
+    1) 0-1
+    learning_rate = 0.001
+    Epoch 382/500: val_accuracy: 0.9944 - val_miou: 0.7426
     """
     x = layers.Conv2D(
         filters=8,
