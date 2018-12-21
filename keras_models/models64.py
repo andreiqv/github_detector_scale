@@ -5,6 +5,23 @@ from tensorflow.keras import regularizers
 
 
 
+def conv(x, f, k, s=1, p='SAME'):
+	x = layers.Conv2D(
+		filters=f,
+		kernel_size=(k, k),
+		strides=(s, s),
+		padding='SAME',
+		activation='tanh', # relu, selu
+		#kernel_regularizer=regularizers.l2(0.01),
+		use_bias=True)(x)
+	return x
+
+maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
+	
+bn = lambda x: layers.BatchNormalization()(x)
+
+
+
 def model_first_64(inputs):
 	""" 
 	2 conv layers: val_accuracy: 0.9333 - val_miou: 0.4136
