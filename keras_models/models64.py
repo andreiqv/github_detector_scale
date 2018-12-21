@@ -181,6 +181,9 @@ learning_rate = 0.01
 def model_first_64_v5(inputs):
 	""" 
 learning_rate = 0.01
+10: val_accuracy: 0.9678 - val_miou: 0.6306
+20: val_accuracy: 0.9735 - val_miou: 0.6088
+30: val_accuracy: 0.9779 - val_miou: 0.5900
 
 	"""
 	x = inputs
@@ -198,9 +201,10 @@ learning_rate = 0.01
 	x = maxpool(x) # 8
 	x = bn(x)
 	
-	#x = conv(x, f=16, k=3, s=2, p='VALID')	
-	#x = maxpool(x) # 4
-	#x = bn(x)
+	#---
+	x = conv(x, f=16, k=3, s=2, p='VALID')	 # add
+	#x = maxpool(x) # 4	
+	x = bn(x)	# add
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
