@@ -377,10 +377,14 @@ if __name__ == '__main__':
 			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
 			if pred is not None:
 				sx, sy = image.size
-				x = pred[0] * sx
-				y = pred[1] * sy
-				w = pred[2] * sx
-				h = pred[3] * sy
+				x = int(pred[0] * sx)
+				y = int(pred[1] * sy)
+				w = int(pred[2] * sx)
+				h = int(pred[3] * sy)
+				w = min(w, 2*(sx-x), 2*x)
+				h = min(h, 2*(sy-y), 2*y)
+				print('x,y = ',(x,y))
+				print('w,h = ',(w,h))
 				box = (x, y, w, h)
 				crop = image.crop(box)
 				crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
