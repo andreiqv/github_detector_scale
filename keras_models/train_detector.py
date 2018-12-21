@@ -37,7 +37,7 @@ if presence:
     learning_rate = 0.0005
 else:
     from keras_models.aux import miou, bboxes_loss, accuracy
-    learning_rate = 0.001
+    learning_rate = 0.01
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
@@ -73,7 +73,7 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels))
 
-model_name = 'model_first_3'
+model_name = 'model_first_3_1'
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436
@@ -84,8 +84,8 @@ model_name = 'model_first_3'
 #model = models.model_first2_1(inputs)
 
 import models2
-model = models2.model_first_3(inputs)
-#model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
+#model = models2.model_first_3(inputs)
+model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
@@ -195,11 +195,11 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          callbacks=callbacksLearningRate,
+          #callbacks=callbacksLearningRate,
           #callbacks=callbacksSave,
-          #callbacks=callbacks,
+          callbacks=callbacks,
           #epochs=150,          
-          epochs=500,
+          epochs=1000,
           steps_per_epoch=train_steps,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
           validation_steps=valid_steps,
