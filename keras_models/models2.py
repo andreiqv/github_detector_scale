@@ -200,7 +200,7 @@ def model_first_64(inputs):
 	x = conv(x, f=32, k=3, s=1, p='VALID')
 	x = maxpool(x) # 4	
 	x = bn(x)
-	print(x.get_shape())
+	print('x shape:', x.get_shape())
 
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
