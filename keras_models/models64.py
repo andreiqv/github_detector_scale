@@ -133,6 +133,8 @@ def model_first_64_v3(inputs):
 
 def model_first_64_v4(inputs):
 	""" 
+learning_rate = 0.01
+
 10:  val_accuracy: 0.9624 - val_miou: 0.5250
 20:  val_accuracy: 0.9699 - val_miou: 0.5778
 50:  val_accuracy: 0.9810 - val_miou: 0.6587
@@ -143,8 +145,12 @@ def model_first_64_v4(inputs):
 20:  val_accuracy: 0.9707 - val_miou: 0.6323
 50:  val_accuracy: 0.9807 - val_miou: 0.6427
 100: val_accuracy: 0.9873 - val_miou: 0.6742
---
 300: val_accuracy: 0.9929 - val_miou: 0.6910
+---
+2conv подряд:
+10: val_accuracy: 0.9689 - val_miou: 0.4656
+20: val_accuracy: 0.9729 - val_miou: 0.6325
+50: val_accuracy: 0.9822 - val_miou: 0.6384
 
 	"""
 	x = inputs
@@ -172,3 +178,33 @@ def model_first_64_v4(inputs):
 	return model	
 
 
+def model_first_64_v5(inputs):
+	""" 
+learning_rate = 0.01
+
+	"""
+	x = inputs
+	x = conv(x, f=8, k=3, s=2, p='VALID')
+	x = conv(x, f=8, k=3, s=1, p='SAME')
+	x = maxpool(x) # 32
+	x = bn(x)
+
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = conv(x, f=8, k=3, s=1, p='SAME')
+	x = maxpool(x) # 16
+	x = bn(x)
+
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = conv(x, f=8, k=3, s=1, p='SAME')
+	x = maxpool(x) # 8
+	x = bn(x)
+	
+	#x = conv(x, f=16, k=3, s=2, p='VALID')	
+	#x = maxpool(x) # 4
+	#x = bn(x)
+	print('x shape:', x.get_shape()) #
+
+	x = layers.Flatten()(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs, x, name='model_first_64')
+	return model	
