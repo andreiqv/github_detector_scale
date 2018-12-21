@@ -253,7 +253,7 @@ def model_first_64_v2(inputs):
 	x = layers.Flatten()(x)
 	#x = layers.Dropout(0.5)(x)
 	#x = layers.Dense(500, activation='sigmoid')(x)
-	x = layers.Dropout(0.5)(x)
+	#x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid')(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
