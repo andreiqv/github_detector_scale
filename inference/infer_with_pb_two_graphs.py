@@ -351,7 +351,7 @@ if __name__ == '__main__':
 	if USE_CAMERA:
 		inference_from_camera_with_two_graphs(graph_def_1, graph_def_2)
 	else:
-		image_file = '../images/01.jpg'
+		image_file = '../images/02.jpg'
 		image = get_image_as_array(image_file)
 		inference_with_two_graphs(graph_def_1, graph_def_2, image)
 
