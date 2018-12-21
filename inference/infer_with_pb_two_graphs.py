@@ -376,7 +376,7 @@ if __name__ == '__main__':
 			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
 			if pred is not None:
 				image_for_classificator = image.resize((299, 299), Image.ANTIALIAS)
-				sx, sy = image.size
+				sx, sy = image_for_classificator.size
 				x = int(pred[0] * sx)
 				y = int(pred[1] * sy)
 				w = int(pred[2] * sx)
@@ -391,7 +391,7 @@ if __name__ == '__main__':
 				y0 = max(0,  y - h//2)
 				y1 = min(sy, y + h//2)				
 				box = (x0, y0, x1, y1)
-				crop = image.crop(box)
+				crop = image_for_classificator.crop(box)
 				crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
 
 
