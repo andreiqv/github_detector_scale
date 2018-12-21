@@ -211,3 +211,37 @@ learning_rate = 0.01
 	x = layers.Dense(5, activation='sigmoid')(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
+
+
+def model_first_64_v6(inputs):
+	""" 
+
+	"""
+	x = inputs
+	x1 = conv(x, f=8, k=3, s=2, p='VALID')
+	x1 = bn(x1)
+	x2 = conv(x, f=8, k=3, s=1, p='SAME')
+	x2 = bn(x2)
+	x = layers.concatenate([x1, x2])
+	x = maxpool(x) # 32
+	x = bn(x)
+
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = maxpool(x) # 16
+	x = bn(x)
+
+	x = conv(x, f=16, k=3, s=2, p='VALID')	
+	x = maxpool(x) # 8
+	x = bn(x)
+	
+	#---
+	#x = conv(x, f=16, k=3, s=1, p='VALID')	 # add
+	#x = maxpool(x) # 4	
+	#x = bn(x)	# add
+	print('x shape:', x.get_shape()) #
+
+	x = layers.Flatten()(x)
+	x = layers.Dense(5, activation='sigmoid')(x)
+	model = keras.Model(inputs, x, name='model_first_64')
+	return model	
+
