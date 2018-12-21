@@ -93,8 +93,8 @@ def model_first_64_v2(inputs):
 
 def model_first_64_v3(inputs):
 	""" 
-	Epoch 50:  val_accuracy: 0.9851 - val_miou: 0.7046
-	Epoch 100: val_accuracy: 0.9898 - val_miou: 0.7206
+	Epoch 30:  val_accuracy: 0.9743 - val_miou: 0.6595
+	Epoch 85:  val_accuracy: 0.9858 - val_miou: 0.6619
 	Epoch 264/500 - val_loss: 0.0303 - val_accuracy: 0.9921 - val_miou: 0.6973
 	Epoch 00459: LearningRateScheduler reducing learning rate to 1.3365716995394905e-06.
 	Epoch 459/500 - 28s 119ms/step 
@@ -132,19 +132,19 @@ def model_first_64_v4(inputs):
 
 	"""
 	x = inputs
-	x = conv(x, f=8, k=3, s=2, p='SAME')
+	x = conv(x, f=8, k=3, s=1, p='SAME')
 	x = maxpool(x) # 32
 	x = bn(x)
 
-	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x) # 16
 	x = bn(x)
 
-	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x) # 8
 	x = bn(x)
 	
-	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = conv(x, f=16, k=3, s=1, p='SAME')
 	x = maxpool(x) # 4	
 	x = bn(x)
 	print('x shape:', x.get_shape()) #
