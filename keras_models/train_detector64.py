@@ -112,7 +112,7 @@ print('model.trainable_weights:', len(model.trainable_weights))
 
 
 model.compile(#optimizer=keras.optimizers.Adam(lr=learning_rate),
-              optimizers.SGD(lr=0.005, decay=1e-6, momentum=0.9, nesterov=True),
+              keras.optimizers.SGD(lr=0.005, decay=1e-6, momentum=0.9, nesterov=True),
               #optimizer='adagrad',
               #optimizer='adam',
               loss=bboxes_loss,
