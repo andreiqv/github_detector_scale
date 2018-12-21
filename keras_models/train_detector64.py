@@ -25,7 +25,7 @@ if presence:
 else:
     # LOSS:
     from keras_models.aux import miou, bboxes_loss, accuracy
-    learning_rate = 0.02
+    learning_rate = 0.01
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""
@@ -62,7 +62,7 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels))
 
-model_name = 'model_test_64_v3'
+model_name = 'model_test_64_v2'
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436
@@ -73,7 +73,7 @@ model_name = 'model_test_64_v3'
 #model = models.model_first2_1(inputs)
 
 import models64
-model = models64.model_first_64_v3(inputs)  #
+model = models64.model_first_64_v2(inputs)  #
 #model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
@@ -184,7 +184,7 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          #callbacks=callbacksLearningRate,
+          callbacks=callbacksLearningRate,
           #callbacks=callbacksSave,
           #callbacks=callbacks,
           #epochs=150,          
