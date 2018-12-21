@@ -53,7 +53,6 @@ if True:
 
 
 def get_image_as_array(image_file):
-
 	# Read the image & get statstics
 	image = Image.open(image_file)
 	#img.show()
@@ -62,8 +61,17 @@ def get_image_as_array(image_file):
 	#image = tf.image.resize_images(img, shape, method=tf.image.ResizeMethod.BICUBIC)
 	image = image.resize(shape, Image.ANTIALIAS)
 	image_arr = np.array(image, dtype=np.float32) / 255.0
-
 	return image_arr
+
+
+def load_image(image_file):
+	image = Image.open(image_file)
+	shape = tuple(INPUT_SIZE[1:])
+	image = image.resize(shape, Image.ANTIALIAS)
+	return image
+
+def image_to_array(image):
+	return np.array(image, dtype=np.float32) / 255.0
 
 
 def get_labels(labels_file):	
@@ -193,12 +201,18 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
 	pred = pred_values1[0]
 	print('PB1:', pred)
-	timer.timer()	
-
-	pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
-	pred = pred_values2[0]
-	print('PB2:', pred)
 	timer.timer()
+
+	THRESHOLD = 0.7
+	if pred[4] > THRESHOLD:
+		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
+		pred = pred_values2[0]
+		print('PB2:', pred)
+		timer.timer()
+		return pred[:4]
+	else
+		return None
+	
 
 	"""
 	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
@@ -357,10 +371,18 @@ if __name__ == '__main__':
 
 		files = ['../images/01.jpg', '../images/02.jpg']
 		for image_file in files:		
-			print(image_file)
-			image = get_image_as_array(image_file)
-			inference_with_two_graphs(graph_def_1, graph_def_2, image)
-
+			print(image_file)			
+			image = load_image(image_file)
+			image_arr = image_to_array(image)
+			inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
+			sx, sy = image.size
+			x = pred[0] * sx
+			y = pred[1] * sy
+			w = pred[2] * sx
+			h = pred[3] * sy
+			box = (x, y, w, h)
+			crop = image.crop(box)
+			crop.save('crop_{:010d}.jpg'.format(random.randint(0,1000000)), 'jpeg')	
 
 
 	"""
