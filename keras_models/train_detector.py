@@ -73,7 +73,7 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels))
 
-model_name = 'model_first2'
+model_name = 'model_first_3_1'
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436
