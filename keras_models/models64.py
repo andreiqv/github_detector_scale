@@ -224,10 +224,10 @@ def model_first_64_v6(inputs):
 	"""
 	x = inputs
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
-	x1 = bn(x1)
+	#x1 = bn(x1)
 	x2 = conv(x, f=8, k=3, s=1, p='SAME')
 	x2 = maxpool2(x2) # 32
-	x2 = bn(x2)
+	#x2 = bn(x2)
 	x = layers.concatenate([x1, x2])
 	x = maxpool(x)
 	x = bn(x)
