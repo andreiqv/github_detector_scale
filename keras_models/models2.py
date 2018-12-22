@@ -15,6 +15,8 @@ from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2  #224x224.
 OUTPUT_NAME = 'output'
 
 
+
+
 def model_ResNet50(inputs):
 
 	base_model = ResNet50(weights='imagenet', include_top=False, pooling='avg', 
@@ -59,7 +61,9 @@ def conv(x, f, k, s=1, p='SAME'):
 		use_bias=True)(x)
 	return x
 
-maxpool = lambda x, p=2: layers.MaxPool2D(pool_size=p, strides=1)(x)
+maxpool = lambda x, p=2, s=1: layers.MaxPool2D(pool_size=p, strides=s)(x)
+	
+maxpool2 = lambda x, p=2: layers.MaxPool2D(pool_size=p)(x)
 	
 bn = lambda x: layers.BatchNormalization()(x)
 
@@ -163,19 +167,18 @@ def model_first_3_2(inputs):
 	without b.n. it's a little worse - val_miou: 0.7913.
 	"""
 	x = inputs
-	x = conv(x, f=8, k=3, s=1, p='VALID')
-	x = maxpool(x)  # 64	
-	#x = bn(x)
-	#x = conv(x, f=16, k=3, s=2, p='VALID')
-	#x = bn(x)
-	x = conv(x, f=16, k=3, s=1, p='SAME')
+	x1 = conv(x, f=8, k=3, s=2, p='VALID')
+	x2 = conv(x, f=8, k=3, s=1, p='SAME')
+	x2 = maxpool2(x2) # 32
+	x = layers.concatenate([x1, x2])
 	x = maxpool(x)
+	x = bn(x)
 	
-	#x = bn(x)
+	x = bn(x)
 	x = conv(x, f=16, k=3, s=2, p='VALID')
 	x = maxpool(x)
 	
-	#x = bn(x)
+	x = bn(x)
 	x = conv(x, f=32, k=3, s=2, p='VALID')
 	x = maxpool(x)
 	
