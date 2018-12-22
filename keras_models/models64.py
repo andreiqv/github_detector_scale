@@ -183,9 +183,10 @@ learning_rate = 0.01
 def model_first_64_v5(inputs):
 	""" 
 learning_rate = 0.01
-10: val_accuracy: 0.9678 - val_miou: 0.6306
-20: val_accuracy: 0.9735 - val_miou: 0.6088
-30: val_accuracy: 0.9779 - val_miou: 0.5900
+10:  val_accuracy: 0.9678 - val_miou: 0.6306
+20:  val_accuracy: 0.9735 - val_miou: 0.6088
+30:  val_accuracy: 0.9779 - val_miou: 0.5900
+960: val_accuracy: 0.9943 - val_miou: 0.6879
 
 	"""
 	x = inputs
@@ -217,9 +218,8 @@ learning_rate = 0.01
 
 def model_first_64_v6(inputs):
 	""" 
-01: val_accuracy: 0.9278 - val_miou: 0.0707
-05: val_accuracy: 0.9566 - val_miou: 0.5089
-10: val_accuracy: 0.9657 - val_miou: 0.6342
+
+730: val_loss: 0.0281 - val_accuracy: 0.9939 - val_miou: 0.6965
 	"""
 	x = inputs
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
@@ -227,8 +227,7 @@ def model_first_64_v6(inputs):
 	x2 = conv(x, f=8, k=3, s=1, p='SAME')
 	x2 = maxpool2(x2) # 32
 	x2 = bn(x2)
-	x3 = maxpool2(x)
-	x = layers.concatenate([x1, x2, x3])	
+	x = layers.concatenate([x1, x2])	
 	x = bn(x)
 
 	x = conv(x, f=16, k=3, s=2, p='VALID')

@@ -63,11 +63,18 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 
 def model_first_3(inputs):
-	""" model_first_3 == model_first2_1
+	""" model_first_3 == model_first2_1 + one conv layer
 
 	Epoch 35/500 - 65s 109ms/step 
 	- loss: 0.0022 - accuracy: 0.9996 - miou: 0.7954 
 	- val_loss: 0.0030 - val_accuracy: 0.9996 - val_miou: 0.7978
+	
+	learning_rate = 0.001
+	0-1: 
+	Epoch 00308: learning rate to 2.283658659507637e-06.
+	Epoch 308/1000 - 123s 131ms/step - loss: 0.0051 - accuracy: 0.9942 - miou: 0.7483 
+	- val_loss: 0.0271 - val_accuracy: 0.9942 - val_miou: 0.7265
+
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='VALID')
@@ -76,7 +83,7 @@ def model_first_3(inputs):
 	x = bn(x)
 	x = conv(x, f=16, k=3, s=2, p='VALID')
 	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = conv(x, f=16, k=3, s=2, p='SAME') # added
 	x = maxpool(x)
 	
 	x = bn(x)
