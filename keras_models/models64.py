@@ -3,7 +3,7 @@ from tensorflow import keras
 layers = keras.layers
 from tensorflow.keras import regularizers
 
-output_name = 'output'
+OUTPUT_NAME = 'output'
 
 
 def conv(x, f, k, s=1, p='SAME'):
@@ -59,7 +59,7 @@ def model_first_64(inputs):
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(500, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
@@ -93,7 +93,7 @@ def model_first_64_v2(inputs):
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 
@@ -128,7 +128,7 @@ def model_first_64_v3(inputs):
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 
@@ -176,7 +176,7 @@ learning_rate = 0.01
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 
@@ -212,15 +212,16 @@ learning_rate = 0.01
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 
 
 def model_first_64_v6(inputs):
 	""" 
-
 730: val_loss: 0.0281 - val_accuracy: 0.9939 - val_miou: 0.6965
+
+
 	"""
 	x = inputs
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
@@ -247,7 +248,7 @@ def model_first_64_v6(inputs):
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
-	x = layers.Dense(5, activation='sigmoid', name=output_name)(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 

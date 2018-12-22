@@ -43,7 +43,7 @@ def lr_scheduler(epoch, lr):
 
 
 
-inputs = keras.layers.Input(shape=(128, 128, 3))
+inputs = keras.layers.Input(shape=(128, 128, 3), name='input')
 #model = models.model3(inputs)  # val_accuracy: 0.9277
 #model = models.model_first(inputs)
 #model = models.model_first2(inputs)

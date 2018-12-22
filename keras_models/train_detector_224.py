@@ -58,7 +58,7 @@ def lr_scheduler(epoch, lr):
 
 
 inputs = keras.layers.Input(shape=(
-    image_shape[0], image_shape[1], image_channels))
+    image_shape[0], image_shape[1], image_channels), name='input')
 
 #model = models.model1(inputs) 
 #model = models.model2(inputs) 

@@ -10,6 +10,7 @@ from tensorflow.keras.activations import relu, softmax
 from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers
 
+OUTPUT_NAME = 'output'
 #----------
 
 def conv(x, f, k, s=1, p='SAME'):

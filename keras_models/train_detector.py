@@ -71,7 +71,7 @@ def lr_scheduler(epoch, lr):
 
 
 inputs = keras.layers.Input(shape=(
-    image_shape[0], image_shape[1], image_channels))
+    image_shape[0], image_shape[1], image_channels),  name='input')
 
 model_name = 'model_first_3'
 

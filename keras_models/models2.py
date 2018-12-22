@@ -12,13 +12,15 @@ from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2  #224x224.
 
+OUTPUT_NAME = 'output'
+
 
 def model_ResNet50(inputs):
 
 	base_model = ResNet50(weights='imagenet', include_top=False, pooling='avg', 
 		input_tensor=inputs)
 	x = base_model.output
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_ResNet50')	
 	return model
 
@@ -27,7 +29,7 @@ def model_InceptionV3(inputs):
 	base_model = InceptionV3(weights='imagenet', include_top=False, pooling='avg', 
 		input_tensor=inputs)
 	x = base_model.output
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_InceptionV3')	
 	return model
 	
@@ -39,7 +41,7 @@ def model_MobileNetV2(inputs):
 	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=0.35,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')
 	return model	
 
@@ -103,7 +105,7 @@ def model_first_3(inputs):
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(1000, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model
@@ -145,7 +147,7 @@ def model_first_3_1(inputs):
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(1000, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
@@ -180,7 +182,7 @@ def model_first_3_2(inputs):
 	x = bn(x)	
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
@@ -219,7 +221,7 @@ def model_cnn_128(inputs):
 	#x = layers.Dropout(0.5)(x)
 	#x = layers.Dense(1000, activation='elu')(x)
 	#x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='cnn_128')
 	return model	
 
@@ -255,7 +257,7 @@ def model_cnn_224(inputs):
 	#x = layers.Dropout(0.5)(x)
 	#x = layers.Dense(1000, activation='elu')(x)
 	#x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='cnn_224')
 	
 	return model	

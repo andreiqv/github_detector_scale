@@ -4,6 +4,8 @@ layers = keras.layers
 
 from resnet import softmax_layer, conv_layer, residual_block
 
+OUTPUT_NAME = 'output'
+
 
 n_dict = {20:1, 32:2, 44:3, 56:4}
 # ResNet architectures used for CIFAR-10
@@ -65,7 +67,7 @@ def resnet_keras(inputs):
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(1000, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='111')
 	return model
