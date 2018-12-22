@@ -128,10 +128,8 @@ def model_first_3_1(inputs):
 	---
 	N=400:  val_accuracy: 0.9978 - val_miou: 0.8002
 	---
-	Epoch 00121: LearningRateScheduler reducing learning rate to 4.389575042296201e-05.
-Epoch 121/1000 598/598 [==============================] - 67s 111ms/step 
-- loss: 1.0778 - accuracy: 1.0000 - miou: 0.8403 
-- val_loss: 2.4720 - val_accuracy: 1.0000 - val_miou: 0.8123
+
+	96: val_miou: 0.8100
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='VALID')
@@ -167,8 +165,7 @@ Epoch 121/1000 598/598 [==============================] - 67s 111ms/step
 
 def model_first_3_2(inputs):
 	""" 
-	60:  val_miou: 0.8048
-	92:  val_miou: 0.8059
+	96:
 	"""
 	x = inputs		
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
@@ -176,22 +173,24 @@ def model_first_3_2(inputs):
 	x2 = conv(x, f=8, k=3, s=2, p='VALID')
 	x = layers.concatenate([x1, x2])
 	x = bn(x)
-
+	
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = bn(x)
 	x = conv(x, f=16, k=3, s=1, p='SAME')
-	x = maxpool2(x)  # 32
+	x = maxpool(x, s=1)
+	
 	x = bn(x)
-
-	x = conv(x, f=16, k=3, s=1, p='SAME')
-	x = maxpool2(x)  # 16
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = maxpool(x, s=1)
+	
 	x = bn(x)
-
-	x = conv(x, f=32, k=3, s=1, p='SAME')
-	x = maxpool2(x)  # 8
+	x = conv(x, f=32, k=3, s=2, p='VALID')
+	x = maxpool(x, s=1)
+	
 	x = bn(x)
-
-	x = conv(x, f=64, k=3, s=1, p='SAME')
-	x = maxpool2(x)  # 4
-	x = bn(x)	
+	x = conv(x, f=64, k=3, s=1, p='SAME') # 32->64, VALID->SAME
+	x = maxpool2(x)
 	
 	x = bn(x)	
 	x = layers.Flatten()(x)
@@ -201,6 +200,7 @@ def model_first_3_2(inputs):
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
+
 
 
 #====================
