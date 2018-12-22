@@ -221,7 +221,10 @@ def model_first_64_v6(inputs):
 	""" 
 730: val_loss: 0.0281 - val_accuracy: 0.9939 - val_miou: 0.6965
 
-
+for localization:
+	Epoch 78/1000 - loss: 3.4650 - accuracy: 0.9976 - miou: 0.7666 
+	- val_loss: 4.0395 - val_accuracy: 0.9976 - val_miou: 0.7592
+	
 	"""
 	x = inputs
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
