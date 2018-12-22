@@ -167,7 +167,8 @@ Epoch 121/1000 598/598 [==============================] - 67s 111ms/step
 
 def model_first_3_2(inputs):
 	""" 
-	59: val_miou: 0.8031
+	60:  val_miou: 0.8048
+	92:  val_miou: 0.8059
 	"""
 	x = inputs		
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
