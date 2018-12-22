@@ -157,23 +157,17 @@ def model_first_3_1(inputs):
 
 
 def model_first_3_2(inputs):
-	""" model_first_3 == model_first2_1
-
-	Epoch 35/500 - 65s 109ms/step 
-	- loss: 0.0022 - accuracy: 0.9996 - miou: 0.7954 
-	- val_loss: 0.0030 - val_accuracy: 0.9996 - val_miou: 0.7978
-
-	without b.n. it's a little worse - val_miou: 0.7913.
+	""" 
 	"""
 	x = inputs
-	x1 = conv(x, f=8, k=3, s=2, p='VALID')
-	x2 = conv(x, f=8, k=3, s=1, p='SAME')
-	x2 = maxpool2(x2) # 32
-	x = layers.concatenate([x1, x2])
-	x = maxpool(x)
-
 	x = conv(x, f=8, k=3, s=1, p='VALID')
-	x = maxpool(x)  # 64	
+	x = maxpool(x)  # 64
+	
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='VALID')
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=1, p='SAME')
+	x = maxpool(x)
 	
 	x = bn(x)
 	x = conv(x, f=16, k=3, s=2, p='VALID')
@@ -189,9 +183,9 @@ def model_first_3_2(inputs):
 	
 	x = bn(x)	
 	x = layers.Flatten()(x)
-	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(1000, activation='sigmoid')(x)
-	x = layers.Dropout(0.5)(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='sigmoid')(x)
+	x = layers.Dropout(0.1)(x)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
