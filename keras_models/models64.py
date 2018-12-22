@@ -3,6 +3,7 @@ from tensorflow import keras
 layers = keras.layers
 from tensorflow.keras import regularizers
 
+output_name = 'output'
 
 
 def conv(x, f, k, s=1, p='SAME'):
@@ -246,7 +247,7 @@ def model_first_64_v6(inputs):
 	print('x shape:', x.get_shape()) #
 
 	x = layers.Flatten()(x)
-	x = layers.Dense(5, activation='sigmoid')(x)
+	x = layers.Dense(5, activation='sigmoid', name=output_name)(x)
 	model = keras.Model(inputs, x, name='model_first_64')
 	return model	
 
