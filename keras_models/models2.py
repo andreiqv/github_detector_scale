@@ -152,7 +152,6 @@ def model_first_3_1(inputs):
 	x = layers.Dense(1000, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
-	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
 
@@ -167,12 +166,15 @@ def model_first_3_2(inputs):
 	without b.n. it's a little worse - val_miou: 0.7913.
 	"""
 	x = inputs
+	x = conv(x, f=8, k=3, s=1, p='VALID')
+	x = maxpool(x)  # 64
+	
+	x = bn(x)
 	x1 = conv(x, f=8, k=3, s=2, p='VALID')
 	x2 = conv(x, f=8, k=3, s=1, p='SAME')
 	x2 = maxpool2(x2) # 32
 	x = layers.concatenate([x1, x2])
 	x = maxpool(x)
-	x = bn(x)
 	
 	x = bn(x)
 	x = conv(x, f=16, k=3, s=2, p='VALID')
@@ -182,11 +184,16 @@ def model_first_3_2(inputs):
 	x = conv(x, f=32, k=3, s=2, p='VALID')
 	x = maxpool(x)
 	
+	x = bn(x)
+	x = conv(x, f=32, k=3, s=1, p='VALID')
+	x = maxpool(x)
+	
 	x = bn(x)	
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(1000, activation='sigmoid')(x)
+	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
-	#x = layers.Dense(5, activation=None)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
 	return model	
 
