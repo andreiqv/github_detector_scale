@@ -167,10 +167,13 @@ Epoch 121/1000 598/598 [==============================] - 67s 111ms/step
 
 def model_first_3_2(inputs):
 	""" 
+	59: val_miou: 0.8031
 	"""
-	x = inputs
-	x = conv(x, f=8, k=3, s=1, p='SAME')
-	x = maxpool2(x)  # 64
+	x = inputs		
+	x1 = conv(x, f=8, k=3, s=1, p='SAME')
+	x1 = maxpool2(x1)  # 64
+	x2 = conv(x, f=8, k=3, s=2, p='VALID')
+	x = layers.concatenate([x1, x2])
 	x = bn(x)
 
 	x = conv(x, f=16, k=3, s=1, p='SAME')
