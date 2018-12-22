@@ -151,7 +151,7 @@ def model_first_3_1(inputs):
 	x = bn(x)	
 	x = layers.Flatten()(x)
 	x = layers.Dropout(0.5)(x)
-	x = layers.Dense(400, activation='sigmoid')(x)
+	x = layers.Dense(1000, activation='sigmoid')(x)
 	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='model_first_3')
