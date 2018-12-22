@@ -181,7 +181,7 @@ def model_first_3_2(inputs):
 	x = conv(x, f=32, k=3, s=1, p='VALID')
 	x = maxpool(x)
 
-	x = conv(x, f=32, k=3, s=1, p='SAME')
+	x = conv(x, f=64, k=3, s=1, p='SAME')
 	x = maxpool2(x)	
 	
 	x = bn(x)	
