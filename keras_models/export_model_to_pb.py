@@ -12,7 +12,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 
-model_name = 'model_test_64_v5-868-0.994-0.994[0.694]'
+model_name = 'model_first_3-102-1.000-1.000[0.808]'
 #model_name = 'model_first_3-60-1.000-1.000[0.803]'
 model_name = model_name.rstrip('.hdf5')
 
