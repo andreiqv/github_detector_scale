@@ -37,16 +37,17 @@ if USE_CAMERA:
 use_hub_model = False
 
 if True:
-	PB1_PATH = '../pb/model_first2-309-0.994-0.994[0.746].pb'
-	PB2_PATH = '../pb/model_first_3-60-1.000-1.000[0.803].pb'
+	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb'
+	PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'
 	#FROZEN_FPATH = '/home/pi/work/pb/model_first_3-60-1.000-1.000[0.803].pb'
 	#FROZEN_FPATH = '../pb/model_resnet50-97-0.996-0.996[0.833].pb'
 	#FROZEN_FPATH = '../pb/model_resnet18-38-0.986-0.986[0.797].pb'	
 	#ENGINE_FPATH = 'saved_model_full_2.plan'
-	INPUT_SIZE = [3, 128, 128]
-	INPUT_NODE = 'input_1'
-	#INPUT_NODE = 'input_2'	
-	OUTPUT_NODE = 'dense_1/Sigmoid'
+	INPUT_SIZE_1 = [3, 64, 64]
+	INPUT_SIZE_2 = [3, 128, 128]
+	INPUT_NODE = 'input'
+	OUTPUT_NODE = 'output/Sigmoid'
+	#INPUT_NODE = 'input_1'
 	#OUTPUT_NODE = 'dense/Sigmoid'
 	input_output_placeholders = [INPUT_NODE + ':0', OUTPUT_NODE + ':0']
 
@@ -109,8 +110,9 @@ def compress_graph_with_trt(graph_def, precision_mode):
 	return trt_graph
 
 
-def inference_with_graph(graph_def, image):
-	""" Predict for single images
+def inference_FROM_CAMERA_with_SINGLE_graph(graph_def):
+	""" Predict for single images.
+	Use single nn model.
 	"""
 
 	with tf.Graph().as_default() as graph:
@@ -172,9 +174,14 @@ def inference_with_graph(graph_def, image):
 
 
 
-def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
+def inference_with_two_graphs(graph_def_1, graph_def_2, image):
 	""" Predict for single image; picture from file
 	"""
+
+	image1 = image.resize(tuple(INPUT_SIZE_1[1:]), Image.ANTIALIAS)
+	image1_arr = image_to_array(image1)
+	image2 = image.resize(tuple(INPUT_SIZE_2[1:]), Image.ANTIALIAS)
+	image2_arr = image_to_array(image2)
 
 	graph1 = tf.Graph()
 	sess1 = tf.Session(graph=graph1)
@@ -195,14 +202,14 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 
 	timer.timer('predictions.eval')	
 	#with sess1 as sess:
-	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})
 	pred = pred_values1[0]
 	print('PB1:', pred)
 	timer.timer()
 
 	THRESHOLD = 0.7
 	if pred[4] > THRESHOLD:
-		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
+		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image2_arr]})
 		pred = pred_values2[0]
 		print('PB2:', pred)
 		timer.timer()
@@ -224,6 +231,7 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image_arr):
 	"""
 
 	return pred
+
 
 
 def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
@@ -256,16 +264,20 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 		image_arr = frame.array
 
 		image_cam = Image.fromarray(np.uint8(image_arr))				
-		shape = tuple(INPUT_SIZE[1:])
-		image = image_cam.resize(shape, Image.ANTIALIAS)
-		image_arr = np.array(image, dtype=np.float32) / 255.0				
+		image1 = image_cam.resize(tuple(INPUT_SIZE_1[1:]), Image.ANTIALIAS)
+		image1_arr = np.array(image1, dtype=np.float32) / 255.0
+		if tuple(INPUT_SIZE_1[1:]) == tuple(INPUT_SIZE_2[1:]):
+			image2_arr = image1_arr
+		else:
+			image2 = image_cam.resize(tuple(INPUT_SIZE_2[1:]), Image.ANTIALIAS)
+			image2_arr = np.array(image2, dtype=np.float32) / 255.0
 
-		pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image_arr]})
+		pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})
 		pred = pred_values1[0]
 		print(pred)
 		timer.timer()
 
-		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image_arr]})
+		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image2_arr]})
 		pred = pred_values2[0]
 		print(pred)
 		timer.timer()		
@@ -370,10 +382,7 @@ if __name__ == '__main__':
 		for image_file in files:		
 			print(image_file)			
 			image = load_image(image_file)
-			shape = tuple(INPUT_SIZE[1:])
-			image_for_detector = image.resize(shape, Image.ANTIALIAS)
-			image_arr = image_to_array(image_for_detector)
-			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image_arr)
+			pred = inference_with_two_graphs(graph_def_1, graph_def_2, image)
 			if pred is not None:
 				image_for_classificator = image.resize((299, 299), Image.ANTIALIAS)
 				sx, sy = image_for_classificator.size
