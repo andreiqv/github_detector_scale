@@ -70,6 +70,8 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 def model_first_3(inputs):
 	""" model_first_3 == model_first2_1
+	--
+	77: val_miou: 0.8053
 	"""
 	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='VALID')
@@ -186,7 +188,7 @@ def model_first_3_2(inputs):
 	return model	
 
 
-def model_first_3_44(inputs):
+def model_first_3_3(inputs):
 	""" 
 	64:  val_miou: 0.8014
 	"""
@@ -195,6 +197,7 @@ def model_first_3_44(inputs):
 	x1 = maxpool2(x1)  # 64
 	x2 = conv(x, f=8, k=3, s=2, p='VALID')
 	x = layers.concatenate([x1, x2])
+	x = maxpool(x, s=1)
 	x = bn(x)
 	
 	x = bn(x)
