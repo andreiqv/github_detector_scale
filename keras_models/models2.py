@@ -190,7 +190,7 @@ def model_first_3_2(inputs):
 
 def model_first_3_3(inputs):
 	""" 
-	64:  val_miou: 0.8014
+	27: val_miou: 0.7831
 	"""
 	x = inputs		
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
@@ -215,8 +215,8 @@ def model_first_3_3(inputs):
 	x = maxpool(x, s=1)
 	
 	x = bn(x)
-	x = conv(x, f=64, k=3, s=1, p='SAME') # 32->64, VALID->SAME
-	x = maxpool2(x)
+	x = conv(x, f=64, k=3, s=1, p='VALID') # 32->64, VALID->SAME
+	x = maxpool(x)
 	
 	x = bn(x)	
 	x = layers.Flatten()(x)
