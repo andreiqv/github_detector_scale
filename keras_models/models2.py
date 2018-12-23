@@ -195,9 +195,9 @@ def model_first_3_3(inputs):
 	x = inputs		
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
 	x1 = maxpool2(x1)  # 64
-	x2 = conv(x, f=8, k=3, s=2, p='VALID')
-	x2 = maxpool(x2, s=1)
+	x2 = conv(x, f=8, k=3, s=2, p='SAME')	
 	x = layers.concatenate([x1, x2])
+	x2 = maxpool(x2, s=1)
 	x = bn(x)
 	
 	x = bn(x)
