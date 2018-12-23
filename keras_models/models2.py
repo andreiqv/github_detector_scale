@@ -55,7 +55,7 @@ def conv(x, f, k, s=1, p='SAME'):
 		filters=f,
 		kernel_size=(k, k),
 		strides=(s, s),
-		padding='SAME',
+		padding=p,
 		activation='tanh', # relu, selu
 		#kernel_regularizer=regularizers.l2(0.01),
 		use_bias=True)(x)
@@ -165,7 +165,7 @@ def model_first_3_1(inputs):
 
 def model_first_3_2(inputs):
 	""" 
-	96:
+	64:  val_miou: 0.8014
 	"""
 	x = inputs		
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
