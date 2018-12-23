@@ -85,8 +85,8 @@ model_name = 'model_first_3_2'
 
 import models2
 #model = models2.model_first_3(inputs)
-#model = models2.model_first_3_1(inputs) # val_miou: 0.8113 ++
-model = models2.model_first_3_2(inputs)
+model = models2.model_first_3_1(inputs) # val_miou: 0.8113 ++
+#model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
 
 #model = models2.model_InceptionV3(inputs)

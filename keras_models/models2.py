@@ -132,6 +132,54 @@ def model_first_3_1(inputs):
 	96: val_miou: 0.8100
 	"""
 	x = inputs
+	x = conv(x, f=8, k=3, s=1, p='SAME')
+	x = maxpool(x, s=1)  
+	
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=1, p='SAME')
+	x = maxpool(x, s=1)
+	
+	x = bn(x)
+	x = conv(x, f=16, k=3, s=2, p='SAME')
+	x = maxpool(x, s=1)
+	
+	x = bn(x)
+	x = conv(x, f=32, k=3, s=2, p='SAME')
+	x = maxpool(x, s=1)
+	
+	x = bn(x)
+	x = conv(x, f=64, k=3, s=1, p='SAME') # 32->64, VALID->SAME
+	x = maxpool2(x)
+	
+	x = bn(x)	
+	x = layers.Flatten()(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(1000, activation='sigmoid')(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
+	model = keras.Model(inputs, x, name='model_first_3')
+	return model	
+
+
+def model_first_3_2(inputs):
+	""" model_first_3 == model_first2_1
+
+	Epoch 35/500 - 65s 109ms/step 
+	- loss: 0.0022 - accuracy: 0.9996 - miou: 0.7954 
+	- val_loss: 0.0030 - val_accuracy: 0.9996 - val_miou: 0.7978
+
+	without b.n. it's a little worse - val_miou: 0.7913.
+
+	with one FC layer: val_miou: 0.7767
+	---
+	N=400:  val_accuracy: 0.9978 - val_miou: 0.8002
+	---
+
+	96: val_miou: 0.8100
+	"""
+	x = inputs
 	x = conv(x, f=8, k=3, s=1, p='VALID')
 	x = maxpool(x, s=1)  
 	
@@ -163,7 +211,7 @@ def model_first_3_1(inputs):
 	return model	
 
 
-def model_first_3_2(inputs):
+def model_first_3_44(inputs):
 	""" 
 	64:  val_miou: 0.8014
 	"""
