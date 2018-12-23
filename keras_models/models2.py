@@ -39,7 +39,6 @@ def model_MobileNetV2(inputs):
 	""" 
 	num_layers: 157
 	"""
-
 	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=0.35,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
@@ -193,7 +192,7 @@ def model_first_3_3(inputs):
 	100: val_miou: 0.8049
 	"""
 	x = inputs
-	
+
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
 	x1 = maxpool2(x1)  # 64
 	x2 = conv(x, f=8, k=3, s=2, p='SAME')	
