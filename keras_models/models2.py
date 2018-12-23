@@ -190,9 +190,10 @@ def model_first_3_2(inputs):
 
 def model_first_3_3(inputs):
 	""" 
-	27: val_miou: 0.7831
+	100: val_miou: 0.8049
 	"""
-	x = inputs		
+	x = inputs
+	
 	x1 = conv(x, f=8, k=3, s=1, p='SAME')
 	x1 = maxpool2(x1)  # 64
 	x2 = conv(x, f=8, k=3, s=2, p='SAME')	
@@ -200,19 +201,26 @@ def model_first_3_3(inputs):
 	x2 = maxpool(x2, s=1)
 	x = bn(x)
 	
+	x1 = conv(x, f=8, k=3, s=1, p='SAME')
+	x1 = maxpool2(x1)  # 64
+	x2 = conv(x, f=8, k=3, s=2, p='SAME')	
+	x = layers.concatenate([x1, x2])
+	x2 = maxpool(x2, s=1)
 	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='VALID')
-	x = bn(x)
-	x = conv(x, f=16, k=3, s=1, p='SAME')
-	x = maxpool(x, s=1)
 	
+	x1 = conv(x, f=8, k=3, s=1, p='SAME')
+	x1 = maxpool2(x1)  # 64
+	x2 = conv(x, f=8, k=3, s=2, p='SAME')	
+	x = layers.concatenate([x1, x2])
+	x2 = maxpool(x2, s=1)
 	x = bn(x)
-	x = conv(x, f=16, k=3, s=2, p='VALID')
-	x = maxpool(x, s=1)
 	
+	x1 = conv(x, f=8, k=3, s=1, p='SAME')
+	x1 = maxpool2(x1)  # 64
+	x2 = conv(x, f=8, k=3, s=2, p='SAME')	
+	x = layers.concatenate([x1, x2])
+	x2 = maxpool(x2, s=1)
 	x = bn(x)
-	x = conv(x, f=32, k=3, s=2, p='VALID')
-	x = maxpool(x, s=1)
 	
 	#x = bn(x)
 	#x = conv(x, f=64, k=3, s=1, p='VALID') # 32->64, VALID->SAME
