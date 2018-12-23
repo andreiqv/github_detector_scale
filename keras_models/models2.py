@@ -214,9 +214,9 @@ def model_first_3_3(inputs):
 	x = conv(x, f=32, k=3, s=2, p='VALID')
 	x = maxpool(x, s=1)
 	
-	x = bn(x)
-	x = conv(x, f=64, k=3, s=1, p='VALID') # 32->64, VALID->SAME
-	x = maxpool(x)
+	#x = bn(x)
+	#x = conv(x, f=64, k=3, s=1, p='VALID') # 32->64, VALID->SAME
+	#x = maxpool(x)
 	
 	x = bn(x)	
 	x = layers.Flatten()(x)
