@@ -277,17 +277,22 @@ def model_cnn_128(inputs):
 
 def model_cnn_128_v2(inputs):
 	"""
-	val_miou: 0.7223
+	val_miou: 0.7223 - 1 FC
+	val_miou: 0.7521 - 2 FC
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4)
 	x = maxpool2(x)  # 64
+	x = bn(x)
 	x = conv(x, 16, 4)
 	x = maxpool2(x)  # 32
+	x = bn(x)
 	x = conv(x, 32, 4)
 	x = maxpool2(x)  # 16
+	x = bn(x)
 	x = conv(x, 64, 4)
 	x = maxpool2(x)  # 8
+	x = bn(x)
 	x = conv(x, 128, 4)
 	x = maxpool2(x)  # 4
 
