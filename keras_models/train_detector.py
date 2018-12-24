@@ -91,7 +91,7 @@ import models2
 #model = models2.model_cnn_128_v3(inputs)
 
 #model = models2.model_InceptionV3(inputs)  # val_miou: 0.8241
-#model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
+model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
 #model = models2.model_MobileNetV2(inputs) # val_miou: 0.8022
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
@@ -104,8 +104,8 @@ import models_resnet
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
-               (image_channels, image_shape[0], image_shape[1]), 5)
+#model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
+#               (image_channels, image_shape[0], image_shape[1]), 5)
 
 
 
