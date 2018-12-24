@@ -49,13 +49,13 @@ def model_MobileNetV2(inputs):
 
 # --------------------
 
-def conv(x, f, k, s=1, p='SAME'):
+def conv(x, f, k, s=1, p='SAME', a='tanh'):
 	x = layers.Conv2D(
 		filters=f,
 		kernel_size=(k, k),
 		strides=(s, s),
 		padding=p,
-		activation='tanh', # relu, selu
+		activation=a, # relu, selu
 		#kernel_regularizer=regularizers.l2(0.01),
 		use_bias=True)(x)
 	return x
@@ -280,21 +280,22 @@ def model_cnn_128_v2(inputs):
 	val_miou: 0.7223 - 1 FC
 	val_miou: 0.7521 - 2 FC
 	val_miou: 0.7836 - +bn
+	val_miou: 0.7899 - k=4 -> k=3
 	"""	
 	x = inputs 
-	x = conv(x, 8, 3)
+	x = conv(x, 8, k=3, a='selu')
 	x = maxpool2(x)  # 64
 	x = bn(x)
-	x = conv(x, 16, 3)
+	x = conv(x, 16, k=3, a='selu')
 	x = maxpool2(x)  # 32
 	x = bn(x)
-	x = conv(x, 32, 3)
+	x = conv(x, 32, k=3, a='selu')
 	x = maxpool2(x)  # 16
 	x = bn(x)
-	x = conv(x, 64, 3)
+	x = conv(x, 64, k=3, a='selu')
 	x = maxpool2(x)  # 8
 	x = bn(x)
-	x = conv(x, 128, 3)
+	x = conv(x, 128, k=3, a='selu')
 	x = maxpool2(x)  # 4
 
 	x = layers.Flatten()(x)
