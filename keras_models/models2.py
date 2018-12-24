@@ -275,6 +275,31 @@ def model_cnn_128(inputs):
 
 
 
+def model_cnn_128_v2(inputs):
+	"""
+	"""	
+	x = inputs 
+	x = conv(x, 8, 4)
+	x = maxpool2(x)  # 64
+	x = conv(x, 16, 4)
+	x = maxpool2(x)  # 32
+	x = conv(x, 32, 4)
+	x = maxpool2(x)  # 16
+	x = conv(x, 64, 4)
+	x = maxpool2(x)  # 8
+	x = conv(x, 128, 4)
+	x = maxpool2(x)  # 4
+
+	x = layers.Flatten()(x)
+	#x = layers.Dropout(0.5)(x)
+	#x = layers.Dense(1000, activation='elu')(x)
+	#x = layers.Dropout(0.5)(x)
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
+	model = keras.Model(inputs, x, name='cnn_128_v2')
+	return model	
+
+
+
 
 
 #--------
