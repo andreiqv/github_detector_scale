@@ -277,6 +277,7 @@ def model_cnn_128(inputs):
 
 def model_cnn_128_v2(inputs):
 	"""
+	val_miou: 0.7223
 	"""	
 	x = inputs 
 	x = conv(x, 8, 4)
@@ -291,9 +292,9 @@ def model_cnn_128_v2(inputs):
 	x = maxpool2(x)  # 4
 
 	x = layers.Flatten()(x)
-	#x = layers.Dropout(0.5)(x)
-	#x = layers.Dense(1000, activation='elu')(x)
-	#x = layers.Dropout(0.5)(x)
+	x = layers.Dropout(0.5)(x)
+	x = layers.Dense(1000, activation='elu')(x)
+	x = layers.Dropout(0.5)(x)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='cnn_128_v2')
 	return model	
