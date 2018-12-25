@@ -284,18 +284,23 @@ def model_cnn_128_v2(inputs):
 	val_miou: 0.7974 
 	"""	
 	x = inputs 
+	x = conv(x, 8, k=3, a='selu')
 	x = conv(x, 8, k=3, a='tanh')
 	x = maxpool2(x)  # 64
 	x = bn(x)
 	x = conv(x, 16, k=3, a='selu')
+	x = conv(x, 16, k=3, a='tanh')
 	x = maxpool2(x)  # 32
 	x = bn(x)
+	x = conv(x, 32, k=3, a='selu')
 	x = conv(x, 32, k=3, a='tanh')
 	x = maxpool2(x)  # 16
 	x = bn(x)
 	x = conv(x, 64, k=3, a='selu')
+	x = conv(x, 64, k=3, a='tanh')
 	x = maxpool2(x)  # 8
 	x = bn(x)
+	x = conv(x, 128, k=3, a='selu')
 	x = conv(x, 128, k=3, a='tanh')
 	x = maxpool2(x)  # 4
 
