@@ -67,7 +67,7 @@ maxpool2 = lambda x, p=2: layers.MaxPool2D(pool_size=p)(x)
 bn = lambda x: layers.BatchNormalization()(x)
 
 
-def model_first_3(inputs):
+def model_3(inputs):
 	""" model_first_3 == model_first2_1
 	--
 	77: val_miou: 0.8053
@@ -103,7 +103,7 @@ def model_first_3(inputs):
 	return model
 
 
-def model_first_3_1(inputs):
+def model_3_1(inputs):
 	""" model_first_3 == model_first2_1
 
 	Epoch 35/500 - 65s 109ms/step 
@@ -151,7 +151,7 @@ def model_first_3_1(inputs):
 	return model	
 
 
-def model_first_3_2(inputs):
+def model_3_2(inputs):
 	""" model_first_3 == model_first2_1 + one conv layer
 	val_miou: 0.8118
 	"""
@@ -187,7 +187,7 @@ def model_first_3_2(inputs):
 	return model	
 
 
-def model_first_3_3(inputs):
+def model_3_3(inputs):
 	""" 
 	100: val_miou: 0.8049
 	"""
