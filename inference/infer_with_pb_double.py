@@ -40,7 +40,7 @@ use_hub_model = False
 if True:
 	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb' # 0.0120 sec.	
 	#PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'    # 0.0502 sec.
-	PB2_PATH = '../pb/presence_model_3_2-95-1.000-1.000[0.818]'    #
+	PB2_PATH = '../pb/presence_model_3_2-95-1.000-1.000[0.818].pb'    #
 	#PB2_PATH = '../pb/presence_resnet18_2-59-1.000-1.000[0.825].pb' # 0.3639 sec. # 'input_1' and 'dense/Sigmoid'
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
