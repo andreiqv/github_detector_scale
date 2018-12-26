@@ -38,18 +38,16 @@ if USE_CAMERA:
 use_hub_model = False
 
 if True:
-	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb' # 0.0120 sec.	
-	#PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'    # 0.0502 sec.
-	PB2_PATH = '../pb/presence_model_3_2-95-1.000-1.000[0.818].pb'    #
+	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb'    # 0.0120 sec.	
+	PB2_PATH = '../pb/presence_model_3_2-95-1.000-1.000[0.818].pb'   # 0.0731 sec.
+	#PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'      # 0.0502 sec.
 	#PB2_PATH = '../pb/presence_resnet18_2-59-1.000-1.000[0.825].pb' # 0.3639 sec. # 'input_1' and 'dense/Sigmoid'
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
 	INPUT_NODE_1 = 'input'
-	INPUT_NODE_2 = 'input'
+	INPUT_NODE_2 = 'input' # 'input_1'
 	OUTPUT_NODE_1 = 'output/Sigmoid'
-	OUTPUT_NODE_2 = 'output/Sigmoid'	
-	#INPUT_NODE = 'input_1'
-	#OUTPUT_NODE = 'dense/Sigmoid'
+	OUTPUT_NODE_2 = 'output/Sigmoid' # 'dense/Sigmoid'	 
 	input_output_placeholders_1 = [INPUT_NODE_1 + ':0', OUTPUT_NODE_1 + ':0']
 	input_output_placeholders_2 = [INPUT_NODE_2 + ':0', OUTPUT_NODE_2 + ':0']
 
