@@ -48,11 +48,12 @@ if True:
 	INPUT_SIZE_2 = [3, 128, 128]
 	INPUT_NODE_1 = 'input'
 	INPUT_NODE_2 = 'input_1'
-	OUTPUT_NODE = 'output/Sigmoid'
+	OUTPUT_NODE_1 = 'output/Sigmoid'
+	OUTPUT_NODE_2 = 'dense/Sigmoid'	
 	#INPUT_NODE = 'input_1'
 	#OUTPUT_NODE = 'dense/Sigmoid'
-	input_output_placeholders_1 = [INPUT_NODE_1 + ':0', OUTPUT_NODE + ':0']
-	input_output_placeholders_2 = [INPUT_NODE_2 + ':0', OUTPUT_NODE + ':0']
+	input_output_placeholders_1 = [INPUT_NODE_1 + ':0', OUTPUT_NODE_1 + ':0']
+	input_output_placeholders_2 = [INPUT_NODE_2 + ':0', OUTPUT_NODE_2 + ':0']
 
 
 
