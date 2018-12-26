@@ -46,11 +46,13 @@ if True:
 	#ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
-	INPUT_NODE = 'input_1'
+	INPUT_NODE_1 = 'input'
+	INPUT_NODE_2 = 'input_1'
 	OUTPUT_NODE = 'output/Sigmoid'
 	#INPUT_NODE = 'input_1'
 	#OUTPUT_NODE = 'dense/Sigmoid'
-	input_output_placeholders = [INPUT_NODE + ':0', OUTPUT_NODE + ':0']
+	input_output_placeholders_1 = [INPUT_NODE_1 + ':0', OUTPUT_NODE + ':0']
+	input_output_placeholders_2 = [INPUT_NODE_2 + ':0', OUTPUT_NODE + ':0']
 
 
 
@@ -194,13 +196,13 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image):
 		print("import graph 1")
 		#with sess1 as sess:
 		inputs1, predictions1 =  tf.import_graph_def(graph_def_1, name='g1', 
-			return_elements=input_output_placeholders)
+			return_elements=input_output_placeholders_1)
 			
 	with graph2.as_default() as graph:
 		print("import graph 2")
 		#with sess2 as sess:
 		inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
-			return_elements=input_output_placeholders)
+			return_elements=input_output_placeholders_2)
 
 	timer.timer('PB1')
 	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})	
@@ -261,13 +263,13 @@ def inference_from_camera_with_two_graphs(graph_def_1, graph_def_2):
 		print("import graph 1")
 		#with sess1 as sess:
 		inputs1, predictions1 =  tf.import_graph_def(graph_def_1, name='g1', 
-			return_elements=input_output_placeholders)
+			return_elements=input_output_placeholders_1)
 			
 	with graph2.as_default() as graph:
 		print("import graph 2")
 		#with sess2 as sess:
 		inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
-			return_elements=input_output_placeholders)
+			return_elements=input_output_placeholders_2)
 
 	timer.timer('predictions.eval')	
 	time_res = []
