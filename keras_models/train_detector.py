@@ -109,8 +109,10 @@ model_name = 'presence_' + model_name if presence else model_name
 
 print(model.summary())
 num_layers = len(model.layers)
+print(model_name)
 print('num_layers:', num_layers)
 print('model.trainable_weights:', len(model.trainable_weights))
+
 
 #num_last_trainable_layers = 60
 #for layer in model.layers[:num_layers - num_last_trainable_layers]:
