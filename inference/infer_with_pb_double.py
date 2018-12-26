@@ -38,11 +38,11 @@ if USE_CAMERA:
 use_hub_model = False
 
 if True:
-	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb'
-	PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'
+	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb' # 0.0120 sec.
+	PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'    # 0.0502 sec.
 	#FROZEN_FPATH = '/home/pi/work/pb/model_first_3-60-1.000-1.000[0.803].pb'
 	#FROZEN_FPATH = '../pb/model_resnet50-97-0.996-0.996[0.833].pb'
-	#FROZEN_FPATH = '../pb/model_resnet18-38-0.986-0.986[0.797].pb'	
+	PB2_PATH = '../pb/model_resnet18-38-0.986-0.986[0.797].pb'	
 	#ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
