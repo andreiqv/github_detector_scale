@@ -79,7 +79,7 @@ model_name = 'presence_' + model_name if presence else model_name
 import models2
 #model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
-model = models2.model_3_2(inputs) # val_miou: 0.8118 
+#model = models2.model_3_2(inputs) # val_miou: 0.8118 
 #model = models2.model_3_3(inputs) # val_miou: 0.8049
 #model = models2.model_cnn_128(inputs)
 #model = models2.model_cnn_128_v2(inputs)
@@ -98,8 +98,8 @@ import models_resnet
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-#model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
-#               (image_channels, image_shape[0], image_shape[1]), 5)
+model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
+               (image_channels, image_shape[0], image_shape[1]), 5)
 
 
 
