@@ -56,7 +56,7 @@ def conv(x, f, k, s=1, p='SAME', a='tanh'):
 		strides=(s, s),
 		padding=p,
 		activation=a, # relu, selu
-		#kernel_regularizer=regularizers.l2(0.01),
+		kernel_regularizer=regularizers.l2(0.01),
 		use_bias=True)(x)
 	return x
 
@@ -116,7 +116,6 @@ def model_3_1(inputs):
 	---
 	N=400:  val_accuracy: 0.9978 - val_miou: 0.8002
 	---
-
 	96: val_miou: 0.8100
 	"""
 	x = inputs
@@ -348,14 +347,3 @@ def model_cnn_224(inputs):
 	model = keras.Model(inputs, x, name='cnn_224')
 	
 	return model	
-
-"""
-model_cnn_224
-
-0/1: Epoch 9/500 - loss: 0.3312 - accuracy: 0.9556 - miou: 0.6948 
-- val_loss: 0.3902 - val_accuracy: 0.9560 - val_miou: 0.6924
-
-1: Epoch 6/500 - 454s 379ms/step - loss: 0.0011 - accuracy: 0.9978 - miou: 0.8414 
-- val_loss: 0.0060 - val_accuracy: 0.9980 - val_miou: 0.7043
-
-"""
