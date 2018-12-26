@@ -65,7 +65,7 @@ def lr_scheduler(epoch, lr):
 inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels), name='input')
 
-model_name = 'model_MobileNetV2'
+model_name = 'model_Resnet50'
 model_name = 'presence_' + model_name if presence else model_name
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
@@ -85,9 +85,9 @@ import models2
 #model = models2.model_cnn_128_v2(inputs)
 
 #model = models2.model_InceptionV3(inputs)  # val_miou: 0.8241
-#model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
+model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
 #model = models2.model_MobileNetV2(inputs, depth=0.35) # val_miou: 0.8022
-model = models2.model_MobileNetV2(inputs, depth=1) # 
+#model = models2.model_MobileNetV2(inputs, depth=1) # 
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
