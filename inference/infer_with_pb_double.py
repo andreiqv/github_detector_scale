@@ -202,20 +202,30 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image):
 		inputs2, predictions2 =  tf.import_graph_def(graph_def_2, name='g2', 
 			return_elements=input_output_placeholders)
 
-	timer.timer('predictions.eval')	
-	#with sess1 as sess:
-	for i in range(5): # repeat for testing
-		pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})
-		pred = pred_values1[0]
-		print('PB1:', pred)
-		timer.timer()
+	timer.timer('PB1')
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})	
+	timer.timer('PB1')
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})	
+	timer.timer('PB1')
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})	
+	timer.timer('PB1')
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})	
+
+	pred = pred_values1[0]
+	print('PB1:', pred)
 
 	THRESHOLD = 0.7
 	if pred[4] > THRESHOLD:
+		timer.timer('PB2')
 		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image2_arr]})
+		timer.timer('PB2')
+		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image2_arr]})
+		timer.timer('PB2')
+		pred_values2 = sess2.run(predictions2, feed_dict={inputs2: [image2_arr]})
+
 		pred = pred_values2[0]
 		print('PB2:', pred)
-		timer.timer()
+		
 		return pred[:4]
 	else:
 		return None
