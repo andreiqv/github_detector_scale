@@ -66,6 +66,7 @@ inputs = keras.layers.Input(shape=(
     image_shape[0], image_shape[1], image_channels), name='input')
 
 model_name = 'model_3_2'
+model_name = 'presence_' + model_name if presence else model_name
 
 #model = models.model1(inputs)  # val_miou: 0.0517 -> 0.0855
 #model = models.model2(inputs)  # val_miou: 0.6534 -> 0.7436

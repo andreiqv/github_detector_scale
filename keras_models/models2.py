@@ -56,7 +56,7 @@ def conv(x, f, k, s=1, p='SAME', a='tanh'):
 		strides=(s, s),
 		padding=p,
 		activation=a, # relu, selu
-		kernel_regularizer=regularizers.l2(0.01),
+		#kernel_regularizer=regularizers.l2(0.01),
 		use_bias=True)(x)
 	return x
 
