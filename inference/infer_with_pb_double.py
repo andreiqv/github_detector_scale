@@ -21,7 +21,8 @@ import timer
 from time import sleep
 import random
 import io
-USE_CAMERA = False
+
+USE_CAMERA = False # capture images from camera
 if USE_CAMERA:
 	from picamera import PiCamera
 	from picamera.array import PiRGBArray
@@ -204,9 +205,14 @@ def inference_with_two_graphs(graph_def_1, graph_def_2, image):
 	timer.timer('predictions.eval')	
 	#with sess1 as sess:
 	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})
+	timer.timer()
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})
+	timer.timer()
+	pred_values1 = sess1.run(predictions1, feed_dict={inputs1: [image1_arr]})
+	timer.timer()
+
 	pred = pred_values1[0]
 	print('PB1:', pred)
-	timer.timer()
 
 	THRESHOLD = 0.7
 	if pred[4] > THRESHOLD:
