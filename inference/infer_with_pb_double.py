@@ -46,7 +46,7 @@ if True:
 	#ENGINE_FPATH = 'saved_model_full_2.plan'
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
-	INPUT_NODE = 'input'
+	INPUT_NODE = 'input_1'
 	OUTPUT_NODE = 'output/Sigmoid'
 	#INPUT_NODE = 'input_1'
 	#OUTPUT_NODE = 'dense/Sigmoid'
