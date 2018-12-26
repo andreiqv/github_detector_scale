@@ -1,5 +1,5 @@
 """
-
+python3 keras_models/train_detector64.py
 """
 import os
 import sys
@@ -20,12 +20,15 @@ else:
     presence = False
 
 if presence:
-    from keras_models.aux1 import miou, bboxes_loss, accuracy
+    # localization
+    from keras_models.aux import bboxes_loss
     learning_rate = 0.0005
 else:
-    # LOSS:
-    from keras_models.aux import miou, bboxes_loss, accuracy
+    # objectness
+    from keras_models.aux import bboxes_loss_objectness as bboxes_loss
     learning_rate = 0.01
+
+from keras_models.aux import miou, accuracy    
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = ""

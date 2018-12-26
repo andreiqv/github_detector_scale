@@ -2,21 +2,21 @@ import tensorflow as tf
 
 EMPTY_PLATFORM_THRESHOLD = 0.7
 
-"""
+def bboxes_loss_objectness(labels, logits):
+    """ For 1-st model: objectness
+    """
+    objectness_loss = tf.contrib.losses.mean_squared_error(logits[:, 4], labels[:, 4])
+    bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], labels[:, :4]), axis=1)    
+    bbox_loss = tf.reduce_mean(bbox_loss * labels[:, 4])
+    return objectness_loss + 1 * bbox_loss
+
 def bboxes_loss(labels, logits):
+    """ For 2-nd model: localization
+    """
     objectness_loss = tf.contrib.losses.mean_squared_error(logits[:, 4], labels[:, 4])
     bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], labels[:, :4]), axis=1)
     bbox_loss = tf.reduce_mean(bbox_loss * labels[:, 4])
     return objectness_loss + 1000 * bbox_loss
-"""
-
-def bboxes_loss(labels, logits):
-    objectness_loss = tf.contrib.losses.mean_squared_error(logits[:, 4], labels[:, 4])
-    bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], labels[:, :4]), axis=1)    
-    #zeros = tf.zeros([4], tf.float32)
-    #bbox_loss = tf.reduce_mean(tf.squared_difference(logits[:, :4], zeros), axis=1)
-    bbox_loss = tf.reduce_mean(bbox_loss * labels[:, 4])
-    return objectness_loss + 1 * bbox_loss
 
 
 def accuracy(_labels, _logits):
