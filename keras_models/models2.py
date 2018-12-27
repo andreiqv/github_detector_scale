@@ -11,6 +11,7 @@ from tensorflow.contrib.slim.nets import alexnet
 from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2  #224x224.
+from tensorflow.keras.applications.mobilenet import MobileNet  #224x224.
 
 OUTPUT_NAME = 'output'
 
