@@ -32,11 +32,14 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 
 def model_cnn_128(inputs):
-	x = inputs 
-	x = maxpool(x)  # 64
-	x = maxpool(x)  # 32
-	x = maxpool(x)  # 16
-	x = maxpool(x)  # 8
+	net = mobilenet_v2.mobilenet_v2_035	
+
+	x = inputs
+	x, end_points = net(x, num_classes=5, is_training=True)
+	#x = maxpool(x)  # 64
+	#x = maxpool(x)  # 32
+	#x = maxpool(x)  # 16
+	#x = maxpool(x)  # 8
 	x = maxpool(x)  # 4 x 4 x 16
 
 	x = layers.Flatten()(x)
