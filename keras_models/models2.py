@@ -39,7 +39,8 @@ def model_InceptionV3(inputs):
 def model_MobileNet(inputs, depth):
 	""" 
 	"""
-	base_model = MobileNet(weights='imagenet', alpha=1.0, depth_multiplier=depth,
+	weights = 'imagenet' if depth==1 else None
+	base_model = MobileNet(weights=weights, alpha=1.0, depth_multiplier=depth,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
@@ -50,8 +51,10 @@ def model_MobileNetV2(inputs, depth):
 	""" 
 	ошибка при экспорте hdf5->pb 
 	TypeError: unorderable types: dict() < float()
+	If imagenet weights are being loaded, depth multiplier must be 1
 	"""
-	base_model = MobileNetV2(weights='imagenet', alpha=1.0, depth_multiplier=depth,
+	weights = 'imagenet' if depth==1 else None
+	base_model = MobileNetV2(weights=weights, alpha=1.0, depth_multiplier=depth,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
