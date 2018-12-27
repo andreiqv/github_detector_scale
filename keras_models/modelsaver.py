@@ -46,4 +46,4 @@ if __name__ == '__main__':
 		"./checkpoints/{}.hdf5".format(model_name),
 		custom_objects={'miou': miou, 'accuracy': accuracy, 'bboxes_loss': bboxes_loss})
 	
-	save(model, path='./pb/', filename=model_name+'.pb')
+	save(model, path='../pb/', filename=model_name+'.pb')
