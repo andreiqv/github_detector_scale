@@ -5,7 +5,7 @@ python3 keras_models/train_detector.py 1
 """
 import os
 import sys
-import cv2
+#import cv2
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
