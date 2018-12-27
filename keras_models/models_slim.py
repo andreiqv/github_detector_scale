@@ -16,11 +16,16 @@ from nets.nasnet import nasnet
 
 OUTPUT_NAME = 'output'
 
+maxpool = lambda x, p=2, s=1: layers.MaxPool2D(pool_size=p, strides=s)(x)
+maxpool2 = lambda x, p=2: layers.MaxPool2D(pool_size=p)(x)	
+bn = lambda x: layers.BatchNormalization()(x)
+
 
 def MobileNet_v2_035(inputs):
-
+	x = inputs
 	net = mobilenet_v2.mobilenet_v2_035	
-	x, end_points = net(inputs, num_classes=5, is_training=True)
+	#x, end_points = net(inputs, num_classes=5, is_training=True)
+	x = conv(x, f=8, k=3, s=1, p='VALID')
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs, x, name='MobileNet_v2')	
 	return model
