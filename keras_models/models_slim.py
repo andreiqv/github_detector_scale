@@ -33,20 +33,10 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 def model_cnn_128(inputs):
 	x = inputs 
-	x = conv(x, 8, 4, s=2)
-	x = conv(x, 8, 4)
 	x = maxpool(x)  # 64
-	x = conv(x, 16, 4, s=2)
-	x = conv(x, 16, 4)
 	x = maxpool(x)  # 32
-	x = conv(x, 16, 3, s=2)
-	x = conv(x, 16, 3)
 	x = maxpool(x)  # 16
-	x = conv(x, 16, 3, s=2)
-	x = conv(x, 16, 3)
 	x = maxpool(x)  # 8
-	x = conv(x, 32, 3, s=2)
-	x = conv(x, 32, 3)
 	x = maxpool(x)  # 4 x 4 x 16
 
 	x = layers.Flatten()(x)
