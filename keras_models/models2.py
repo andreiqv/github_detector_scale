@@ -34,10 +34,21 @@ def model_InceptionV3(inputs):
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_InceptionV3')	
 	return model
+
+def model_MobileNet(inputs, depth):
+	""" 
+	"""
+	base_model = MobileNet(weights='imagenet', alpha=1.0, depth_multiplier=depth,
+		include_top=False, pooling='avg', input_tensor=inputs)
+	x = base_model.output
+	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
+	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')
+	return model	
 	
 def model_MobileNetV2(inputs, depth):
 	""" 
-	num_layers: 157
+	ошибка при экспорте hdf5->pb 
+	TypeError: unorderable types: dict() < float()
 	"""
 	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=depth,
 		include_top=False, pooling='avg', input_tensor=inputs)

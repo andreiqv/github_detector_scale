@@ -11,8 +11,7 @@ from keras_models.aux import accuracy, bboxes_loss, miou
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
-
-model_name = 'presence_model_MobileNetV2_0.35-37-0.999-0.999[0.802]'
+model_name = 'presence_model_MobileNetV2-100-1.000-1.000[0.812]'
 #model_name = 'model_first_3-60-1.000-1.000[0.803]'
 model_name = model_name.rstrip('.hdf5')
 
