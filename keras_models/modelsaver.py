@@ -40,7 +40,9 @@ if __name__ == '__main__':
 	#model_name = 'model_first_3-60-1.000-1.000[0.803]'
 	model_name = model_name.rstrip('.hdf5')
 
-	base_model = keras.models.load_model(
+	top_6 = lambda y_true, y_pred: tf.keras.metrics.top_k_categorical_accuracy(y_true, y_pred, k=6)
+
+	model = keras.models.load_model(
 		"./checkpoints/{}.hdf5".format(model_name),
 		custom_objects={'miou': miou, 'accuracy': accuracy, 'bboxes_loss': bboxes_loss})
 	
