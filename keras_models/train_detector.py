@@ -89,8 +89,8 @@ import models2
 #model = models2.model_MobileNetV2(inputs, depth=1)     # 0.812
 
 import models_slim
-#model = models_slim.MobileNet_v2_035(inputs)     
-model = models_slim.model_cnn_128(inputs)     
+#model = models_slim.model_cnn_128(inputs)     
+model = models_slim.MobileNet_v2_035(inputs)     
 
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
