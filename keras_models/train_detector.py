@@ -75,7 +75,7 @@ inputs = keras.layers.Input(shape=(
 #model = models.model_first2_1(inputs)
 
 import models2
-model = models2.model_3(inputs)   # val_miou: 0.8053
+#model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
 #model = models2.model_3_2(inputs) # val_miou: 0.8118 
 #model = models2.model_3_3(inputs) # val_miou: 0.8049
@@ -89,7 +89,9 @@ model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_MobileNetV2(inputs, depth=1)     # 0.812
 
 import models_slim
-model = models_slim.MobileNet_v2_035(inputs)     # 0.812
+#model = models_slim.MobileNet_v2_035(inputs)     
+model = models_slim.model_cnn_128(inputs)     
+
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
@@ -207,6 +209,7 @@ model.fit(dataset.train_set.repeat(),
           validation_steps=valid_steps,
           )
 
+# save into PB
 keras.backend.set_learning_phase(0)
 import modelsaver
 modelsaver.save(model, path='../pb/', filename=model_name+'.pb')
