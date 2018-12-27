@@ -16,6 +16,16 @@ from nets.nasnet import nasnet
 
 OUTPUT_NAME = 'output'
 
+def conv(x, f, k, s=1, p='SAME', a='tanh'):
+	x = layers.Conv2D(
+		filters=f,
+		kernel_size=(k, k),
+		strides=(s, s),
+		padding=p,
+		activation=a, # relu, selu
+		#kernel_regularizer=regularizers.l2(0.01),
+		use_bias=True)(x)
+	return x
 maxpool = lambda x, p=2, s=1: layers.MaxPool2D(pool_size=p, strides=s)(x)
 maxpool2 = lambda x, p=2: layers.MaxPool2D(pool_size=p)(x)	
 bn = lambda x: layers.BatchNormalization()(x)
