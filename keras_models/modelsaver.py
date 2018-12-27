@@ -17,7 +17,7 @@ def freeze_graph(graph, session, output, path, filename):
 
 def save(model, path, filename):
 
-	keras.backend.set_learning_phase(0)
+	#keras.backend.set_learning_phase(0)
 	#print(model.summary())
 	session = keras.backend.get_session()
 

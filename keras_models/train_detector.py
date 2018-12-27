@@ -204,5 +204,6 @@ model.fit(dataset.train_set.repeat(),
           validation_steps=valid_steps,
           )
 
+keras.backend.set_learning_phase(0)
 import modelsaver
 modelsaver.save(model, path='../pb/', filename=model_name+'.pb')
