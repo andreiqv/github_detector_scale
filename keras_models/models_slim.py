@@ -40,7 +40,7 @@ def model_cnn_128(inputs):
 	#x = maxpool(x)  # 32
 	#x = maxpool(x)  # 16
 	#x = maxpool(x)  # 8
-	x = maxpool(x)  # 4 x 4 x 16
+	#x = maxpool(x)  # 4 x 4 x 16
 
 	x = layers.Flatten()(x)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
