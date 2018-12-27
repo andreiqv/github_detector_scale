@@ -32,7 +32,8 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 
 def model_cnn_128(inputs):
-	net = mobilenet_v2.mobilenet_v2_035	
+	#net = mobilenet_v2.mobilenet_v2_035	
+	net = resnet_v2.resnet_v2_50
 
 	x = inputs
 	x, end_points = net(x, num_classes=5, is_training=True)
