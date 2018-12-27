@@ -101,7 +101,7 @@ import models_resnet
 #model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
 #               (image_channels, image_shape[0], image_shape[1]), 5)
 
-model_name = 'model_MobileNetV2'
+model_name = 'model_MobileNet'
 model_name = 'presence_' + model_name if presence else model_name
 
 
