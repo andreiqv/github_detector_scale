@@ -47,7 +47,7 @@ def model_MobileNet(inputs, depth):
 	model = keras.Model(inputs=inputs, outputs=x, name='keras_MobileNetV2')
 	return model	
 	
-def model_MobileNetV2(inputs, depth):
+def model_MobileNetV2(inputs, depth=1):
 	""" 
 	ошибка при экспорте hdf5->pb 
 	TypeError: unorderable types: dict() < float()
