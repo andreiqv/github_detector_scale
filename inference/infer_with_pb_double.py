@@ -43,8 +43,8 @@ if True:
 	#PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'      # 0.0502 sec.
 	#PB2_PATH = '../pb/presence_resnet18_2-59-1.000-1.000[0.825].pb' # 0.3639 sec. # 'input_1' and 'dense/Sigmoid'
 	#PB2_PATH = '../pb/model_resnet50-97-0.996-0.996[0.833].pb'   # 0.0731 sec.
-	PB2_PATH = '../pb/presence_model_3.pb' 
-	PB2_PATH = '../pb/model_3_2-165-1.000-1.000[0.818].pb'	
+	#PB2_PATH = '../pb/presence_model_3.pb' 
+	PB2_PATH = '../pb/model_3_2-165-1.000-1.000[0.818].pb'
 
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
