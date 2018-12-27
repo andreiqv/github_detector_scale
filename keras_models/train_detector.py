@@ -88,6 +88,9 @@ model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_MobileNetV2(inputs, depth=0.35)  # val_miou: 0.8022
 #model = models2.model_MobileNetV2(inputs, depth=1)     # 0.812
 
+import models_slim
+model = models_slim.MobileNet_v2_035(inputs)     # 0.812
+
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
@@ -101,7 +104,7 @@ import models_resnet
 #model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
 #               (image_channels, image_shape[0], image_shape[1]), 5)
 
-model_name = 'model_3'
+model_name = 'slim_MobileNet_v2_035'
 model_name = 'presence_' + model_name if presence else model_name
 
 
@@ -194,11 +197,11 @@ callbacksLearningRate = [
 keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
-          callbacks=callbacksLearningRate,
+          #callbacks=callbacksLearningRate,
           #callbacks=callbacksSave,
-          #callbacks=callbacks,
-          epochs=1,  
-          #epochs=1000,
+          callbacks=callbacks,
+          #epochs=1,  
+          epochs=1000,
           steps_per_epoch=train_steps,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
           validation_steps=valid_steps,
