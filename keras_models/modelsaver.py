@@ -8,14 +8,14 @@ from keras_models.aux import accuracy, bboxes_loss, miou
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
-def freeze_graph(graph, session, output, path):
+def freeze_graph(graph, session, output, path, filename):
 	with graph.as_default():
 		graphdef_inf = tf.graph_util.remove_training_nodes(graph.as_graph_def())
 		graphdef_frozen = tf.graph_util.convert_variables_to_constants(session, graphdef_inf, output)
-		graph_io.write_graph(graphdef_frozen, path, as_text=False)
+		graph_io.write_graph(graphdef_frozen, path, filename, as_text=False)
 
 
-def save(model, path):
+def save(model, path, filename):
 
 	keras.backend.set_learning_phase(0)
 	print(model.summary())
@@ -30,7 +30,7 @@ def save(model, path):
 		print(node.op.name)
 
 	freeze_graph(session.graph, session, \
-		[out.op.name for out in model.outputs], path)
+		[out.op.name for out in model.outputs], path, filename)
 
 
 
@@ -46,4 +46,4 @@ if __name__ == '__main__':
 		"./checkpoints/{}.hdf5".format(model_name),
 		custom_objects={'miou': miou, 'accuracy': accuracy, 'bboxes_loss': bboxes_loss})
 	
-	save(model, path='./pb/' + model_name + '.pb')
+	save(model, path='./pb/', filename=model_name+'.pb')
