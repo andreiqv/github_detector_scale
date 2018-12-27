@@ -77,7 +77,7 @@ inputs = keras.layers.Input(shape=(
 import models2
 #model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
-#model = models2.model_3_2(inputs) # val_miou: 0.8118 
+model = models2.model_3_2(inputs) # val_miou: 0.8118 
 #model = models2.model_3_3(inputs) # val_miou: 0.8049
 #model = models2.model_cnn_128(inputs)
 #model = models2.model_cnn_128_v2(inputs)
@@ -86,7 +86,7 @@ import models2
 #model = models2.model_ResNet50(inputs)    #  val_miou: 0.8524
 #model = models2.model_MobileNetV2(inputs, depth=0.35) # val_miou: 0.8022
 #model = models2.model_MobileNetV2(inputs, depth=1) # 0.812
-model = models2.model_MobileNet(inputs, depth=1) # 0.812
+#model = models2.model_MobileNet(inputs, depth=1) # 0.812
 
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
