@@ -82,7 +82,7 @@ import models2
 #model = models2.model_cnn_128(inputs)
 #model = models2.model_cnn_128_v2(inputs)
 
-model = models2.model_InceptionV3(inputs)  # val_miou: 0.8241
+#model = models2.model_InceptionV3(inputs)  # val_miou: 0.8241
 #model = models2.model_ResNet50(inputs)    #  val_miou: 0.8524
 #model = models2.model_MobileNetV2(inputs, depth=0.35) # val_miou: 0.8022
 #model = models2.model_MobileNetV2(inputs, depth=1) # 0.812
@@ -97,10 +97,10 @@ import models_resnet
 #model = models3.resnet_keras(inputs)
 
 import resnet_v2
-#model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
-#               (image_channels, image_shape[0], image_shape[1]), 5)
+model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
+               (image_channels, image_shape[0], image_shape[1]), 5)
 
-model_name = 'model_InceptionV3'
+model_name = 'build_resnet_18'
 model_name = 'presence_' + model_name if presence else model_name
 
 
