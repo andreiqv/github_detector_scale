@@ -51,7 +51,7 @@ def model_MobileNetV2(inputs, depth):
 	ошибка при экспорте hdf5->pb 
 	TypeError: unorderable types: dict() < float()
 	"""
-	base_model = MobileNetV2(weights=None, alpha=1.0, depth_multiplier=depth,
+	base_model = MobileNetV2(weights='imagenet', alpha=1.0, depth_multiplier=depth,
 		include_top=False, pooling='avg', input_tensor=inputs)
 	x = base_model.output
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
