@@ -205,4 +205,4 @@ model.fit(dataset.train_set.repeat(),
           )
 
 import modelsaver
-modelsaver.save(model, path='./pb/' + model_name + '.pb')
+modelsaver.save(model, path='./pb/', filename=model_name+'.pb')
