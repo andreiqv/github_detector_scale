@@ -42,6 +42,7 @@ if __name__ == '__main__':
 
 	top_6 = lambda y_true, y_pred: tf.keras.metrics.top_k_categorical_accuracy(y_true, y_pred, k=6)
 
+	keras.backend.set_learning_phase(0)
 	model = keras.models.load_model(
 		"./checkpoints/{}.hdf5".format(model_name),
 		custom_objects={'miou': miou, 'accuracy': accuracy, 'bboxes_loss': bboxes_loss})
