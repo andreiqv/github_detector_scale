@@ -19,11 +19,10 @@ OUTPUT_NAME = 'output'
 
 def MobileNet_v2_035(inputs):
 
-	x = inputs
 	net = mobilenet_v2.mobilenet_v2_035	
-	x, end_points = net(x, num_classes=5, is_training=True)
+	x, end_points = net(inputs, num_classes=5, is_training=True)
 	x = layers.Dense(5, activation='sigmoid', name=OUTPUT_NAME)(x)
-	model = keras.Model(inputs=inputs, outputs=x, name='MobileNet_v2')	
+	model = keras.Model(inputs, x, name='MobileNet_v2')	
 	return model
 
 
