@@ -45,9 +45,9 @@ if True:
 	#PB2_PATH = '../pb/presence_build_resnet_18-173-1.000-1.000[0.833].pb'      # 
 	#PB2_PATH = '../pb/presence_model_Resnet50-160-1.000-1.000[0.854].pb'
 	#PB2_PATH = '../pb/presence_model_MobileNet-111-1.000-1.000[0.850].pb' # 0.1540 sec.
-	#PB2_PATH = '../pb/presence_model_MobileNetV2_0.35-37-0.999-0.999[0.802].pb'
+	PB2_PATH = '../pb/presence_model_MobileNetV2_-152-1.000-1.000[0.846].pb'
+	#PB2_PATH = '../pb/presence_model_InceptionV3-90-1.000-1.000[0.838].pb' # 0.3707 sec.
 
-	PB2_PATH = '../pb/presence_model_InceptionV3-90-1.000-1.000[0.838].pb'
 
 	INPUT_SIZE_1 = [3, 64, 64]
 	INPUT_SIZE_2 = [3, 128, 128]
