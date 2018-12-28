@@ -87,12 +87,13 @@ os.system('mkdir -p {}'.format(dir_for_checkpoints))
 
 #--
 # plotting
-SHOW_PLOT = True
-import matplotlib.pyplot as plt
-fig = plt.figure(figsize=(10, 5))
-ax1 = fig.add_subplot(121)
-ax2 = fig.add_subplot(122)
-fig.suptitle(net_model_name, fontsize=16)
+SHOW_PLOT = False
+if SHOW_PLOT:
+	import matplotlib.pyplot as plt
+	fig = plt.figure(figsize=(10, 5))
+	ax1 = fig.add_subplot(121)
+	ax2 = fig.add_subplot(122)
+	fig.suptitle(net_model_name, fontsize=16)
 
 def plot_figure(results, ax1, ax2):
 	ax1.cla()
