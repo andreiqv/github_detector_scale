@@ -54,3 +54,10 @@ for node in base_model.outputs:
     print(node.op.name)
 
 freeze_graph(session.graph, session, [out.op.name for out in base_model.outputs])
+
+"""
+Possible problems
+-----------------
+
+
+"""
