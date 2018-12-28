@@ -75,7 +75,7 @@ inputs = keras.layers.Input(shape=(
 #model = models.model_first2_1(inputs)
 
 import models2
-model = models2.model_3(inputs)   # val_miou: 0.8053
+#model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
 #model = models2.model_3_2(inputs) # val_miou: 0.8118 
 #model = models2.model_3_3(inputs) # val_miou: 0.8049
@@ -86,7 +86,7 @@ model = models2.model_3(inputs)   # val_miou: 0.8053
 #model = models2.model_ResNet50(inputs)     #  val_miou: 0.8524
 #model = models2.model_MobileNet(inputs, depth=1) # 0.812
 #model = models2.model_MobileNetV2(inputs, depth=0.35)  # val_miou: 0.8022
-#model = models2.model_MobileNetV2(inputs, depth=1)     # 0.812
+model = models2.model_MobileNetV2(inputs, depth=1)     # 0.812
 
 import models_slim
 #model = models_slim.model_cnn_128(inputs)     
@@ -106,7 +106,7 @@ import models_resnet
 #model = resnet_v2.ResnetBuilder.build_resnet_18(  # val_miou: 0.8286
 #               (image_channels, image_shape[0], image_shape[1]), 5)
 
-model_name = 'test'
+model_name = 'test_mobile'
 model_name = 'presence_' + model_name if presence else model_name
 
 
