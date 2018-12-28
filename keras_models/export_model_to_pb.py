@@ -12,7 +12,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 #model_name = 'presence_model_MobileNetV2-100-1.000-1.000[0.812]'
-model_name = 'presence_model_MobileNet-111-1.000-1.000[0.850]'
+model_name = 'presence_model_MobileNetV2_0.35-37-0.999-0.999[0.802]'
 model_name = model_name.rstrip('.hdf5')
 
 
@@ -62,5 +62,13 @@ unorderable types: dict() < float()
 
 Solution: 
 /usr/local/lib/python3.5/dist-packages/tensorflow/python/keras/layers/advanced_activations.py
+in line 310 add the following code:
+
+    if type(max_value) is dict:    
+        #print(type(max_value))
+        #print(max_value)
+        max_value = max_value['value'] 
+        negative_slope = negative_slope['value'] 
+        threshold = threshold['value'] 
 
 """
