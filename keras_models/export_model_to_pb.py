@@ -58,6 +58,9 @@ freeze_graph(session.graph, session, [out.op.name for out in base_model.outputs]
 """
 Possible problems
 -----------------
+unorderable types: dict() < float()
 
+Solution: 
+/usr/local/lib/python3.5/dist-packages/tensorflow/python/keras/layers/advanced_activations.py
 
 """
