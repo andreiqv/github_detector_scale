@@ -82,11 +82,11 @@ import models2
 #model = models2.model_cnn_128(inputs)
 #model = models2.model_cnn_128_v2(inputs)
 
-#model = models2.model_InceptionV3(inputs)  # val_miou: 0.8241
-#model = models2.model_ResNet50(inputs)     #  val_miou: 0.8524
-#model = models2.model_MobileNet(inputs, depth=1) # 0.812
+#model = models2.model_InceptionV3(inputs)              # val_miou: 0.8241
+#model = models2.model_ResNet50(inputs)                 # val_miou: 0.8524
+#model = models2.model_MobileNet(inputs, depth=1)       # val_miou: 0.8500
 #model = models2.model_MobileNetV2(inputs, depth=0.35)  # val_miou: 0.8022
-model = models2.model_MobileNetV2(inputs, depth=1)     # 0.812
+model = models2.model_MobileNetV2(inputs, depth=1)      # val_miou: 0.8460
 
 import models_slim
 #model = models_slim.model_cnn_128(inputs)     
@@ -200,9 +200,9 @@ keras.backend.get_session().run(tf.local_variables_initializer())
 
 model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
-          callbacks=callbacksSave,
-          #callbacks=callbacks,
-          epochs=1000,  
+          #callbacks=callbacksSave,
+          callbacks=callbacks,
+          epochs=1000, 
           #epochs=1000,
           steps_per_epoch=train_steps,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
