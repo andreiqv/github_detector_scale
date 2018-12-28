@@ -3,7 +3,7 @@ import math
 import os
 from PIL import Image, ImageDraw
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from tqdm import tqdm
 
 # tf.enable_eager_execution()
