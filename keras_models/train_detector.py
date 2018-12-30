@@ -202,7 +202,7 @@ model.fit(dataset.train_set.repeat(),
           #callbacks=callbacksLearningRate,
           #callbacks=callbacksSave,
           callbacks=callbacks,
-          epochs=1000, 
+          epochs=1, 
           #epochs=1000,
           steps_per_epoch=train_steps,
           validation_data=dataset.test_set.batch(batch_size).repeat(),
@@ -211,5 +211,8 @@ model.fit(dataset.train_set.repeat(),
 
 # save into PB
 keras.backend.set_learning_phase(0)
+
+model.save_weights("./checkpoints/saved_{}.hdf5".format(model_name))
+
 import modelsaver
 modelsaver.save(model, path='../pb/', filename=model_name+'.pb')
