@@ -203,14 +203,11 @@ class TfrecordsDataset:
         return self
 
 
-if __name__ == '__main__':
-    test_percent = 0.2
-    image_size = (128, 128)
-    #image_size = (224, 224)
-    #image_size = (64, 64)
-    channels_count = 3
+def write_dataset_to_tfrecords(image_size, dataset_list, output_file):
 
-    dataset_list = 'dataset-bboxes.list'
+    #test_percent = 0.2
+    #dataset_list = 'dataset-bboxes.list'
+    channels_count = 3
 
     files_list = []
     labels_list = []
@@ -218,27 +215,22 @@ if __name__ == '__main__':
         for line in d_l:
             files_list.append(line.strip())
             labels_list.append(line.replace(".jpg", ".txt").strip())
-    test_split_index = math.ceil(len(files_list) * test_percent)
 
-    files_list = np.array(files_list)
-    labels_list = np.array(labels_list)
+    x = np.array(files_list)
+    y = np.array(labels_list)
 
-    idx = np.arange(len(files_list))
-    np.random.shuffle(idx)
-    test_split = idx[:test_split_index]
-    train_split = idx[test_split_index:]
+    print(len(x))
+    convert_to_tfrecords(x, y, image_size, output_file)
 
-    x_test = files_list[test_split]
-    y_test = labels_list[test_split]
 
-    x_train = files_list[train_split]
-    y_train = labels_list[train_split]
+if __name__ == '__main__':
 
-    # dataset = read_tf_records("training.tfrecords", image_size, channels_count)
 
-    print(len(x_train))
-    print(len(x_test))
-    convert_to_tfrecords(x_train, y_train, image_size, 
-                "train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
-    convert_to_tfrecords(x_test, y_test, image_size,
-                "test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0]))
+    image_size = (128, 128)
+    #image_size = (224, 224)
+    #image_size = (64, 64)
+    output_file = "sp-train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
+    write_dataset_to_tfrecords(image_size, 'dataset-bboxes-train.list', output_file)
+
+    output_file = "sp-test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
+    write_dataset_to_tfrecords(image_size, 'dataset-bboxes-valid.list', output_file)
