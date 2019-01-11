@@ -1,3 +1,6 @@
+# find $PWD/train -type f -name "*.jpg" > dataset-bboxes-train.list
+# find $PWD/valid -type f -name "*.jpg" > dataset-bboxes-valid.list
+
 import tensorflow as tf
 import math
 import os
