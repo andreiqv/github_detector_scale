@@ -8,6 +8,11 @@
 presence после удаления пустых полок:
 Без аугментации: Train=60, valid=16
 С аугментацией: Train=299, valid=16
+
+---------------
+После разделения датасета на папки train|valid: Train=469, valid=24
+
+
 """
 	
 # https://github.com/tensorflow/tensorflow/issues/22837#issuecomment-428327601
