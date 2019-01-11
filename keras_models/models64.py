@@ -25,7 +25,7 @@ bn = lambda x: layers.BatchNormalization()(x)
 
 
 
-def model_first_64(inputs):
+def model_64(inputs):
 	""" 
 	2 conv layers: val_accuracy: 0.9333 - val_miou: 0.4136
 
@@ -65,7 +65,7 @@ def model_first_64(inputs):
 	return model	
 
 
-def model_first_64_v2(inputs):
+def model_64_v2(inputs):
 	""" 
 	10: val_accuracy: 0.9659 - val_miou: 0.6528
 	20: val_accuracy: 0.9703 - val_miou: 0.6390
@@ -98,7 +98,7 @@ def model_first_64_v2(inputs):
 	return model	
 
 
-def model_first_64_v3(inputs):
+def model_64_v3(inputs):
 	""" 
 	Epoch 30:  val_accuracy: 0.9743 - val_miou: 0.6595
 	Epoch 85:  val_accuracy: 0.9858 - val_miou: 0.6619
@@ -134,7 +134,7 @@ def model_first_64_v3(inputs):
 
 
 
-def model_first_64_v4(inputs):
+def model_64_v4(inputs):
 	""" 
 learning_rate = 0.01
 
@@ -181,7 +181,7 @@ learning_rate = 0.01
 	return model	
 
 
-def model_first_64_v5(inputs):
+def model_64_v5(inputs):
 	""" 
 learning_rate = 0.01
 10:  val_accuracy: 0.9678 - val_miou: 0.6306
@@ -217,7 +217,7 @@ learning_rate = 0.01
 	return model	
 
 
-def model_first_64_v6(inputs):
+def model_64_v6(inputs):
 	""" 
 730: val_loss: 0.0281 - val_accuracy: 0.9939 - val_miou: 0.6965
 

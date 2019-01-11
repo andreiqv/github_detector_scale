@@ -76,7 +76,7 @@ model_name = 'model_test_64_v6'
 #model = models.model_first2_1(inputs)
 
 import models64
-model = models64.model_first_64_v6(inputs)  #
+model = models64.model_64_v6(inputs)  #
 #model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
@@ -139,16 +139,16 @@ batch_size = 256  # 128  (set 32 if size==224)
 #                           image_channels, 256)
 
 if presence:
-    dataset = TfrecordsDataset("../dataset/presence_train-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            "../dataset/presence_test-bboxes{}x{}.tfrecords".format(*image_shape), 
+    dataset = TfrecordsDataset("../dataset/sp-presence-train-bboxes{}x{}.tfrecords".format(*image_shape), 
+                            "../dataset/sp-presence-test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using presence_train-bboxes{}x{}.tfrecords'.format(*image_shape))
     train_steps = 299 * 128 // batch_size # no pictures with empty scales
     valid_steps = 16  * 128 // batch_size # no pictures with empty scales
 
 else:
-    dataset = TfrecordsDataset("../dataset/train-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            "../dataset/test-bboxes{}x{}.tfrecords".format(*image_shape), 
+    dataset = TfrecordsDataset("../dataset/sp-train-bboxes{}x{}.tfrecords".format(*image_shape), 
+                            "../dataset/sp-test-bboxes{}x{}.tfrecords".format(*image_shape), 
                             image_shape, image_channels, batch_size)
     print('Using train-bboxes{}x{}.tfrecords'.format(*image_shape))
     train_steps = 469 * 128 // batch_size
