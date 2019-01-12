@@ -80,7 +80,6 @@ model = models64.model_64_v6(inputs)  #
 #model = models2.model_first_3_1(inputs) # +++ # val_accuracy: 0.9530 - val_miou: 0.7519
 #model = models2.model_first_3_2(inputs)
 #model = models2.model_cnn_128_v3(inputs)
-
 #model = models2.model_InceptionV3(inputs)
 #model = models2.model_ResNet50(inputs)   #  0.7738 -> 0.8062
 #model = models2.model_MobileNetV2(inputs)
@@ -88,13 +87,13 @@ model = models64.model_64_v6(inputs)  #
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
-import models_resnet
+#import models_resnet
 #model = models_resnet.resnet18(inputs)
 
 #import models3
 #model = models3.resnet_keras(inputs)
 
-import resnet_v2
+#import resnet_v2
 #model = resnet_v2.ResnetBuilder.build_resnet_18(
 #               (image_channels, image_shape[0], image_shape[1]), 5)
 
@@ -139,21 +138,22 @@ batch_size = 256  # 128  (set 32 if size==224)
 #                           image_channels, 256)
 
 if presence:
-    dataset = TfrecordsDataset("../dataset/sp-presence-train-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            "../dataset/sp-presence-test-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            image_shape, image_channels, batch_size)
-    print('Using presence_train-bboxes{}x{}.tfrecords'.format(*image_shape))
+    train_path = "../dataset/sp-presence-train-bboxes{}x{}.tfrecords".format(*image_shape)
+    test_paht = "../dataset/sp-presence-test-bboxes{}x{}.tfrecords".format(*image_shape)
+    print('Using presence dataset {}x{}'.format(*image_shape))
     train_steps = 299 * 128 // batch_size # no pictures with empty scales
     valid_steps = 16  * 128 // batch_size # no pictures with empty scales
 
 else:
-    dataset = TfrecordsDataset("../dataset/sp-train-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            "../dataset/sp-test-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            image_shape, image_channels, batch_size)
-    print('Using train-bboxes{}x{}.tfrecords'.format(*image_shape))
+    train_path = "../dataset/sp-train-bboxes{}x{}.tfrecords".format(*image_shape)
+    test_path = "../dataset/sp-test-bboxes{}x{}.tfrecords".format(*image_shape)
+    print('Using full dataset {}x{}'.format(*image_shape))
     train_steps = 469 * 128 // batch_size
     valid_steps = 24  * 128 // batch_size 
 
+print('train dataset path:', train_path)
+print('test  dataset path:', test_path)
+dataset = TfrecordsDataset(train_path, test_path, image_shape, image_channels, batch_size)
 dataset.augment_train_dataset()
 
 # ------
