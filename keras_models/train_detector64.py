@@ -139,7 +139,7 @@ batch_size = 256  # 128  (set 32 if size==224)
 
 if presence:
     train_path = "../dataset/sp-presence-train-bboxes{}x{}.tfrecords".format(*image_shape)
-    test_paht = "../dataset/sp-presence-test-bboxes{}x{}.tfrecords".format(*image_shape)
+    test_path = "../dataset/sp-presence-test-bboxes{}x{}.tfrecords".format(*image_shape)
     print('Using presence dataset {}x{}'.format(*image_shape))
     train_steps = 299 * 128 // batch_size # no pictures with empty scales
     valid_steps = 16  * 128 // batch_size # no pictures with empty scales
