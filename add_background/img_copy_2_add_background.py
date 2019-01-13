@@ -92,6 +92,9 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 					continue
 
 				if part == 'valid':
+
+					"""
+					# copy corresponding JPG file
 					cmd = 'cp {} {}'.format(src_subdir + '/' + basename + '.txt', 
 											dst_subdir + '/' + basename + '.txt')
 					print(cmd)
@@ -101,31 +104,32 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 					cmd = 'cp {} {}'.format(src_subdir + '/' + basename + '.jpg', 
 											dst_subdir + '/' + basename + '.jpg')
 					print(cmd)
-					os.system(cmd)					
+					os.system(cmd)		
+					"""			
 
-				"""	
-				#src_path_base = src_subdir + '/' + filename
-				img_foreground = Image.open(src_subdir + '/' + filename)
+					# add background to png
+					#src_path_base = src_subdir + '/' + filename
+					img_foreground = Image.open(src_subdir + '/' + filename)
 
-				for i, bg_filename in enumerate(bg_filenames):
+					for i, bg_filename in enumerate(bg_filenames):
+						
+						bg_path = bg_subdir + '/' + bg_filename
+
+						img_background = Image.open(bg_path)					
+						img = add_background_to_image(img_foreground, img_background)
+
+						dst_path_base = dst_subdir + '/' + basename
+
+						dst_path_jpg = dst_path_base + '_bg' + str(i) + '.jpg'
+						print(i, ':', dst_path_jpg)
+						img.save(dst_path_jpg, quality=85, optimize=True, progressive=True)
+
+						dst_path_txt = dst_path_base + '_bg' + str(i) + '.txt'
+						cmd = 'cp {} {}'.format(src_subdir + '/' + basename + '.txt', 
+												dst_path_txt)
+						os.system(cmd)
+
 					
-					bg_path = bg_subdir + '/' + bg_filename
-
-					img_background = Image.open(bg_path)					
-					img = add_background_to_image(img_foreground, img_background)
-
-					dst_path_base = dst_subdir + '/' + basename
-
-					dst_path_jpg = dst_path_base + '_bg' + str(i) + '.jpg'
-					print(i, ':', dst_path_jpg)
-					img.save(dst_path_jpg, quality=85, optimize=True, progressive=True)
-
-					dst_path_txt = dst_path_base + '_bg' + str(i) + '.txt'
-					cmd = 'cp {} {}'.format(src_subdir + '/' + basename + '.txt', 
-											dst_path_txt)
-					os.system(cmd)
-
-				"""
 
 if __name__ == '__main__':
 

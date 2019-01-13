@@ -29,8 +29,8 @@ from tfrecords_converter import TfrecordsDataset
 batch_size = 128  # 256
 image_shape = (128, 128)
 image_channels = 3
-dataset = TfrecordsDataset("../dataset/bg-presence-train-bboxes64x64.tfrecords", 
-	"../dataset/bg-presence-test-bboxes64x64.tfrecords", 
+dataset = TfrecordsDataset("../dataset/bg-presence-train-bboxes128x128.tfrecords", 
+	"../dataset/bg-presence-test-bboxes128x128.tfrecords", 
 	image_shape, image_channels, batch_size)
 
 dataset.augment_train_dataset()
