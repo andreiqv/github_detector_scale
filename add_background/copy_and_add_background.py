@@ -10,7 +10,7 @@ if os.path.exists('.local'):
 else:
 	src_dir = '/home/andrei/Data/Datasets/ScalesDetector/dataset-splited/'
 	dst_dir = '/home/andrei/Data/Datasets/ScalesDetector/output/'
-	bg_dir  = '/mnt/lin2/ineru/detector_dataset/background/'
+	bg_dir  = '/home/andrei/Data/Datasets/ScalesDetector/background/'
 
 
 parts = ['train', 'valid']
