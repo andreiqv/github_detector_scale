@@ -88,7 +88,7 @@ import models2
 #model = models2.model_MobileNetV2(inputs, depth=0.35)  # val_miou: 0.8022
 model = models2.model_MobileNetV2(inputs, depth=1)      # val_miou: 0.8460
 
-import models_slim
+#import models_slim
 #model = models_slim.model_cnn_128(inputs)     
 #model = models_slim.MobileNet_v2_035(inputs)     
 
@@ -96,7 +96,7 @@ import models_slim
 #import new_keras_models.keras_darknet19 as keras_darknet19
 #model = keras_darknet19.darknet19(inputs) # val_miou: 0.6106
 
-import models_resnet
+#import models_resnet
 #model = models_resnet.resnet18(inputs)
 
 #import models3
@@ -150,22 +150,24 @@ batch_size = 64  # 128  (set 32 if size==224)
 #                           image_channels, 256)
 
 if presence:
-    dataset = TfrecordsDataset("../dataset/presence_train-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            "../dataset/presence_test-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            image_shape, image_channels, batch_size)
-    print('Using presence_train-bboxes{}x{}.tfrecords'.format(*image_shape))
+    train_path = "../dataset/sp-presence-train-bboxes{}x{}.tfrecords".format(*image_shape)
+    test_path = "../dataset/sp-presence-test-bboxes{}x{}.tfrecords".format(*image_shape)
+    print('Using presence dataset {}x{}'.format(*image_shape))
     train_steps = 299 * 128 // batch_size # no pictures with empty scales
     valid_steps = 16  * 128 // batch_size # no pictures with empty scales
 
 else:
-    dataset = TfrecordsDataset("../dataset/train-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            "../dataset/test-bboxes{}x{}.tfrecords".format(*image_shape), 
-                            image_shape, image_channels, batch_size)
-    print('Using train-bboxes{}x{}.tfrecords'.format(*image_shape))
+    train_path = "../dataset/sp-train-bboxes{}x{}.tfrecords".format(*image_shape)
+    test_path = "../dataset/sp-test-bboxes{}x{}.tfrecords".format(*image_shape)
+    print('Using full dataset {}x{}'.format(*image_shape))
     train_steps = 469 * 128 // batch_size
     valid_steps = 24  * 128 // batch_size 
 
+print('train dataset path:', train_path)
+print('test  dataset path:', test_path)
+dataset = TfrecordsDataset(train_path, test_path, image_shape, image_channels, batch_size)
 dataset.augment_train_dataset()
+
 
 # ------
 
