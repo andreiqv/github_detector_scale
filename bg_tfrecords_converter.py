@@ -232,8 +232,8 @@ if __name__ == '__main__':
     #image_size = (128, 128)
     #image_size = (224, 224)
     image_size = (64, 64)
-    output_file = "bg-train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
+    output_file = "../dataset/bg-train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
     write_dataset_to_tfrecords(image_size, 'dataset-bboxes-train.list', output_file)
 
-    output_file = "bg-test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
+    output_file = "../dataset/bg-test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
     write_dataset_to_tfrecords(image_size, 'dataset-bboxes-valid.list', output_file)
