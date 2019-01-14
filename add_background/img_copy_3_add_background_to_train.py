@@ -7,6 +7,7 @@ import os
 import sys
 import random
 from PIL import Image
+import time
 
 if os.path.exists('.local'):
 	src_dir = '/mnt/lin2/ineru/detector_dataset/test_input'
@@ -136,7 +137,11 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 						except:
 							print('filename:', filename)
 							print('bg_path:', bg_path)
-							raise Exception('error in add_background_to_image')
+							print('*** error in add_background_to_image ***')
+							os.system('echo "add_background_to_image: {} {}" | cat >> _ERRORS.log'.\
+								format(filename, bg_path))
+							time.sleep(10)
+
 
 						dst_path_base = dst_subdir + '/' + basename
 
