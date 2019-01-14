@@ -141,6 +141,7 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 							os.system('echo "add_background_to_image: {} {}" | cat >> _ERRORS.log'.\
 								format(filename, bg_path))
 							time.sleep(10)
+							break
 
 
 						dst_path_base = dst_subdir + '/' + basename
