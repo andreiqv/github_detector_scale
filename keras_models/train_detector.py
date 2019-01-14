@@ -76,7 +76,7 @@ inputs = keras.layers.Input(shape=(
 
 import models2
 #model = models2.model_3(inputs)   # val_miou: 0.8053
-model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
+#model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
 #model = models2.model_3_2(inputs) # val_miou: 0.8118 
 #model = models2.model_3_3(inputs) # val_miou: 0.8049
 #model = models2.model_cnn_128(inputs)
@@ -86,7 +86,7 @@ model = models2.model_3_1(inputs) # val_miou: 0.8113 ++
 #model = models2.model_ResNet50(inputs)                 # val_miou: 0.8524
 #model = models2.model_MobileNet(inputs, depth=1)       # val_miou: 0.8500
 #model = models2.model_MobileNetV2(inputs, depth=0.35)  # val_miou: 0.8022
-#model = models2.model_MobileNetV2(inputs, depth=1)      # val_miou: 0.8460
+model = models2.model_MobileNetV2(inputs, depth=1)      # val_miou: 0.8460
 
 #import models_slim
 #model = models_slim.model_cnn_128(inputs)     
