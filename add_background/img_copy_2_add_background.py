@@ -30,6 +30,8 @@ def add_background_to_image(foreground, background):
 
 def copy_files(src_dir, dst_dir, bg_dir, parts):
 
+	count = {'valid': 0, 'train': 0}
+
 	src_dir = src_dir.rstrip('/')
 	dst_dir = dst_dir.rstrip('/')
 	os.system('mkdir -p {}'.format(dst_dir))
@@ -74,6 +76,7 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 											dst_subdir + '/' + filename)
 					print(cmd)
 					os.system(cmd)
+					count['train'] += 1
 
 				else:
 					pass
@@ -123,13 +126,14 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 						dst_path_jpg = dst_path_base + '_bg' + str(i) + '.jpg'
 						print(i, ':', dst_path_jpg)
 						img.save(dst_path_jpg, quality=85, optimize=True, progressive=True)
+						count['valid'] += 1
 
 						dst_path_txt = dst_path_base + '_bg' + str(i) + '.txt'
 						cmd = 'cp {} {}'.format(src_subdir + '/' + basename + '.txt', 
 												dst_path_txt)
 						os.system(cmd)
 
-					
+	print(count)
 
 if __name__ == '__main__':
 
