@@ -130,8 +130,13 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 						
 						bg_path = bg_subdir + '/' + bg_filename
 
-						img_background = Image.open(bg_path)					
-						img = add_background_to_image(img_foreground, img_background)
+						img_background = Image.open(bg_path)
+						try:			
+							img = add_background_to_image(img_foreground, img_background)
+						except:
+							print('filename:', filename)
+							print('bg_path:', bg_path)
+							raise Exception('error in add_background_to_image')
 
 						dst_path_base = dst_subdir + '/' + basename
 
