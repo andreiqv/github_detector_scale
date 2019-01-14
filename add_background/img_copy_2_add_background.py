@@ -62,7 +62,7 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 
 			if ext == '.jpg':			
 				
-				if part == 'train': 
+				if part == 'train' and True == False: 	
 				
 					cmd = 'cp {} {}'.format(src_subdir + '/' + basename + '.txt', 
 											dst_subdir + '/' + basename + '.txt')
