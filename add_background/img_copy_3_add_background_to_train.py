@@ -20,7 +20,7 @@ else:
 
 parts = ['train', 'valid']
 
-COPY_TRAIN_DATASET = False  # set True for first time.
+COPY_TRAIN_DATASET = True  # set True for first time.
 COPY_VALID_DATASET = False  # set True for first time.
 ADD_BG_part = 'train' # select dataset part for adding background
 MAX_NUM_BG_ON_PNG = 10
@@ -55,7 +55,7 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 			continue
 
 		all_bg_filenames = os.listdir(bg_subdir)
-		print('bg_filenames(all):', all_bg_filenames)
+		print(part, 'bg_filenames(all):', all_bg_filenames)
 		if len(all_bg_filenames) == 0: 
 			print('{0} - empty subdir'.format(bg_subdir))
 			raise Exception()
