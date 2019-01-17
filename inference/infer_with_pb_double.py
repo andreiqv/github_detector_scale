@@ -38,14 +38,16 @@ if USE_CAMERA:
 use_hub_model = False
 
 if True:
-	PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb'    # 0.0120 sec.	
+	PB1_PATH = '../pb/detector-objectness_64_v6-233-0.995-0.995[0.736].pb' 
+	PB2_PATH = '../pb/detector-box_MobileNetV2-110-1.000-1.000[0.853].pb'
+	#PB1_PATH = '../pb/model_test_64_v6-389-0.994-0.994[0.718].pb'    # 0.0120 sec.	
 	#PB2_PATH = '../pb/presence_model_3_2-95-1.000-1.000[0.818].pb'  # 0.0731 sec.
 	#PB2_PATH = '../pb/model_first_3-102-1.000-1.000[0.808].pb'      # 0.0502 sec.
 	#PB2_PATH = '../pb/presence_resnet18_2-59-1.000-1.000[0.825].pb' # 0.3639 sec. # 'input_1' and 'dense/Sigmoid'
 	#PB2_PATH = '../pb/presence_build_resnet_18-173-1.000-1.000[0.833].pb'      # 
 	#PB2_PATH = '../pb/presence_model_Resnet50-160-1.000-1.000[0.854].pb'
 	#PB2_PATH = '../pb/presence_model_MobileNet-111-1.000-1.000[0.850].pb' # 0.1540 sec.
-	PB2_PATH = '../pb/presence_model_MobileNetV2_-152-1.000-1.000[0.846].pb' # 0.1540
+	#PB2_PATH = '../pb/presence_model_MobileNetV2_-152-1.000-1.000[0.846].pb' # 0.1540
 	#PB2_PATH = '../pb/presence_model_InceptionV3-90-1.000-1.000[0.838].pb' # 0.3707 sec.
 	#PB2_PATH = '../pb/presence_model_MobileNetV2_0.35-37-0.999-0.999[0.802].pb'
 
