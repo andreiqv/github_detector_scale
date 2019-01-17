@@ -12,7 +12,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 #model_name = 'presence_model_MobileNetV2-100-1.000-1.000[0.812]'
-if sys.argv[1] != '':
+if len(sys.argv) > 1:
     model_name = sys.argv[1]
 else:
     model_name = 'presence_model_MobileNetV2-86-1.000-1.000[0.852]'
