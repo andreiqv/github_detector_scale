@@ -15,7 +15,9 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 if len(sys.argv) > 1:
     model_name = sys.argv[1]
 else:
-    model_name = 'presence_model_MobileNetV2-86-1.000-1.000[0.852]'
+    #model_name = 'presence_model_MobileNetV2-86-1.000-1.000[0.852]'
+    model_name = 'model_test_64_v6-395-0.996-0.996[0.733].hdf5'
+
 model_name = model_name.rstrip('.hdf5')
 
 
