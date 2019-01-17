@@ -118,7 +118,6 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 					else:
 						bg_filenames = all_bg_filenames
 
-
 					img_foreground = Image.open(src_subdir + '/' + filename)
 
 					for i, bg_filename in enumerate(bg_filenames):
@@ -126,6 +125,7 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 						bg_path = bg_subdir + '/' + bg_filename
 
 						img_background = Image.open(bg_path)
+
 						try:			
 							img = add_background_to_image(img_foreground, img_background)
 						except:
@@ -136,7 +136,6 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 								format(filename, bg_path))
 							time.sleep(10)
 							break
-
 
 						dst_path_base = dst_subdir + '/' + basename
 

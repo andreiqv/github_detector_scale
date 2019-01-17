@@ -25,7 +25,7 @@ if presence:
     learning_rate = 0.0005
 else:
     # objectness
-    from keras_models.aux import bboxes_loss_objectness as bboxes_loss
+    from keras_models.aux_obj import bboxes_loss
     learning_rate = 0.01
 
 from keras_models.aux import miou, accuracy    
