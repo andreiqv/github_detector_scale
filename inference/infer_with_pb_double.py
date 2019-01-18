@@ -401,7 +401,7 @@ if __name__ == '__main__':
 		inference_from_camera_with_two_graphs(graph_def_1, graph_def_2)
 
 	else:
-		files = ['../images/01.jpg', '../images/02.jpg', '../images/03.jpg']
+		files = ['../images/01.jpg', '../images/02.jpg']
 		for image_file in files:		
 			print(image_file)			
 			image = load_image(image_file)

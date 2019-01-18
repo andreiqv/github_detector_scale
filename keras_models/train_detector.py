@@ -160,8 +160,8 @@ else:
     train_path = "../dataset/bg-train-bboxes{}x{}.tfrecords".format(*image_shape)
     test_path = "../dataset/bg-test-bboxes{}x{}.tfrecords".format(*image_shape)
     print('Using full dataset {}x{}'.format(*image_shape))
-    train_steps = 787 * 128 // batch_size
-    valid_steps = 20  * 128 // batch_size 
+    train_steps = 788 * 128 // batch_size
+    valid_steps = 24  * 128 // batch_size 
 
 
 print('train dataset path:', train_path)
