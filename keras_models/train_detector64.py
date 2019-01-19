@@ -197,3 +197,11 @@ model.fit(dataset.train_set.repeat(),
           validation_data=dataset.test_set.batch(batch_size).repeat(),
           validation_steps=valid_steps,
           )
+
+# save into PB
+keras.backend.set_learning_phase(0)
+
+model.save_weights("./checkpoints/saved_{}.hdf5".format(model_name))
+
+import modelsaver
+modelsaver.save(model, path='../pb/', filename=model_name+'.pb')
