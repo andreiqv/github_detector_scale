@@ -4,6 +4,7 @@
 import tensorflow as tf
 import math
 import os
+import sys
 from PIL import Image, ImageDraw
 import numpy as np
 #import matplotlib.pyplot as plt
@@ -228,10 +229,14 @@ def write_dataset_to_tfrecords(image_size, dataset_list, output_file):
 
 if __name__ == '__main__':
 
+    if len(sys.argv) == 2:
+        w = int(sys.argv[1])
+        image_size = (w, w)
+    else:
+        image_size = (64, 64)
+        #image_size = (128, 128)
+        #image_size = (224, 224)
 
-    #image_size = (128, 128)
-    #image_size = (224, 224)
-    image_size = (64, 64)
     output_file = "../dataset/bg-train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
     write_dataset_to_tfrecords(image_size, 'dataset-bboxes-train.list', output_file)
 
