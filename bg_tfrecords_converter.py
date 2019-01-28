@@ -240,9 +240,9 @@ if __name__ == '__main__':
     print('image_size:', image_size)
 
     output_file = "../dataset/bg-train-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
-    print('writting to file', output_file, '...')
+    print('writting to the file', output_file, '...')
     write_dataset_to_tfrecords(image_size, 'dataset-bboxes-train.list', output_file)
 
     output_file = "../dataset/bg-test-bboxes{}x{}.tfrecords".format(image_size[1], image_size[0])
-    print('writting to file', output_file, '...')
+    print('writting to the file', output_file, '...')
     write_dataset_to_tfrecords(image_size, 'dataset-bboxes-valid.list', output_file)
