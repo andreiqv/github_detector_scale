@@ -1,5 +1,13 @@
-# find $PWD/train -type f -name "*.jpg" > dataset-bboxes-train.list
-# find $PWD/valid -type f -name "*.jpg" > dataset-bboxes-valid.list
+"""
+ create lists:
+ find $PWD/train -type f -name "*.jpg" > dataset-bboxes-train.list
+ find $PWD/valid -type f -name "*.jpg" > dataset-bboxes-valid.list
+ ----
+
+ run:
+ python3 bg_tfrecords_converter.py 128
+
+"""
 
 import tensorflow as tf
 import math
