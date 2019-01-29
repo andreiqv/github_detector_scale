@@ -27,6 +27,8 @@ PARTS_COPY_JPG = []  #
 PARTS_ADD_BG = ['train', 'valid'] # select dataset part for adding background 
 MAX_NUM_BG_ON_PNG = 10
 
+BG_SCALE_ALPHA = 235
+
 
 
 def merge_with_background(im, bg, alpha_value=220):
@@ -171,7 +173,7 @@ def copy_files(src_dir, dst_dir, bg_dir, parts):
 						try:
 							if not os.path.isfile(json_file_path):
 								# if the scale is empty
-								img_fg_new = merge_with_background(img_fg, img_bg, alpha_value=220)
+								img_fg_new = merge_with_background(img_fg, img_bg, alpha_value=BG_SCALE_ALPHA)
 								print('merge_with_background')
 							else:
 								img_fg_new = img_fg
