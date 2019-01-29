@@ -55,7 +55,8 @@ if True:
 	#PB2_PATH = '../pb/presence_model_MobileNetV2_0.35-37-0.999-0.999[0.802].pb'
 
 
-	INPUT_SIZE_1 = [3, 64, 64]
+	#INPUT_SIZE_1 = [3, 64, 64]
+	INPUT_SIZE_1 = [3, 128, 128]
 	INPUT_SIZE_2 = [3, 128, 128]
 	INPUT_NODE_1 = 'input'
 	INPUT_NODE_2 = 'input' # 'input_1'
