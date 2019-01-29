@@ -21,10 +21,9 @@ else:
 
 parts = ['train', 'valid']
 
-#PARTS_COPY_JPG = ['train','valid']  # select dataset which will be just copied
-PARTS_COPY_JPG = []  # 
-#PARTS_ADD_BG = ['train','valid'] # select dataset part for adding background 
-PARTS_ADD_BG = ['train', 'valid'] # select dataset part for adding background 
+PARTS_COPY_JPG = ['train','valid']  # select dataset which will be just copied
+#PARTS_COPY_JPG = []  # 
+PARTS_ADD_BG = ['train','valid'] # select dataset part for adding background 
 MAX_NUM_BG_ON_PNG = 10
 
 BG_SCALE_ALPHA = 235
