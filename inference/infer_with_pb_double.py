@@ -6,6 +6,12 @@ On raspberry:
 - model_first_3: 0.0664 sec.
 
 Resnet on SERVER: GPU: 0.0227 sec., CPU: 0.0441 sec.
+--
+model inputs:  input
+model outputs: output/Sigmoid
+input size: (128,128)
+
+
 """
 
 import sys
